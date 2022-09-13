@@ -1,0 +1,21 @@
+.avatar {
+  margin: 0 auto;
+
+  &__image {
+
+    &--navigation {
+      width: 86px;
+      height: 86px;
+      border-radius: 100000px;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  &__name {
+    margin-top: 10px;
+    color: $--c-dark-text;
+    font-size: 1.125em;
+    text-align: center;
+  }
+}
