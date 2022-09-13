@@ -1,0 +1,30 @@
+.chat-messages {
+  position: relative;
+  margin: $--o-padding-vertical-box $--o-padding-horizontal-box $--o-padding-vertical-box 64px;
+  width: calc(50% - 269px);
+
+  &__shadow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 11px 20px;
+  }
+
+  &__container {
+    border-radius: 6px 6px 0px 0px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+  }
+
+  &__top {
+    width: 100%;
+    padding: 28px 60px;
+    background: #FAFBFF;
+    border-bottom: 2px solid rgba($--c-light-text, 0.1);
+  }
+
+}

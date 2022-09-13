@@ -41,10 +41,10 @@ class ChatList extends Component {
                 </div>
 
                 <div className="chat-list__list">
-                    <ChatListItem status={"WRITING"} />
-                    <ChatListItem status={"RECORDING"} />
-                    <ChatListItem status={"LAST_ONLINE"} ago={10000} />
-                    <ChatListItem status={"ONLINE"} />
+                    <ChatListItem status={"WRITING"} ago={100} messageType={"TEXT"} active={true} />
+                    <ChatListItem status={"RECORDING"} ago={100} messageType={"RECORDING"} />
+                    <ChatListItem status={"LAST_ONLINE"} onlineAgo={10000} ago={100} messageType={"TEXT"} />
+                    <ChatListItem status={"ONLINE"} ago={100} messageType={"FILE"} />
                 </div>
             </div>
         );

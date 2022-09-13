@@ -1,6 +1,11 @@
 .chat-list {
-  padding: $--o-padding-vertical-box $--o-padding-horizontal-box;
-  width: 50%;
+  padding: $--o-padding-vertical-box 0 $--o-padding-vertical-box $--o-padding-horizontal-box;
+  width: calc(50% - 145px);
+  height: 100%;
+
+  &__wrapper {
+    padding-right: 16px;
+  }
 
   &__top {
     display: flex;
@@ -20,7 +25,7 @@
         margin-top: 15px;
         text-transform: capitalize;
 
-        & > img {
+        & > img, .img {
           width: 16px;
           height: 16px;
           position: relative;
@@ -75,7 +80,7 @@
       display: flex;
       cursor: text;
 
-      & > img {
+      & > img, .img {
         width: 24px;
         height: 100%;
         margin-right: 10px;
@@ -101,7 +106,7 @@
         font-size: 1.125em;
       }
 
-      & > img {
+      & > img, .img {
         width: 16px;
         height: 16px;
         position: relative;
@@ -111,14 +116,22 @@
   }
 
   &__list {
-    width: 100%;
+    @extend %scrollbar;
     overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    padding-right: 10px;
+    margin-top: 20px;
 
     &-item {
       margin-top: 20px;
       padding: 30px 40px 40px 40px;
       background: #fff;
       border-radius: 6px;
+
+      &:nth-of-type(1) {
+        margin-top: 0;
+      }
 
       &__top {
         display: flex;
@@ -147,7 +160,7 @@
             border: 1.5px solid #FFFFFF;
           }
 
-          & > img {
+          & > img, .img {
             width: 100%;
             height: 100%;
             border-radius: 100000px;
@@ -164,6 +177,160 @@
             font-size: 1.125em;
             color: $--c-dark-text;
           }
+        }
+      }
+
+      &__message-time {
+        color: $--c-light-text;
+        font-size: 1em;
+        margin-top: 3px;
+      }
+
+      &__message {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 17px;
+
+        p {
+          line-height: 1.625;
+          font-size: 1em;
+          color: $--c-light-text;
+        }
+
+        &-count {
+          flex-shrink: 0;
+          text-align: center;
+          display: inline-flex;
+          justify-content: center;
+          min-width: 20px;
+          height: 20px;
+          border-radius: 1000px;
+          background-color: $--c-indication-color;
+          box-shadow: 4px 4px 15px rgba(198, 27, 74, 0.05),
+            2px 2px 10px rgba(198, 27, 74, 0.1),
+            1px 1px 50px rgba(198, 27, 74, 0.15);
+          padding: 4px;
+          align-items: center;
+          margin-top: 5px;
+          margin-left: 10px;
+
+          & > span {
+            font-size: 0.8125em;
+            color: #fff;
+            text-align: center;
+          }
+        }
+      }
+
+      &--active {
+        background: linear-gradient(96.78deg, #7CB8F7 0%, #2A8BF2 100%);
+
+        .chat-list__list-item {
+
+          &__user {
+
+            &-avatar {
+              filter: drop-shadow(4px 4px 15px rgba(255, 255, 255, 0.05))
+              drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.1))
+              drop-shadow(1px 1px 50px rgba(255, 255, 255, 0.15));
+              -webkit-filter: drop-shadow(4px 4px 15px rgba(255, 255, 255, 0.05))
+              drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.1))
+              drop-shadow(1px 1px 50px rgba(255, 255, 255, 0.15));
+            }
+
+            &-text {
+
+              h3 {
+                color: #fff;
+              }
+            }
+          }
+
+          &__message-time {
+            color: #fff;
+          }
+
+          &__message {
+
+            p {
+              color: #fff;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}
+
+.message-recording > img, .img {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  position: relative;
+  top: 0.1em;
+  vertical-align: center;
+}
+
+.message-files {
+  display: flex;
+  margin-top: 13px;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  &__item {
+    padding: 10px 13px;
+    border-radius: 1000px;
+
+    & > img, .img {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    & > span {
+      vertical-align: text-top;
+      font-size: 0.875em;
+    }
+
+    &--image {
+      background-color: rgba($--c-indication-color, 0.25);
+
+      & > span {
+        color: $--c-indication-color;
+      }
+    }
+
+    &--file {
+      background-color: rgba($--c-active-color, 0.25);
+
+      & > span {
+        color: $--c-active-color;
+      }
+    }
+  }
+}
+
+
+.chat-list__list-item--active {
+
+  .message-files {
+
+    &__item {
+
+      &--image {
+        background-color: rgba(#fff, 0.25);
+
+        & > span {
+          color: #fff;
+        }
+      }
+
+      &--file {
+        background-color: rgba(#fff, 0.25);
+
+        & > span {
+          color: #fff;
         }
       }
     }
