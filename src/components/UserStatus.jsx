@@ -25,14 +25,14 @@ class UserStatus extends Component {
                         <div></div>
                         <div></div>
                     </div>
-                    <span>recording a voice message</span>
+                    <span>recording an audio</span>
                 </div>
             )
         }
         else if(this.props.status === "LAST_ONLINE") {
             return (
                 <div className={"user-status " + this.props.className} style={this.props.style}>
-                    <span>last online {this.lastSeenString} ago</span>
+                    <span>seen {this.lastSeenString} ago</span>
                 </div>
             )
         }

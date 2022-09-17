@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
 
 import LoggedInUser from "./LoggedInUser";
 
@@ -12,9 +13,11 @@ import iconPower from "../assets/img/icon_power.svg"
 
 
 class Navigation extends Component {
+
     render() {
         return (
-            <div className={"navigation__wrapper"}>
+            <div className={"navigation__wrapper" + (!this.props.mobileNavOpen ? " navigation__wrapper--closed-mobile" : "")}>
+
                 <LoggedInUser />
                 <nav className="navigation">
                     <ul className={"navigation__list"}>
@@ -66,4 +69,11 @@ class Navigation extends Component {
     }
 }
 
-export default Navigation;
+const mapStateToProps = state => {
+    return {
+        mobileNavOpen: state.mobileNavOpen
+    }
+}
+
+
+export default connect(mapStateToProps)(Navigation);

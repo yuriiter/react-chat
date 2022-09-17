@@ -1,6 +1,6 @@
 export const onlineString = ago => {
     const dateTable = {
-        dateStrings: ["minute", "hour", "day", "week", "month", "year"],
+        dateStrings: ["min", "hour", "day", "week", "month", "year"],
         containsSeconds: [60, 3600, 86400, 597800, 17934000, 215208000]
     }
     if(ago < 60) {

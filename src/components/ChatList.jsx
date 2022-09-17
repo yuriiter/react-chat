@@ -4,13 +4,15 @@ import iconArrow from "../assets/img/icon_arrow.svg"
 import iconPlus from "../assets/img/icon_plus.svg"
 import iconSearch from "../assets/img/icon_search.svg"
 import ChatListItem from "./ChatListItem";
+import {connect} from "react-redux";
 
 class ChatList extends Component {
     searchRef = React.createRef(null)
 
+
     render() {
         return (
-            <div className={"chat-list"}>
+            <div className={"chat-list" + (this.props.isChatOpen ? " chat-list--closed" : "")}>
                 <div className="chat-list__wrapper">
                     <div className="chat-list__top">
                         <div className="chat-list__top-filter">
@@ -20,7 +22,7 @@ class ChatList extends Component {
 
                         <button className="button primary-button chat-list__new-chat">
                             <img src={iconPlus} />
-                            <span>Create new chat</span>
+                            <span>new chat</span>
                         </button>
                     </div>
 
@@ -51,4 +53,10 @@ class ChatList extends Component {
     }
 }
 
-export default ChatList;
+const mapStateToProps = state => {
+    return {
+        isChatOpen: state.isChatOpen
+    }
+}
+
+export default connect(mapStateToProps)(ChatList);

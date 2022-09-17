@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
 
 import UserStatus from "./UserStatus";
 
@@ -11,56 +12,66 @@ import IconImage from "../icon_components/IconImage";
 import IconMic from "../icon_components/IconMic";
 
 class ChatListItem extends Component {
-
-    render() {
-        if(this.props.messageType === "TEXT") {
-            this.messageChunk = (
-                <div className={"message-text"}>
-                    <p>
-                        Most of its text is made up from sections 1.10.32–3 of
-                        Cicero's De finibus bonorum et malorum (On the Boundaries
-                        of Goods and Evils; finibus may also be translated as purposes).
-                    </p>
-                    <div className="message-files">
-                        <div className="message-files__item message-files__item--file">
-                            <IconFile active={this.props.active} />
-                            <span>Files (x2)</span>
-                        </div>
-                        <div className="message-files__item message-files__item--image">
-                            <IconImage active={this.props.active} />
-                            <span>Photo</span>
+    constructor(props) {
+        super(props)
+        switch(this.props.messageType) {
+            case "TEXT":
+                this.messageChunk = (
+                    <div className={"message-text"}>
+                        <p>
+                            Most of its text is made up from sections 1.10.32–3 of
+                            Cicero's De finibus bonorum et malorum (On the Boundaries
+                            of Goods and Evils; finibus may also be translated as purposes).
+                        </p>
+                        <div className="message-files">
+                            <div className="message-files__item message-files__item--file">
+                                <IconFile active={this.props.active} />
+                                <span>Files (x2)</span>
+                            </div>
+                            <div className="message-files__item message-files__item--image">
+                                <IconImage active={this.props.active} />
+                                <span>Photo</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )
+                )
+                break
+            case "RECORDING":
+                this.messageChunk = (
+                    <p className={"message-recording"}><IconMic active={this.props.active} /><span>Voice message (01:15)</span></p>
+                )
+                break
+            case "FILE":
+            case "IMAGE":
+                this.messageChunk = (
+                    <div className={"message-files"}>
+                        <div className="message-files">
+                            <div className="message-files__item message-files__item--file">
+                                <IconFile active={this.props.active} />
+                                <span>Files (x2)</span>
+                            </div>
+                            <div className="message-files__item message-files__item--image">
+                                <IconImage active={this.props.active} />
+                                <span>Photo</span>
+                            </div>
+                        </div>
+                    </div>
+                )
+                break
+            default:
+                break
         }
-        else if(this.props.messageType === "RECORDING") {
-            this.messageChunk = (
-                <p className={"message-recording"}><IconMic active={this.props.active} /><span>Voice message (01:15)</span></p>
-            )
-        }
-        else if(this.props.messageType === "FILE") {
-            this.messageChunk = (
-               <div className={"message-files"}>
-                   <div className="message-files">
-                       <div className="message-files__item message-files__item--file">
-                           <IconFile active={this.props.active} />
-                           <span>Files (x2)</span>
-                       </div>
-                       <div className="message-files__item message-files__item--image">
-                           <IconImage active={this.props.active} />
-                           <span>Photo</span>
-                       </div>
-                   </div>
-               </div>
-            )
-        }
+    }
+
+    openChat = () => this.props.dispatch({type: "OPEN_CHAT", payload: 1})
 
 
 
+    render() {
         return (
             <div className={"chat-list__list-item " +
                 (this.props.active ? "chat-list__list-item--active" : "")}
+                 onClick={this.openChat}
             >
                 <div className="chat-list__list-item__top">
                     <div className="chat-list__list-item__user">
@@ -88,4 +99,4 @@ class ChatListItem extends Component {
     }
 }
 
-export default ChatListItem;
+export default connect()(ChatListItem);

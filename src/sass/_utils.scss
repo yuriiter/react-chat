@@ -2,6 +2,11 @@ body {
   font-family: 'TT_Norms', sans-serif;
   font-size: 16px;
   height: 100vh;
+  overflow-y: hidden;
+
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
 }
 
 * {
@@ -52,6 +57,7 @@ body {
 %scrollbar {
   &::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
   }
 
   &::-webkit-scrollbar-track {
@@ -71,6 +77,11 @@ body {
   &::-webkit-scrollbar-thumb:hover {
     background: rgba(#B7BDCB, 0.9);
   }
+}
 
-
+@mixin line-clamp($num_of_lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $num_of_lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
