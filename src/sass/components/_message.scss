@@ -175,53 +175,14 @@
     }
   }
 
-  &__photo-grid {
+  &__photo {
+    max-width: 100%;
 
     & > img {
       object-fit: cover;
       padding: 1px;
-    }
-
-    &--1 > img:nth-child(1) {
+      height: 300px;
       width: 100%;
-    }
-
-    &--2 > img {
-      width: 50%;
-    }
-
-    &--3 > img {
-
-      &:nth-child(1) {
-        width: 100%;
-      }
-
-      &:nth-child(2) {
-        width: 50%;
-      }
-
-      &:nth-child(3) {
-        width: 50%;
-      }
-    }
-
-    &--4 > img {
-
-      &:nth-child(1) {
-        width: 50%;
-      }
-
-      &:nth-child(2) {
-        width: 50%;
-      }
-
-      &:nth-child(3) {
-        width: 60%;
-      }
-
-      &:nth-child(4) {
-        width: 40%;
-      }
     }
   }
 }

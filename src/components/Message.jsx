@@ -48,10 +48,7 @@ class Message extends Component {
                 break
             case "IMAGE":
                 message = (
-                    <div className="message__photo-grid message__photo-grid--4">
-                        <img src={avatarImage} alt={""} />
-                        <img src={avatarImage} alt={""} />
-                        <img src={avatarImage} alt={""} />
+                    <div className="message__photo">
                         <img src={avatarImage} alt={""} />
                     </div>
                 )

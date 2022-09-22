@@ -58,10 +58,10 @@ class Chat extends Component {
                     </div>
 
                     <div className="chat-messages__messages">
-                        <Message isMessagePartners={true} ago={1000} messageType={"TEXT"} content={"Hello!"}/>
-                        <Message isMessagePartners={true} ago={1000} messageType={"FILE"} content={file}/>
-                        <Message isMessagePartners={true} ago={1000} messageType={"RECORDING"} content={content}/>
-                        <Message isMessagePartners={true} ago={1000} messageType={"IMAGE"} content={content}/>
+                        <Message isMessagePartners={false} ago={1000} messageType={"TEXT"} content={"Hello!"}/>
+                        <Message isMessagePartners={false} ago={1000} messageType={"FILE"} content={file}/>
+                        <Message isMessagePartners={false} ago={1000} messageType={"RECORDING"} content={content}/>
+                        <Message isMessagePartners={false} ago={1000} messageType={"IMAGE"} content={content}/>
                     </div>
 
                     <div className="chat-messages__input" onClick={this.focusInput}>
@@ -89,9 +89,6 @@ class Chat extends Component {
                             <span className="chat-messages__input__placeholder">Type a message</span>
                         </div>
 
-                        <span className="chat-messages__input__smileys" >
-                            <img src={iconSmiley} />
-                        </span>
                         <span className="chat-messages__input__send chat-messages__input__round-button" >
                             <img src={iconSend} />
                         </span>

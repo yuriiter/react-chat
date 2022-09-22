@@ -225,6 +225,7 @@
     }
 
     &__send {
+      margin-left: auto;
       flex-shrink: 0;
       background: linear-gradient(325.78deg, #2A8BF2 14.76%, #7CB8F7 87.3%);
       box-shadow: 4px 4px 25px rgba(42, 139, 242, 0.15),
@@ -237,20 +238,6 @@
       }
     }
 
-    &__smileys {
-      padding: 5px 32px;
-      flex-shrink: 0;
-      margin-left: auto;
-
-      @media (max-width: 500px) {
-        padding: 5px 15px;
-      }
-
-      & > img, & > .img {
-        width: 24px;
-        height: 24px;
-      }
-    }
   }
 
   &__back-button {
