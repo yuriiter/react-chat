@@ -13,6 +13,10 @@ import iconPower from "../assets/img/icon_power.svg"
 
 
 class Navigation extends Component {
+    logOut = () => {
+        this.props.dispatch({type: "SET_ACCESS_TOKEN", payload: null})
+        window.location.href = "/signin"
+    }
 
     render() {
         return (
@@ -21,12 +25,6 @@ class Navigation extends Component {
                 <LoggedInUser />
                 <nav className="navigation">
                     <ul className={"navigation__list"}>
-                        <li>
-                            <a href="#">
-                                <img src={iconGrid} />
-                                <span>Home</span>
-                            </a>
-                        </li>
                         <li className={"navigation__list-item--active"}>
                             <a href="#">
                                 <img src={iconChat} />
@@ -60,10 +58,10 @@ class Navigation extends Component {
                     </ul>
                 </nav>
 
-                <a href="#" className={"navigation__logout"}>
+                <button onClick={this.logOut} className={"navigation__logout"}>
                     <img src={iconPower} />
                     <span>log out</span>
-                </a>
+                </button>
             </div>
         );
     }
@@ -71,7 +69,8 @@ class Navigation extends Component {
 
 const mapStateToProps = state => {
     return {
-        mobileNavOpen: state.mobileNavOpen
+        mobileNavOpen: state.mobileNavOpen,
+        user: state.user
     }
 }
 

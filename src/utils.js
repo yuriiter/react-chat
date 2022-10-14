@@ -25,3 +25,38 @@ export const onlineString = ago => {
         }
     }
 }
+
+export const isEmailValid = email => {
+    return String(email)
+        .toLowerCase()
+        .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+};
+
+export const isPasswordValid = password => {
+    if(password.length < 6 || password.length > 20) {
+        return false;
+    }
+
+    let hasCapitalLetter = false;
+    let hasNumber = false;
+
+    for(let i = 0; i < password.length; i++) {
+        if(!isNaN(password[i])) {
+            hasNumber = true;
+        }
+        if(password[i] !== password[i].toLowerCase() && password[i] === password[i].toUpperCase()) {
+            hasCapitalLetter = true;
+        }
+    }
+
+    return hasCapitalLetter && hasNumber;
+}
+
+export const getRemoteUser = (userId, users) => {
+    if(!users || !userId) {
+        return;
+    }
+    return users[0]?.id === userId ? users[1] : users[0]
+}

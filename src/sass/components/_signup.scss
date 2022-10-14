@@ -1,0 +1,44 @@
+.signup {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__box {
+    margin: auto auto;
+    width: 500px;
+    max-width: 100%;
+    height: fit-content;
+    padding: 0 15px;
+  }
+
+  &__card {
+    width: 100%;
+    padding: 40px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__input {
+    width: 100%;
+  }
+
+  &__button {
+    height: 50px;
+  }
+
+  &__link {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+
+.accent-color {
+  color: rgb(25, 118, 210);
+}

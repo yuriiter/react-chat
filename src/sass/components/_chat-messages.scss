@@ -129,8 +129,10 @@
     }
 
     &__input {
+      width: 100%;
       position: relative;
       margin-left: 21px;
+      margin-right: 21px;
 
       @media (max-width: 500px) {
         margin-left: 10px;

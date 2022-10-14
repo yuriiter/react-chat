@@ -61,10 +61,36 @@ class ChatListItem extends Component {
             default:
                 break
         }
+
+        this.remoteUser = this.props.chat.users[0].id === this.props.user.id ?
+            this.props.chat.users[1] : this.props.chat.users[0];
+
+        this.countOfNewMessagesValue = this.countOfNewMessages(this.props.chat);
     }
 
-    openChat = () => this.props.dispatch({type: "OPEN_CHAT", payload: 1})
 
+    countOfNewMessages = chat => {
+        const userId = this.props.user.id;
+        const arrayIndexOfCurrentUser = (chat.users[0] === userId ? 0 : 1);
+        return chat.countOfNewMessagesToUsers[arrayIndexOfCurrentUser];
+    }
+
+    /* componentDidMount() { */
+    /*     fetch(process.env.REACT_APP_BACKEND_API_URL + `/chats/${this.props.chat.id}/messages?skip=0&take=10`, { */
+    /*         method: "GET", */
+    /*         headers: { */
+    /*             "Authorization": `Bearer ${this.props.accessToken}` */
+    /*         } */
+    /*     }) */
+    /*         .then(response => response.json()) */
+    /*         .then(json => { */
+    /*             console.log(json) */
+    /*         }) */
+    /* } */
+
+    openChat = () => {
+        this.props.dispatch({type: "OPEN_CHAT", payload: this.props.chat.id})
+    }
 
 
     render() {
@@ -77,10 +103,13 @@ class ChatListItem extends Component {
                     <div className="chat-list__list-item__user">
                         <div className="chat-list__list-item__user-avatar">
                             <img src={avatarImage} alt=""/>
-                            <div className="online-status"></div>
+                            {( this.props.chat.status === "ONLINE" ||
+                                this.props.chat.status === "RECODRING" ||
+                                this.props.chat.status === "WRITING"
+                            ) ? (<div className="online-status"></div>) : null}
                         </div>
                         <div className="chat-list__list-item__user-text">
-                            <h3 className="chat-list__list-item__user-name">Luy Robin</h3>
+                            <h3 className="chat-list__list-item__user-name">{this.remoteUser.fullName}</h3>
                             <span className="chat-list__list-item__user-status">
                                 <UserStatus status={this.props.status} ago={this.props.onlineAgo} />
                             </span>
@@ -92,11 +121,16 @@ class ChatListItem extends Component {
 
                 <div className="chat-list__list-item__message">
                     {this.messageChunk}
-                    <span className={"chat-list__list-item__message-count"}><span>1</span></span>
-                </div>
+                    {this.countOfNewMessagesValue > 0 ? ( <span className={"chat-list__list-item__message-count"}><span>{this.countOfNewMessagesValue}</span></span> ) : null}</div>
             </div>
         );
     }
 }
 
-export default connect()(ChatListItem);
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(ChatListItem);

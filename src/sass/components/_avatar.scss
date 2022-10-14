@@ -8,14 +8,20 @@
       height: 86px;
       border-radius: 100000px;
       display: block;
-      margin: 0 auto;
+      margin: 0 auto 10px auto;
     }
   }
 
   &__name {
-    margin-top: 10px;
     color: $--c-dark-text;
     font-size: 1.125em;
     text-align: center;
+    margin-top: 10px;
+  }
+
+  &__email {
+    color: rgba($--c-dark-text, 0.6);
+    font-size: 0.925em;
+    font-weight: 400;
   }
 }
