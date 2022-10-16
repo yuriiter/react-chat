@@ -114,7 +114,7 @@ class ChatList extends Component {
                 </div>
 
                 <div className="chat-list__list">
-                    {this.props.chats.length === 0 ? (<span>You don't have any chats yet</span>) : 
+                    {this.props.chats?.length === 0 ? (<span>You don't have any chats yet</span>) : 
                         this.props.chats?.map(chat => {
                             const remoteUser = getRemoteUser(this.props.user.id, chat.users);
                             const status = chat.status;

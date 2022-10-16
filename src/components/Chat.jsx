@@ -42,15 +42,19 @@ class Chat extends Component {
     }
     
     componentDidMount() {
+        this.setState({messages: this.props.chat.messages || []});
+        
+        
         this.socket.on('connect', () => {
             console.log('Connected!');
         });
         this.socket.on('onMessage', (newMessage) => {
             console.log('onMessage event received!');
             console.log(newMessage)
-            this.props.dispatch({type: "ADD_MESSAGE", payload: {chatId: this.props.chat.id, message: newMessage}})
+            this.props.dispatch({type: "ADD_MESSAGE", payload: {message: newMessage}})
         });
     }
+
 
     componentWillUnmount() {
         this.socket.off("onMessage");
@@ -78,20 +82,6 @@ class Chat extends Component {
             messageContent: this.state.chatInput
         });
         this.setState({chatInput: ""});
-
-        /* fetch(process.env.REACT_APP_BACKEND_API_URL + "/messages", { */
-        /*     method: "POST", */
-        /*     headers: { */
-        /*         "Authorization": `Bearer ${this.props.accessToken}` */
-        /*     }, */
-        /*     body: JSON.stringify({ */
-        /*         receiverId: this.remoteUser.id, */
-        /*         chatId: this.props.chat.id, */
-        /*         messageType: "TEXT", */
-        /*         messageContent: this.state.chatInput */
-        /*     }) */
-        /* }) */
-        /*     .then(response => response.json()) */
     }
 
 

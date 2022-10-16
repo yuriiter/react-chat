@@ -85,18 +85,23 @@ const reducerFn = (state = initialState, action) => {
         return {...state, chats: [ ...state.chats, newChat ]}
     }
     if(action.type === "ADD_MESSAGE") {
-        const { chatId, message } = action.payload;
+        const { message } = action.payload;
+        const chatId = message.chatId;
         const chats = state.chats;
         const chat = chats.find(chat => chat.id = chatId);
-
         if(!chat) {
             return state;
         }
+        console.log("ACTION")
+
 
         chat.messages.push(message);
         chat.messages = [...chat.messages];
 
-        return {...state, ...state.chats};
+        if(state.chat?.id === message.chatId) {
+            return {...state, chats: [ ...state.chats ], chat: {...chat}};
+        }
+        return {...state, chats: [ ...state.chats ]};
     }
 
     if(action.type === "UPDATE_GLOBAL_TIMER") {
