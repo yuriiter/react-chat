@@ -81,30 +81,6 @@ class ChatList extends Component {
         }
     }
 
-    componentDidMount() {
-        fetch(process.env.REACT_APP_BACKEND_API_URL + "/chats", {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${this.props.accessToken}`
-            }
-        })
-            .then(response => response.json())
-            .then(json => {
-                const statusCode = json.statusCode;
-                if(statusCode) {
-                    if(statusCode === 401) {
-                        this.setState({message: "Unauthorized", messageType: "error"})
-                        this.setState({changeLocationTimer: setTimeout(() => {
-                            window.location.href = "/signin"
-                        }, 2000)})
-                    }
-                }
-                else {
-                    this.props.dispatch({type: "SET_CHATS", payload: json})
-                }
-            });
-    }
-
     render() {
         return (
             <div className={"chat-list" + (this.props.isChatOpen ? " chat-list--closed" : "")}>
@@ -146,8 +122,8 @@ class ChatList extends Component {
                             if(status === "LAST_ONLINE") {
                                 onlineAgo = ( this.props.currentTime - Date.parse(remoteUser.lastOnline) ) / 1000
                             }
-                            const lastMessageTime = chat.messages.length === 0 ? this.props.currentTime : chat.messages[0].sentDateTime;
-                            const ago = this.props.currentTime - lastMessageTime;
+                            const lastMessageTime = chat.messages.length === 0 ? undefined : Date.parse(chat.messages[0].sentDateTime);
+                            const ago = ( this.props.currentTime - lastMessageTime ) / 1000;
 
                             return (
                                 <ChatListItem

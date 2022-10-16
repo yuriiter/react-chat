@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import UserStatus from "./UserStatus";
 
-import {onlineString} from "../utils";
+import {onlineString, getRemoteUser} from "../utils";
 
 import avatarImage from "../assets/img/avatar_image.jpg"
 
@@ -14,15 +14,23 @@ import IconMic from "../icon_components/IconMic";
 class ChatListItem extends Component {
     constructor(props) {
         super(props)
-        switch(this.props.messageType) {
+        const lastMessageIdx = this.props.chat.messages.length - 1;
+        if(lastMessageIdx === -1) {
+            this.messageChunk = (
+                <div className={"message-text"}>
+                    <p>(No messages yet)</p>
+                </div>
+            )
+                return;
+        }
+        const lastMessage = this.props.chat.messages[lastMessageIdx];
+        const messageType = lastMessage.messageType;
+        
+        switch(messageType) {
             case "TEXT":
                 this.messageChunk = (
                     <div className={"message-text"}>
-                        <p>
-                            Most of its text is made up from sections 1.10.32–3 of
-                            Cicero's De finibus bonorum et malorum (On the Boundaries
-                            of Goods and Evils; finibus may also be translated as purposes).
-                        </p>
+                        <p>{lastMessage.messageContent}</p>
                         <div className="message-files">
                             <div className="message-files__item message-files__item--file">
                                 <IconFile active={this.props.active} />
@@ -62,16 +70,14 @@ class ChatListItem extends Component {
                 break
         }
 
-        this.remoteUser = this.props.chat.users[0].id === this.props.user.id ?
-            this.props.chat.users[1] : this.props.chat.users[0];
-
+        this.remoteUser = getRemoteUser(this.props.user?.id, this.props.chat?.users);
         this.countOfNewMessagesValue = this.countOfNewMessages(this.props.chat);
     }
 
 
     countOfNewMessages = chat => {
         const userId = this.props.user.id;
-        const arrayIndexOfCurrentUser = (chat.users[0] === userId ? 0 : 1);
+        const arrayIndexOfCurrentUser = (chat.users[0] === userId ? 1 : 0);
         return chat.countOfNewMessagesToUsers[arrayIndexOfCurrentUser];
     }
 

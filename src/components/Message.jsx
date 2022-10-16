@@ -12,6 +12,7 @@ import recordingMessage from "../assets/audio.mp3"
 import {onlineString} from "../utils";
 
 class Message extends Component {
+
     render() {
         let messageStatus = null
         if(!this.props.isMessagePartners) {

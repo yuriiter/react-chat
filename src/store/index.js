@@ -20,7 +20,7 @@ const reducerFn = (state = initialState, action) => {
         const chatId = action.payload;
         const searchedChats = state.chats.filter(chat => chat.id === chatId && chat.active)
         if(searchedChats.length > 0) {
-            return state;
+            return {...state, isChatOpen: true};
         }
 
         let pickedChat = null;
@@ -55,6 +55,9 @@ const reducerFn = (state = initialState, action) => {
     }
     if(action.type === "SET_CHATS") {
         const chats = action.payload;
+        if(!state.user.id) {
+            return state;
+        }
         const newChats = chats.map(chat => {
             const remoteUser = getRemoteUser(state.user.id, chat.users);
             const lastOnline = remoteUser.lastOnline;
@@ -82,8 +85,18 @@ const reducerFn = (state = initialState, action) => {
         return {...state, chats: [ ...state.chats, newChat ]}
     }
     if(action.type === "ADD_MESSAGE") {
-        const chatId = action.payload.chatId;
-        /* const message = action.payload. */
+        const { chatId, message } = action.payload;
+        const chats = state.chats;
+        const chat = chats.find(chat => chat.id = chatId);
+
+        if(!chat) {
+            return state;
+        }
+
+        chat.messages.push(message);
+        chat.messages = [...chat.messages];
+
+        return {...state, ...state.chats};
     }
 
     if(action.type === "UPDATE_GLOBAL_TIMER") {

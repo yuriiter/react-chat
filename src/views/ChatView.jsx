@@ -46,7 +46,30 @@ class ChatView extends Component {
                 }
 
                 this.props.dispatch({type: "SET_USER", payload: json})
-            });
+            })
+            .then(() => {
+                fetch(process.env.REACT_APP_BACKEND_API_URL + "/chats", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${this.props.accessToken}`
+                    }
+                })
+                    .then(response => response.json())
+                    .then(json => {
+                        const statusCode = json.statusCode;
+                        if(statusCode) {
+                            if(statusCode === 401) {
+                                this.setState({message: "Unauthorized", messageType: "error"})
+                                this.setState({changeLocationTimer: setTimeout(() => {
+                                    window.location.href = "/signin"
+                                }, 2000)})
+                            }
+                        }
+                        else {
+                            this.props.dispatch({type: "SET_CHATS", payload: json})
+                        }
+                    });
+            })
     }
 
     componentWillUnmount() {

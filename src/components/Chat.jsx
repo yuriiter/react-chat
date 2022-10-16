@@ -47,13 +47,14 @@ class Chat extends Component {
         });
         this.socket.on('onMessage', (newMessage) => {
             console.log('onMessage event received!');
-            console.log(newMessage);
+            console.log(newMessage)
+            this.props.dispatch({type: "ADD_MESSAGE", payload: {chatId: this.props.chat.id, message: newMessage}})
         });
     }
 
     componentWillUnmount() {
-        this.socket.off("connect");
         this.socket.off("onMessage");
+        this.socket.off("connect");
     }
     
     handleChatInputChange = e => this.setState({chatInput: e.target.value})
@@ -74,7 +75,7 @@ class Chat extends Component {
             receiverId: this.remoteUser.id,
             chatId: this.props.chat.id,
             messageType: "TEXT",
-            messageContent: this.chatInput
+            messageContent: this.state.chatInput
         });
         this.setState({chatInput: ""});
 
@@ -99,6 +100,8 @@ class Chat extends Component {
         const file = {
             download: "https://google.com"
         }
+
+        const isUserDefined = JSON.stringify(this.props.chat) === JSON.stringify({})
 
         this.remoteUser = getRemoteUser(this.props.user?.id, this.props.chat?.users);
 
@@ -131,9 +134,10 @@ class Chat extends Component {
                     <div className="chat-messages__messages">
                         {this.props.chat?.messages?.map((message) => {
                             const isMessagePartners = message.receiverId === this.props.user?.id;
-                            const ago = ( this.props.currentTime - message.sentDateTime ) / 1000;
+                            const ago = ( this.props.currentTime - Date.parse( message.sentDateTime ) ) / 1000;
                             return (
                                 <Message
+                                    key={message.id}
                                     isMessagePartners={isMessagePartners}
                                     ago={ago}
                                     messageType={message.messageType}
