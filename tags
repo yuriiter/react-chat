@@ -16,6 +16,9 @@
 6000	src/components/ChatList.jsx	/^                <Snackbar open={this.state.message !== undefined} autoHideDuration={6000} onClos/;"	M	variable:
 6000	src/views/ChatView.jsx	/^          autoHideDuration={6000}$/;"	M
 App	src/App.jsx	/^class App extends Component {$/;"	c
+Authorization	src/components/Chat.jsx	/^              Authorization: `Bearer ${this.props.accessToken}`,$/;"	p	property:Chat.componentDidUpdate.anonymousObjectc51c18140c05.headers
+Authorization	src/components/Chat.jsx	/^            Authorization: `Bearer ${this.props.accessToken}`,$/;"	p	property:Chat.componentDidMount.anonymousObjectc51c18140405.headers
+Authorization	src/components/Chat.jsx	/^            Authorization: `Bearer ${this.props.accessToken}`,$/;"	p	property:Chat.componentDidUpdate.anonymousObjectc51c18140805.headers
 Authorization	src/components/ChatList.jsx	/^                    "Authorization": `Bearer ${this.props.accessToken}`$/;"	p	property:ChatList.anonymousObject096161500b05.headers
 Authorization	src/components/ChatList.jsx	/^                "Authorization": `Bearer ${this.props.accessToken}`,$/;"	p	property:ChatList.anonymousObject096161500505.headers
 Authorization	src/views/ChatView.jsx	/^            Authorization: `Bearer ${this.props.accessToken}`,$/;"	p	property:anonymousObject6925e8b70905.headers
@@ -46,7 +49,7 @@ ago	src/components/Chat.jsx	/^                  ago={ago}$/;"	M
 anonymousObject096161500105	src/components/ChatList.jsx	/^    toggleDialog = () => this.setState({openDialog: !this.state.openDialog})$/;"	v
 anonymousObject096161500205	src/components/ChatList.jsx	/^    handleSearchUserEmailChange = e => this.setState({searchedUserEmail: e.target.value})$/;"	v
 anonymousObject096161500305	src/components/ChatList.jsx	/^    closeAlert = () => this.setState({message: undefined, messageType: undefined})$/;"	v
-anonymousObject096161500405	src/components/ChatList.jsx	/^            this.setState({chats: this.props.chats});$/;"	v
+anonymousObject096161500405	src/components/ChatList.jsx	/^            this.setState({chats: this.props.chats});$/;"	v	method:ChatList.componentDidUpdate
 anonymousObject096161500505	src/components/ChatList.jsx	/^        fetch(process.env.REACT_APP_BACKEND_API_URL + "\/chats", {$/;"	v	class:ChatList
 anonymousObject096161500605	src/components/ChatList.jsx	/^            body: JSON.stringify({ users: [this.props.user.id, newUserId] })$/;"	v	variable:ChatList.anonymousObject096161500505
 anonymousObject096161500705	src/components/ChatList.jsx	/^                        this.setState({message: json.message, messageType: "error"})$/;"	v
@@ -93,20 +96,31 @@ anonymousObject83a6cdf20a05	src/views/SignUp.jsx	/^            this.setState({me
 anonymousObject83a6cdf20b05	src/views/SignUp.jsx	/^            this.setState({changeLocationTimer: setTimeout(() => {$/;"	v
 anonymousObject8edfbb640105	src/components/Navigation.jsx	/^        this.props.dispatch({type: "SET_ACCESS_TOKEN", payload: null})$/;"	v
 anonymousObjectc51c18140105	src/components/Chat.jsx	/^    this.setState({ scrollFromTop: e.target.scrollTop });$/;"	v	class:Chat
-anonymousObjectc51c18140205	src/components/Chat.jsx	/^    this.setState({ messages: this.props.chat.messages || [] });$/;"	v	method:Chat.componentDidMount
+anonymousObjectc51c18140205	src/components/Chat.jsx	/^      this.setState({ pagesUp: this.state.pagesUp + 1 });$/;"	v	class:Chat
 anonymousObjectc51c18140305	src/components/Chat.jsx	/^    this.setState({$/;"	v	method:Chat.componentDidMount
-anonymousObjectc51c18140405	src/components/Chat.jsx	/^      this.props.dispatch({$/;"	v
-anonymousObjectc51c18140505	src/components/Chat.jsx	/^    this.socket.emit('newStatus', { newStatus: 'WRITING' });$/;"	v
-anonymousObjectc51c18140605	src/components/Chat.jsx	/^    this.setState({ chatInput: e.target.value });$/;"	v	class:Chat
-anonymousObjectc51c18140705	src/components/Chat.jsx	/^    this.setState({ attachmentsButtonOpen: !this.state.attachmentsButtonOpen });$/;"	v
-anonymousObjectc51c18140805	src/components/Chat.jsx	/^  closeChat = () => this.props.dispatch({ type: 'CLOSE_CHAT' });$/;"	v
-anonymousObjectc51c18140905	src/components/Chat.jsx	/^      this.setState({ chatInput: '' });$/;"	v	class:Chat
-anonymousObjectc51c18140a05	src/components/Chat.jsx	/^    this.socket.emit('newMessage', {$/;"	v
-anonymousObjectc51c18140b05	src/components/Chat.jsx	/^    this.setState({ chatInput: '' });$/;"	v	class:Chat
+anonymousObjectc51c18140405	src/components/Chat.jsx	/^        {$/;"	v	method:Chat.componentDidMount
+anonymousObjectc51c18140505	src/components/Chat.jsx	/^              this.setState({$/;"	v
+anonymousObjectc51c18140605	src/components/Chat.jsx	/^              this.setState({$/;"	v
+anonymousObjectc51c18140705	src/components/Chat.jsx	/^            this.setState({ messages: json });$/;"	v
+anonymousObjectc51c18140805	src/components/Chat.jsx	/^        {$/;"	v	method:Chat.componentDidUpdate
+anonymousObjectc51c18140905	src/components/Chat.jsx	/^              this.setState({$/;"	v
+anonymousObjectc51c18140a05	src/components/Chat.jsx	/^              this.setState({$/;"	v
+anonymousObjectc51c18140b05	src/components/Chat.jsx	/^            this.setState({ messages: [...json, ...this.state.messages] });$/;"	v
+anonymousObjectc51c18140c05	src/components/Chat.jsx	/^          {$/;"	v	method:Chat.componentDidUpdate
+anonymousObjectc51c18140d05	src/components/Chat.jsx	/^                this.setState({$/;"	v
+anonymousObjectc51c18140e05	src/components/Chat.jsx	/^                this.setState({$/;"	v
+anonymousObjectc51c18140f05	src/components/Chat.jsx	/^              this.setState({ messages: json });$/;"	v
+anonymousObjectc51c18141005	src/components/Chat.jsx	/^    this.socket.emit('newStatus', { newStatus: 'WRITING' });$/;"	v
+anonymousObjectc51c18141105	src/components/Chat.jsx	/^    this.setState({ chatInput: e.target.value });$/;"	v	class:Chat
+anonymousObjectc51c18141205	src/components/Chat.jsx	/^    this.setState({ attachmentsButtonOpen: !this.state.attachmentsButtonOpen });$/;"	v
+anonymousObjectc51c18141305	src/components/Chat.jsx	/^  closeChat = () => this.props.dispatch({ type: 'CLOSE_CHAT' });$/;"	v
+anonymousObjectc51c18141405	src/components/Chat.jsx	/^      this.setState({ chatInput: '' });$/;"	v	class:Chat
+anonymousObjectc51c18141505	src/components/Chat.jsx	/^    this.socket.emit('newMessage', {$/;"	v
+anonymousObjectc51c18141605	src/components/Chat.jsx	/^    this.setState({ chatInput: '' });$/;"	v	class:Chat
 anonymousObjectf362f98e0105	server/index.js	/^const io = new Server(server, {$/;"	v
 app	server/index.js	/^const app = express()$/;"	C
 arrayIndexOfCurrentUser	src/components/ChatListItem.jsx	/^    const arrayIndexOfCurrentUser = chat.users[0] === userId ? 1 : 0;$/;"	C	class:ChatListItem
-attachmentsButtonOpen	src/components/Chat.jsx	/^    this.setState({ attachmentsButtonOpen: !this.state.attachmentsButtonOpen });$/;"	p	variable:anonymousObjectc51c18140705
+attachmentsButtonOpen	src/components/Chat.jsx	/^    this.setState({ attachmentsButtonOpen: !this.state.attachmentsButtonOpen });$/;"	p	variable:anonymousObjectc51c18141205
 avatar	src/components/LoggedInUser.jsx	/^      <div className={"avatar"}>$/;"	M
 body	src/components/ChatList.jsx	/^            body: JSON.stringify({ users: [this.props.user.id, newUserId] })$/;"	p	variable:ChatList.anonymousObject096161500505
 body	src/views/SignIn.jsx	/^        body: JSON.stringify({$/;"	p	variable:SignIn.anonymousObject6784b5640405
@@ -115,6 +129,9 @@ box__black-overlay	src/views/ChatView.jsx	/^              'box__black-overlay' +
 burger-mobile	src/views/ChatView.jsx	/^            'burger-mobile' +$/;"	M
 changeEmailInputValue	src/views/SignIn.jsx	/^  changeEmailInputValue = e => {$/;"	M	class:SignIn
 changeEmailInputValue	src/views/SignUp.jsx	/^  changeEmailInputValue = e => {$/;"	M	class:SignUp
+changeLocationTimer	src/components/Chat.jsx	/^                  changeLocationTimer: setTimeout(() => {$/;"	p	variable:anonymousObjectc51c18140e05
+changeLocationTimer	src/components/Chat.jsx	/^                changeLocationTimer: setTimeout(() => {$/;"	p	variable:anonymousObjectc51c18140605
+changeLocationTimer	src/components/Chat.jsx	/^                changeLocationTimer: setTimeout(() => {$/;"	p	variable:anonymousObjectc51c18140a05
 changeLocationTimer	src/views/ChatView.jsx	/^                  changeLocationTimer: setTimeout(() => {$/;"	p	variable:anonymousObject6925e8b70b05
 changeLocationTimer	src/views/ChatView.jsx	/^              changeLocationTimer: setTimeout(() => {$/;"	p	variable:anonymousObject6925e8b70705
 changeLocationTimer	src/views/ChatView.jsx	/^    this.setState({ changeLocationTimer: null });$/;"	p	variable:ChatView.componentWillUnmount.anonymousObject6925e8b70d05
@@ -125,7 +142,6 @@ changePasswordInputValue	src/views/SignUp.jsx	/^  changePasswordInputValue = e =
 changeRepeatPasswordInputValue	src/views/SignUp.jsx	/^  changeRepeatPasswordInputValue = e => {$/;"	M	class:SignUp
 chat	src/components/ChatList.jsx	/^                                    chat={chat}$/;"	M
 chat	src/components/ChatList.jsx	/^                                    key={chat.id}$/;"	M
-chat	src/store/index.js	/^    const chat = chats.find((chat) => chat.id == chatId);$/;"	C
 chat	src/store/index.js	/^  chat: {},$/;"	p	variable:initialState
 chat-list	src/components/ChatList.jsx	/^            <div className={"chat-list" + (this.props.isChatOpen ? " chat-list--closed" : "")}>$/;"	M
 chat-list__list-item 	src/components/ChatListItem.jsx	/^          'chat-list__list-item ' +$/;"	M
@@ -134,13 +150,12 @@ chat-messages	src/components/Chat.jsx	/^      <div className={'chat-messages'}>$
 chat-messages__back-button	src/components/Chat.jsx	/^                className={'chat-messages__back-button'}$/;"	M
 chat-messages__input__attach	src/components/Chat.jsx	/^                'chat-messages__input__attach' +$/;"	M
 chatAlreadyExists	src/store/index.js	/^    const chatAlreadyExists = chats.filter((chat) => chat.id === newChat.id);$/;"	C
-chatId	src/components/Chat.jsx	/^      chatId: this.props.chat.id,$/;"	p	variable:anonymousObjectc51c18140a05
+chatId	src/components/Chat.jsx	/^      chatId: this.props.chat.id,$/;"	p	variable:anonymousObjectc51c18141505
 chatId	src/store/index.js	/^    const chatId = action.payload;$/;"	C
-chatId	src/store/index.js	/^    const chatId = message.chatId;$/;"	C
-chatInput	src/components/Chat.jsx	/^      this.setState({ chatInput: '' });$/;"	p	variable:Chat.anonymousObjectc51c18140905
-chatInput	src/components/Chat.jsx	/^    this.setState({ chatInput: '' });$/;"	p	variable:Chat.anonymousObjectc51c18140b05
-chatInput	src/components/Chat.jsx	/^    this.setState({ chatInput: e.target.value });$/;"	p	variable:Chat.anonymousObjectc51c18140605
-chats	src/components/ChatList.jsx	/^            this.setState({chats: this.props.chats});$/;"	p	variable:anonymousObject096161500405
+chatInput	src/components/Chat.jsx	/^      this.setState({ chatInput: '' });$/;"	p	variable:Chat.anonymousObjectc51c18141405
+chatInput	src/components/Chat.jsx	/^    this.setState({ chatInput: '' });$/;"	p	variable:Chat.anonymousObjectc51c18141605
+chatInput	src/components/Chat.jsx	/^    this.setState({ chatInput: e.target.value });$/;"	p	variable:Chat.anonymousObjectc51c18141105
+chats	src/components/ChatList.jsx	/^            this.setState({chats: this.props.chats});$/;"	p	variable:ChatList.componentDidUpdate.anonymousObject096161500405
 chats	src/store/index.js	/^    const chats = action.payload || state.chats;$/;"	C
 chats	src/store/index.js	/^    const chats = state.chats;$/;"	C
 chats	src/store/index.js	/^  chats: [],$/;"	p	variable:initialState
@@ -163,7 +178,7 @@ componentWillUnmount	src/views/ChatView.jsx	/^  componentWillUnmount() {$/;"	m	c
 componentWillUnmount	src/views/SignIn.jsx	/^  componentWillUnmount() {$/;"	m	class:SignIn
 componentWillUnmount	src/views/SignUp.jsx	/^  componentWillUnmount() {$/;"	m	class:SignUp
 constructor	src/components/ChatListItem.jsx	/^  constructor(props) {$/;"	m	class:ChatListItem
-containsSeconds	src/utils.js	/^        containsSeconds: [60, 3600, 86400, 597800, 17934000, 215208000]$/;"	p	variable:dateTable
+containsSeconds	src/utils.js	/^    containsSeconds: [60, 3600, 86400, 597800, 17934000, 215208000],$/;"	p	variable:dateTable
 cors	server/index.js	/^    cors: {$/;"	p	variable:anonymousObjectf362f98e0105
 cors	server/index.js	/^const cors = require('cors')$/;"	C
 countOfNewMessages	src/components/ChatListItem.jsx	/^  countOfNewMessages = (chat) => {$/;"	M	class:ChatListItem
@@ -171,8 +186,8 @@ countOfNewMessagesValue	src/components/ChatListItem.jsx	/^      countOfNewMessag
 createChat	src/components/ChatList.jsx	/^    createChat = (newUserId) => {$/;"	M	class:ChatList
 createRef	src/components/ChatList.jsx	/^    searchRef = React.createRef(null)$/;"	f	variable:React
 currentTime	src/store/index.js	/^  currentTime: Date.now(),$/;"	p	variable:initialState
-dateStrings	src/utils.js	/^        dateStrings: ["min", "hour", "day", "week", "month", "year"],$/;"	p	variable:dateTable
-dateTable	src/utils.js	/^    const dateTable = {$/;"	v
+dateStrings	src/utils.js	/^    dateStrings: ['min', 'hour', 'day', 'week', 'month', 'year'],$/;"	p	variable:dateTable
+dateTable	src/utils.js	/^  const dateTable = {$/;"	v
 download	src/components/Chat.jsx	/^      download: 'https:\/\/google.com',$/;"	p	variable:Chat.render.file
 email	src/views/SignIn.jsx	/^          email: this.state.emailInputValue,$/;"	p	variable:SignIn.anonymousObject6784b5640405.anonymousObject6784b5640505
 email	src/views/SignUp.jsx	/^          email: this.state.emailInputValue,$/;"	p	variable:SignUp.anonymousObject83a6cdf20605.anonymousObject83a6cdf20705
@@ -187,15 +202,18 @@ handleChatInputChange	src/components/Chat.jsx	/^  handleChatInputChange = (e) =>
 handleKeyDown	src/components/Chat.jsx	/^  handleKeyDown = (e) => {$/;"	M	class:Chat
 handleMessageContainerScroll	src/components/Chat.jsx	/^  handleMessageContainerScroll = (e) => {$/;"	M	class:Chat
 handleSearchUserEmailChange	src/components/ChatList.jsx	/^    handleSearchUserEmailChange = e => this.setState({searchedUserEmail: e.target.value})$/;"	M	class:ChatList
-hasCapitalLetter	src/utils.js	/^    let hasCapitalLetter = false;$/;"	v
-hasNumber	src/utils.js	/^    let hasNumber = false;$/;"	v
+hasCapitalLetter	src/utils.js	/^  let hasCapitalLetter = false;$/;"	v
+hasNumber	src/utils.js	/^  let hasNumber = false;$/;"	v
+headers	src/components/Chat.jsx	/^            headers: {$/;"	p	variable:Chat.componentDidUpdate.anonymousObjectc51c18140c05
+headers	src/components/Chat.jsx	/^          headers: {$/;"	p	variable:Chat.componentDidMount.anonymousObjectc51c18140405
+headers	src/components/Chat.jsx	/^          headers: {$/;"	p	variable:Chat.componentDidUpdate.anonymousObjectc51c18140805
 headers	src/components/ChatList.jsx	/^                headers: {$/;"	p	variable:ChatList.anonymousObject096161500b05
 headers	src/components/ChatList.jsx	/^            headers: {$/;"	p	variable:ChatList.anonymousObject096161500505
 headers	src/views/ChatView.jsx	/^          headers: {$/;"	p	variable:anonymousObject6925e8b70905
 headers	src/views/ChatView.jsx	/^      headers: {$/;"	p	variable:ChatView.componentDidMount.anonymousObject6925e8b70305
 headers	src/views/SignIn.jsx	/^        headers: {$/;"	p	variable:SignIn.anonymousObject6784b5640405
 headers	src/views/SignUp.jsx	/^        headers: {$/;"	p	variable:SignUp.anonymousObject83a6cdf20605
-high	src/utils.js	/^            const high = dateTable.containsSeconds[i + 1]$/;"	C
+high	src/utils.js	/^      const high = dateTable.containsSeconds[i + 1];$/;"	C
 http	server/index.js	/^const http = require('http')$/;"	C
 iconArrowLeft	src/components/Chat.jsx	/^                src={iconArrowLeft}$/;"	M
 iconAttachImage	src/components/Chat.jsx	/^                  src={iconAttachImage}$/;"	M
@@ -209,14 +227,14 @@ img	src/icon_components/IconMic.jsx	/^            <svg className={"img"} width="
 initialState	src/store/index.js	/^const initialState = {$/;"	v
 io	server/index.js	/^const io = new Server(server, {$/;"	C
 isChatOpen	src/store/index.js	/^  isChatOpen: false,$/;"	p	variable:initialState
-isEmailValid	src/utils.js	/^export const isEmailValid = email => {$/;"	f
+isEmailValid	src/utils.js	/^export const isEmailValid = (email) => {$/;"	f
 isMessagePartners	src/components/Chat.jsx	/^                  isMessagePartners={isMessagePartners}$/;"	M
-isPasswordValid	src/utils.js	/^export const isPasswordValid = password => {$/;"	f
+isPasswordValid	src/utils.js	/^export const isPasswordValid = (password) => {$/;"	f
 lastOnline	src/store/index.js	/^      const lastOnline = remoteUser.lastOnline;$/;"	C
 lastOnline	src/store/index.js	/^    const lastOnline = remoteUser.lastOnline;$/;"	C
 lastSeenString	src/components/UserStatus.jsx	/^    lastSeenString = (this.props.ago ? getLastSeenString(this.props.ago) : null)$/;"	M	class:UserStatus
 logOut	src/components/Navigation.jsx	/^    logOut = () => {$/;"	M	class:Navigation
-low	src/utils.js	/^            const low = dateTable.containsSeconds[i]$/;"	C
+low	src/utils.js	/^      const low = dateTable.containsSeconds[i];$/;"	C
 mapStateToProps	src/components/Chat.jsx	/^const mapStateToProps = (state) => {$/;"	f
 mapStateToProps	src/components/ChatList.jsx	/^const mapStateToProps = state => {$/;"	M	class:ChatList
 mapStateToProps	src/components/ChatListItem.jsx	/^const mapStateToProps = (state) => {$/;"	f
@@ -227,8 +245,10 @@ mapStateToProps	src/views/SignIn.jsx	/^const mapStateToProps = state => {$/;"	f
 mapStateToProps	src/views/SignUp.jsx	/^const mapStateToProps = state => {$/;"	f
 message	src/components/Chat.jsx	/^                  content={message.messageContent}$/;"	M
 message	src/components/Chat.jsx	/^                  key={message.id}$/;"	M
+message	src/components/Chat.jsx	/^                  message: 'Unauthorized',$/;"	p	variable:anonymousObjectc51c18140d05
 message	src/components/Chat.jsx	/^                  messageType={message.messageType}$/;"	M
-message	src/components/Chat.jsx	/^        payload: { message: newMessage },$/;"	p	property:anonymousObjectc51c18140405.payload
+message	src/components/Chat.jsx	/^                message: 'Unauthorized',$/;"	p	variable:anonymousObjectc51c18140505
+message	src/components/Chat.jsx	/^                message: 'Unauthorized',$/;"	p	variable:anonymousObjectc51c18140905
 message	src/components/ChatList.jsx	/^                            this.setState({message: json.message, messageType: "error"})$/;"	p	variable:anonymousObject096161500c05
 message	src/components/ChatList.jsx	/^                        this.setState({message: json.message, messageType: "error"})$/;"	p	variable:anonymousObject096161500705
 message	src/components/ChatList.jsx	/^    closeAlert = () => this.setState({message: undefined, messageType: undefined})$/;"	p	variable:anonymousObject096161500305
@@ -247,8 +267,11 @@ message	src/views/SignUp.jsx	/^    this.setState({message: undefined, messageTyp
 messageChunk	src/components/ChatListItem.jsx	/^      messageChunk: messageChunk,$/;"	p	variable:ChatListItem.anonymousObject7e3521df0105
 messageChunk	src/components/ChatListItem.jsx	/^    let messageChunk;$/;"	v	class:ChatListItem
 messageContainerRef	src/components/Chat.jsx	/^  messageContainerRef = React.createRef(null);$/;"	M	class:Chat
-messageContent	src/components/Chat.jsx	/^      messageContent: this.state.chatInput,$/;"	p	variable:anonymousObjectc51c18140a05
-messageType	src/components/Chat.jsx	/^      messageType: 'TEXT',$/;"	p	variable:anonymousObjectc51c18140a05
+messageContent	src/components/Chat.jsx	/^      messageContent: this.state.chatInput,$/;"	p	variable:anonymousObjectc51c18141505
+messageType	src/components/Chat.jsx	/^                  messageType: 'error',$/;"	p	variable:anonymousObjectc51c18140d05
+messageType	src/components/Chat.jsx	/^                messageType: 'error',$/;"	p	variable:anonymousObjectc51c18140505
+messageType	src/components/Chat.jsx	/^                messageType: 'error',$/;"	p	variable:anonymousObjectc51c18140905
+messageType	src/components/Chat.jsx	/^      messageType: 'TEXT',$/;"	p	variable:anonymousObjectc51c18141505
 messageType	src/components/ChatList.jsx	/^                            this.setState({message: json.message, messageType: "error"})$/;"	p	variable:anonymousObject096161500c05
 messageType	src/components/ChatList.jsx	/^                        this.setState({message: json.message, messageType: "error"})$/;"	p	variable:anonymousObject096161500705
 messageType	src/components/ChatList.jsx	/^    closeAlert = () => this.setState({message: undefined, messageType: undefined})$/;"	p	variable:anonymousObject096161500305
@@ -264,7 +287,14 @@ messageType	src/views/SignUp.jsx	/^              this.setState({message: "Bad pa
 messageType	src/views/SignUp.jsx	/^            this.setState({message: "You have succesfully signed up", messageType: "success"})$/;"	p	variable:anonymousObject83a6cdf20a05
 messageType	src/views/SignUp.jsx	/^    this.setState({message: undefined, messageType: undefined});$/;"	p	variable:SignUp.anonymousObject83a6cdf20505
 message__points	src/components/Message.jsx	/^                        <img className={"message__points"} src={iconPointsHorizontal}  alt={""}\//;"	M	variable:
-messages	src/components/Chat.jsx	/^    this.setState({ messages: this.props.chat.messages || [] });$/;"	p	variable:Chat.componentDidMount.anonymousObjectc51c18140205
+messages	src/components/Chat.jsx	/^              this.setState({ messages: json });$/;"	p	variable:anonymousObjectc51c18140f05
+messages	src/components/Chat.jsx	/^            this.setState({ messages: [...json, ...this.state.messages] });$/;"	p	variable:anonymousObjectc51c18140b05
+messages	src/components/Chat.jsx	/^            this.setState({ messages: json });$/;"	p	variable:anonymousObjectc51c18140705
+messages	src/store/index.js	/^  messages: [],$/;"	p	variable:initialState
+messagesPerPage	src/components/Chat.jsx	/^const messagesPerPage = 15;$/;"	C
+method	src/components/Chat.jsx	/^            method: 'GET',$/;"	p	variable:Chat.componentDidUpdate.anonymousObjectc51c18140c05
+method	src/components/Chat.jsx	/^          method: 'GET',$/;"	p	variable:Chat.componentDidMount.anonymousObjectc51c18140405
+method	src/components/Chat.jsx	/^          method: 'GET',$/;"	p	variable:Chat.componentDidUpdate.anonymousObjectc51c18140805
 method	src/components/ChatList.jsx	/^                method: "GET",$/;"	p	variable:ChatList.anonymousObject096161500b05
 method	src/components/ChatList.jsx	/^            method: "POST",$/;"	p	variable:ChatList.anonymousObject096161500505
 method	src/views/ChatView.jsx	/^          method: 'GET',$/;"	p	variable:anonymousObject6925e8b70905
@@ -278,20 +308,20 @@ newChat	src/store/index.js	/^      const newChat = { ...chat, active: false, sta
 newChat	src/store/index.js	/^    const newChat = action.payload;$/;"	C
 newChats	src/store/index.js	/^    const newChats = chats.map((chat) => {$/;"	C
 newChats	src/store/index.js	/^    const newChats = state.chats.map((chat) => {$/;"	C
-newStatus	src/components/Chat.jsx	/^    this.socket.emit('newStatus', { newStatus: 'WRITING' });$/;"	p	variable:anonymousObjectc51c18140505
+newStatus	src/components/Chat.jsx	/^    this.socket.emit('newStatus', { newStatus: 'WRITING' });$/;"	p	variable:anonymousObjectc51c18141005
 onChange	src/components/Chat.jsx	/^                onChange={this.handleChatInputChange}$/;"	M	class:Chat
 onClick	src/components/Chat.jsx	/^                onClick={this.toggleAttachmentsButtonOpen}$/;"	M	class:Chat
 onClick	src/components/Chat.jsx	/^              onClick={this.sendTextMessage}$/;"	M	class:Chat
 onKeyDown	src/components/Chat.jsx	/^                onKeyDown={this.handleKeyDown}$/;"	M	class:Chat
-onlineString	src/utils.js	/^export const onlineString = ago => {$/;"	f
+onlineString	src/utils.js	/^export const onlineString = (ago) => {$/;"	f
 openChat	src/components/ChatListItem.jsx	/^  openChat = () => {$/;"	M	class:ChatListItem
 openDialog	src/components/ChatList.jsx	/^    toggleDialog = () => this.setState({openDialog: !this.state.openDialog})$/;"	p	variable:anonymousObject096161500105
 origin	server/index.js	/^        origin: 'http:\/\/localhost:3000',$/;"	p	property:anonymousObjectf362f98e0105.cors
+pagesUp	src/components/Chat.jsx	/^      this.setState({ pagesUp: this.state.pagesUp + 1 });$/;"	p	variable:Chat.anonymousObjectc51c18140205
 password	src/views/SignIn.jsx	/^          password: this.state.passwordInputValue$/;"	p	variable:SignIn.anonymousObject6784b5640405.anonymousObject6784b5640505
 password	src/views/SignUp.jsx	/^          password: this.state.passwordInputValue,$/;"	p	variable:SignUp.anonymousObject83a6cdf20605.anonymousObject83a6cdf20705
 passwordInputValue	src/views/SignIn.jsx	/^    this.setState({passwordInputValue: e.target.value})$/;"	p	variable:SignIn.anonymousObject6784b5640205
 passwordInputValue	src/views/SignUp.jsx	/^    this.setState({passwordInputValue: e.target.value})$/;"	p	variable:SignUp.anonymousObject83a6cdf20305
-payload	src/components/Chat.jsx	/^        payload: { message: newMessage },$/;"	p	variable:anonymousObjectc51c18140405
 payload	src/components/ChatList.jsx	/^                    this.props.dispatch({type: "ADD_CHAT", payload: json})$/;"	p	variable:anonymousObject096161500905
 payload	src/components/ChatList.jsx	/^                    this.props.dispatch({type: "OPEN_CHAT", payload: json.id})$/;"	p	variable:anonymousObject096161500a05
 payload	src/components/ChatListItem.jsx	/^    this.props.dispatch({ type: 'OPEN_CHAT', payload: this.props.chat.id });$/;"	p	variable:anonymousObject7e3521df0205
@@ -303,7 +333,7 @@ payload	src/views/ChatView.jsx	/^        this.props.dispatch({ type: 'SET_USER',
 payload	src/views/SignIn.jsx	/^              this.props.dispatch({type: "SET_ACCESS_TOKEN", payload: json.access_token})$/;"	p	variable:anonymousObject6784b5640a05
 pickedChat	src/store/index.js	/^    let pickedChat = null;$/;"	v
 placeholder	src/components/Chat.jsx	/^                placeholder={' '}$/;"	M	class:Chat
-receiverId	src/components/Chat.jsx	/^      receiverId: this.remoteUser.id,$/;"	p	variable:anonymousObjectc51c18140a05
+receiverId	src/components/Chat.jsx	/^      receiverId: this.remoteUser.id,$/;"	p	variable:anonymousObjectc51c18141505
 reducerFn	src/store/index.js	/^const reducerFn = (state = initialState, action) => {$/;"	f
 remoteUser	src/components/ChatListItem.jsx	/^      remoteUser: remoteUser,$/;"	p	variable:ChatListItem.anonymousObject7e3521df0105
 remoteUser	src/components/ChatListItem.jsx	/^    const remoteUser = getRemoteUser($/;"	C	class:ChatListItem
@@ -328,7 +358,7 @@ repeatPasswordInputValue	src/views/SignUp.jsx	/^    this.setState({repeatPasswor
 root	public/index.html	/^    <div id="root"><\/div>$/;"	I
 root	src/index.js	/^const root = ReactDOM.createRoot(document.getElementById('root'));$/;"	C
 rootStore	src/App.jsx	/^      <Provider store={rootStore}>$/;"	M
-rounded	src/utils.js	/^                const rounded = Math.floor(ago \/ low)$/;"	C
+rounded	src/utils.js	/^        const rounded = Math.floor(ago \/ low);$/;"	C
 scrollFromTop	src/components/Chat.jsx	/^      scrollFromTop: this.messageContainerRef.current.scrollTop,$/;"	p	variable:Chat.componentDidMount.anonymousObjectc51c18140305
 scrollFromTop	src/components/Chat.jsx	/^    this.setState({ scrollFromTop: e.target.scrollTop });$/;"	p	variable:Chat.anonymousObjectc51c18140105
 searchRef	src/components/ChatList.jsx	/^    searchRef = React.createRef(null)$/;"	M	class:ChatList
@@ -342,6 +372,7 @@ signIn	src/views/SignIn.jsx	/^  signIn = () => {$/;"	M	class:SignIn
 signUp	src/views/SignUp.jsx	/^  signUp = () => {$/;"	M	class:SignUp
 socket	src/components/Chat.jsx	/^  socket = io(process.env.REACT_APP_BACKEND_API_URL, this.socketOptions);$/;"	M	class:Chat
 socketOptions	src/components/Chat.jsx	/^  socketOptions = {$/;"	M	class:Chat
+sortChats	src/utils.js	/^export const sortChats = (chats) => {$/;"	f
 span	src/components/Chat.jsx	/^              <span className="chat-messages__input__attach-inside chat-messages__input__attach-/;"	M	class:Chat
 startChatting	src/components/ChatList.jsx	/^    startChatting = () => {$/;"	M	class:ChatList
 state	src/components/Chat.jsx	/^  state = {$/;"	M	class:Chat
@@ -359,8 +390,7 @@ store	src/store/index.js	/^export const store = createStore(reducerFn);$/;"	C
 toggleAttachmentsButtonOpen	src/components/Chat.jsx	/^  toggleAttachmentsButtonOpen = () =>$/;"	M	class:Chat
 toggleMobileNavOpen	src/views/ChatView.jsx	/^  toggleMobileNavOpen = () =>$/;"	M	class:ChatView
 type	src/components/Chat.jsx	/^                type="text"$/;"	M	class:Chat
-type	src/components/Chat.jsx	/^        type: 'ADD_MESSAGE',$/;"	p	variable:anonymousObjectc51c18140405
-type	src/components/Chat.jsx	/^  closeChat = () => this.props.dispatch({ type: 'CLOSE_CHAT' });$/;"	p	variable:anonymousObjectc51c18140805
+type	src/components/Chat.jsx	/^  closeChat = () => this.props.dispatch({ type: 'CLOSE_CHAT' });$/;"	p	variable:anonymousObjectc51c18141305
 type	src/components/ChatList.jsx	/^                    this.props.dispatch({type: "ADD_CHAT", payload: json})$/;"	p	variable:anonymousObject096161500905
 type	src/components/ChatList.jsx	/^                    this.props.dispatch({type: "OPEN_CHAT", payload: json.id})$/;"	p	variable:anonymousObject096161500a05
 type	src/components/ChatListItem.jsx	/^    this.props.dispatch({ type: 'OPEN_CHAT', payload: this.props.chat.id });$/;"	p	variable:anonymousObject7e3521df0205

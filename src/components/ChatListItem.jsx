@@ -22,7 +22,6 @@ class ChatListItem extends Component {
   }
 
   renderMessage = () => {
-    /* console.log("NEW MESSAGE CHUNK") */
     const lastMessageIdx = this.props.chat.messages.length - 1;
 
     let messageChunk;

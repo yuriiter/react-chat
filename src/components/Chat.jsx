@@ -17,10 +17,14 @@ import iconAttachImage from '../assets/img/icon_attach_image.svg';
 import iconSend from '../assets/img/icon_send.svg';
 import iconArrowLeft from '../assets/img/icon_arrow_left.svg';
 
+const messagesPerPage = 15;
+
 class Chat extends Component {
   state = {
     attachmentsButtonOpen: false,
     scrollFromTop: null,
+    messages: [],
+    pagesUp: 0,
     chatInput: '',
   };
 
@@ -45,22 +49,58 @@ class Chat extends Component {
   handleMessageContainerScroll = (e) => {
     /* console.log(e.target.scrollHeight - e.target.scrollTop - e.target.offsetHeight) */
     this.setState({ scrollFromTop: e.target.scrollTop });
+
+    if (e.target.scrollTop < 300) {
+      this.setState({ pagesUp: this.state.pagesUp + 1 });
+    }
   };
 
   componentDidMount() {
-    this.setState({ messages: this.props.chat.messages || [] });
     this.setState({
       scrollFromTop: this.messageContainerRef.current.scrollTop,
     });
+
+    if (this.props.chat.id) {
+      fetch(
+        process.env.REACT_APP_BACKEND_API_URL +
+          '/chats/${this.props.chat.id}?skip=${this.state.pagesUp * messagesPerPage}',
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${this.props.accessToken}`,
+          },
+        },
+      )
+        .then((response) => response.json())
+        .then((json) => {
+          const statusCode = json.statusCode;
+          if (statusCode) {
+            if (statusCode === 401) {
+              this.setState({
+                message: 'Unauthorized',
+                messageType: 'error',
+              });
+              this.setState({
+                changeLocationTimer: setTimeout(() => {
+                  window.location.href = '/signin';
+                }, 2000),
+              });
+            }
+          } else {
+            this.setState({ messages: json });
+          }
+        });
+    }
 
     this.socket.on('connect', () => {
       console.log('Connected!');
     });
     this.socket.on('onMessage', (newMessage) => {
       console.log('onMessage event received!');
-      this.props.dispatch({
-        type: 'ADD_MESSAGE',
-        payload: { message: newMessage },
+      this.setState((prevState) => {
+        return {
+          messages: [...prevState.messages, newMessage],
+        };
       });
     });
 
@@ -68,10 +108,81 @@ class Chat extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (prevState.pagesUp < this.state.pagesUp) {
+      fetch(
+        process.env.REACT_APP_BACKEND_API_URL +
+          `/chats/${this.props.chat.id}/messages?skip=${
+            this.state.pagesUp * messagesPerPage
+          }`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${this.props.accessToken}`,
+          },
+        },
+      )
+        .then((response) => response.json())
+        .then((json) => {
+          const statusCode = json.statusCode;
+
+          if (statusCode) {
+            if (statusCode === 401) {
+              this.setState({
+                message: 'Unauthorized',
+                messageType: 'error',
+              });
+              this.setState({
+                changeLocationTimer: setTimeout(() => {
+                  window.location.href = '/signin';
+                }, 2000),
+              });
+            }
+          } else {
+            this.setState({ messages: [...json, ...this.state.messages] });
+          }
+        });
+    }
     if (prevProps.chat !== this.props.chat) {
-      if (prevProps.chat.messages) {
-        const currentMessagesCount = this.props.chat.messages.length;
-        const newMessage = this.props.chat.messages[currentMessagesCount - 1];
+      if (this.props.chat.id) {
+        fetch(
+          process.env.REACT_APP_BACKEND_API_URL +
+            `/chats/${this.props.chat.id}/messages?skip=${
+              this.state.pagesUp * messagesPerPage
+            }`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${this.props.accessToken}`,
+            },
+          },
+        )
+          .then((response) => response.json())
+          .then((json) => {
+            const statusCode = json.statusCode;
+
+            if (statusCode) {
+              if (statusCode === 401) {
+                this.setState({
+                  message: 'Unauthorized',
+                  messageType: 'error',
+                });
+                this.setState({
+                  changeLocationTimer: setTimeout(() => {
+                    window.location.href = '/signin';
+                  }, 2000),
+                });
+              }
+            } else {
+              this.setState({ messages: json });
+            }
+          });
+      }
+    }
+
+    if (prevState.messages !== this.state.messages) {
+      if (prevState.messages) {
+        const currentMessagesCount = this.state.messages.length;
+        const newMessage = this.state.messages[currentMessagesCount - 1];
         if (newMessage?.authorId === this.props.user.id) {
           this.messageContainerRef.current.scrollTo(
             0,
@@ -191,7 +302,7 @@ class Chat extends Component {
             ref={this.messageContainerRef}
             onScroll={this.handleMessageContainerScroll}
           >
-            {this.props.chat?.messages?.map((message) => {
+            {this.state.messages?.map((message) => {
               const isMessagePartners =
                 message.receiverId === this.props.user?.id;
               const ago =
@@ -269,6 +380,7 @@ class Chat extends Component {
 const mapStateToProps = (state) => {
   return {
     chat: state.chat,
+    /* messages: state.messages, */
     user: state.user,
     currentTime: state.currentTime,
     accessToken: state.accessToken,

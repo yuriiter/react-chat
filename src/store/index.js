@@ -1,10 +1,11 @@
 import { createStore } from 'redux';
-import { getRemoteUser } from '../utils';
+import { getRemoteUser, sortChats } from '../utils';
 
 const initialState = {
   mobileNavOpen: false,
   isChatOpen: false,
   chats: [],
+  messages: [],
   chat: {},
   user: {},
   currentTime: Date.now(),
@@ -71,7 +72,7 @@ const reducerFn = (state = initialState, action) => {
       const newChat = { ...chat, active: false, status: status };
       return newChat;
     });
-    return { ...state, chats: newChats };
+    return { ...state, chats: sortChats(newChats) };
   }
   if (action.type === 'ADD_CHAT') {
     const newChat = action.payload;
@@ -89,30 +90,34 @@ const reducerFn = (state = initialState, action) => {
     newChat.active = false;
     newChat.status = status;
 
-    return { ...state, chats: [...state.chats, newChat] };
+    return { ...state, chats: sortChats([...state.chats, newChat]) };
   }
 
-  if (action.type === 'ADD_MESSAGE') {
-    const { message } = action.payload;
-    const chatId = message.chatId;
-    const chats = state.chats;
-    const chat = chats.find((chat) => chat.id == chatId);
-    if (!chat) {
-      return state;
-    }
+  /* if (action.type === 'LOAD_MESSAGES') { */
+  /*   return { ...state, messages: action.payload }; */
+  /* } */
 
-    chat.messages.push(message);
-    chat.messages = JSON.parse(JSON.stringify(chat.messages));
-
-    if (state.chat?.id === message.chatId) {
-      return {
-        ...state,
-        chats: JSON.parse(JSON.stringify(chats)),
-        chat: JSON.parse(JSON.stringify(chat)),
-      };
-    }
-    return { ...state, chats: JSON.parse(JSON.stringify(chats)) };
-  }
+  /* if (action.type === 'ADD_MESSAGE') { */
+  /*   const { message } = action.payload; */
+  /*   const chatId = message.chatId; */
+  /*   const chats = state.chats; */
+  /*   const chat = chats.find((chat) => chat.id == chatId); */
+  /*   if (!chat) { */
+  /*     return state; */
+  /*   } */
+  /**/
+  /*   chat.messages.push(message); */
+  /*   chat.messages = JSON.parse(JSON.stringify(chat.messages)); */
+  /**/
+  /*   if (state.chat?.id === message.chatId) { */
+  /*     return { */
+  /*       ...state, */
+  /*       chats: JSON.parse(JSON.stringify(sortChats(chats))), */
+  /*       chat: JSON.parse(JSON.stringify(chat)), */
+  /*     }; */
+  /*   } */
+  /*   return { ...state, chats: JSON.parse(JSON.stringify(sortChats(chats))) }; */
+  /* } */
 
   if (action.type === 'UPDATE_GLOBAL_TIMER') {
     return { ...state, currentTime: Date.now() };
