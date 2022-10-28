@@ -16,12 +16,13 @@ import iconPlus from "../assets/img/icon_plus.svg"
 import iconSearch from "../assets/img/icon_search.svg"
 import ChatListItem from "./ChatListItem";
 import {connect} from "react-redux";
-import {isEmailValid, getRemoteUser} from "../utils"
+import {isEmailValid} from "../utils"
 
 class ChatList extends Component {
     state = {
         openDialog: false,
         searchedUserEmail: "",
+        chats: []
     }
     
     searchRef = React.createRef(null)
@@ -30,6 +31,14 @@ class ChatList extends Component {
     toggleDialog = () => this.setState({openDialog: !this.state.openDialog})
     handleSearchUserEmailChange = e => this.setState({searchedUserEmail: e.target.value})
     closeAlert = () => this.setState({message: undefined, messageType: undefined})
+
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.chats !== this.props.chats) {
+            console.log("LIST UPDATE")
+            this.setState({chats: this.props.chats});
+        }
+    }
     
     
     createChat = (newUserId) => {
@@ -114,25 +123,12 @@ class ChatList extends Component {
                 </div>
 
                 <div className="chat-list__list">
-                    {this.props.chats?.length === 0 ? (<span>You don't have any chats yet</span>) : 
-                        this.props.chats?.map(chat => {
-                            const remoteUser = getRemoteUser(this.props.user.id, chat.users);
-                            const status = chat.status;
-                            let onlineAgo;
-                            if(status === "LAST_ONLINE") {
-                                onlineAgo = ( this.props.currentTime - Date.parse(remoteUser.lastOnline) ) / 1000
-                            }
-                            const lastMessageTime = chat.messages.length === 0 ? undefined : Date.parse(chat.messages[0].sentDateTime);
-                            const ago = ( this.props.currentTime - lastMessageTime ) / 1000;
-
+                    {this.state.chats?.length === 0 ? (<span>You don't have any chats yet</span>) : 
+                        this.state.chats?.map(chat => {
                             return (
                                 <ChatListItem
                                     key={chat.id}
                                     chat={chat}
-                                    status={chat.status}
-                                    onlineAgo={onlineAgo}
-                                    ago={ago}
-                                    active={chat.active}
                                 />
                         ) })
                     }
@@ -143,7 +139,7 @@ class ChatList extends Component {
                 </div>
 
                 <Dialog open={this.state.openDialog} onClose={this.toggleDialog}>
-                    <DialogTitle>Subscribe</DialogTitle>
+                    <DialogTitle>User's email</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
                             To start chatting, input the user's email and press button

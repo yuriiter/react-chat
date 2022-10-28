@@ -1,18 +1,17 @@
-import { Component } from 'react'
-import {Provider} from "react-redux"
-import {BrowserRouter, Route, Routes} from "react-router-dom"
+import { Component, React } from 'react';
+import { Provider } from 'react-redux';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
-import ChatView from "./views/ChatView";
-import SignUp from "./views/SignUp";
-import SignIn from "./views/SignIn";
+import ChatView from './views/ChatView';
+import SignUp from './views/SignUp';
+import SignIn from './views/SignIn';
 
-import {store as rootStore} from "./store"
+import { store as rootStore } from './store';
 
-import "./sass/_main.scss"
-
+import './sass/_main.scss';
 
 class App extends Component {
-  render () {
+  render() {
     return (
       <Provider store={rootStore}>
         <BrowserRouter>
@@ -25,7 +24,7 @@ class App extends Component {
           </Routes>
         </BrowserRouter>
       </Provider>
-    )
+    );
   }
 }
 

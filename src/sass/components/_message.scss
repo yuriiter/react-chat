@@ -42,7 +42,6 @@
     }
 
     .message__time-ago {
-      margin-left: auto;
       margin-right: 60px;
     }
 
@@ -56,6 +55,7 @@
     }
 
     .message__text-wrapper {
+      width: 100%;
       margin-right: 18px;
       position: relative;
     }

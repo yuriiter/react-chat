@@ -79,8 +79,8 @@ class Message extends Component {
                     {messageStatus}
 
                 </div>
-
                 <span className={"message__time-ago"}>{onlineString(this.props.ago)} ago</span>
+
             </div>
         );
     }
