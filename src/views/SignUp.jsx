@@ -132,49 +132,49 @@ class SignUp extends Component {
               onChange={this.changePasswordInputValue}
             />
 
-            <TextField
-              className="signup__input"
-              error={
-                this.state.passwordInputValue !=
-                this.state.repeatPasswordInputValue
-              }
-              label="Repeat password"
-              variant="outlined"
-              type="password"
-              helperText="Passwords must be the same"
-              required
-              value={this.state.repeatPasswordInputValue}
-              onChange={this.changeRepeatPasswordInputValue}
-            />
+          <TextField
+            className="signup__input"
+            error={
+              this.state.passwordInputValue !=
+              this.state.repeatPasswordInputValue
+            }
+            label="Repeat password"
+            variant="outlined"
+            type="password"
+            helperText="Passwords must be the same"
+            required
+            value={this.state.repeatPasswordInputValue}
+            onChange={this.changeRepeatPasswordInputValue}
+          />
 
-            <Button
-              className="signup__input signup__button"
-              variant="contained"
-              onClick={this.signUp}
-            >
-              Sign up
-            </Button>
-
-            <Link className="signup__link accent-color" to={'/signin'}>
-              <span>I already have an account</span>
-            </Link>
-          </Card>
-        </div>
-
-        <Snackbar
-          open={this.state.message !== undefined}
-          autoHideDuration={6000}
-          onClose={this.closeAlert}
+        <Button
+          className="signup__input signup__button"
+          variant="contained"
+          onClick={this.signUp}
         >
-          <Alert
-            onClose={this.closeAlert}
-            severity={this.state.messageType}
-            sx={{ width: '100%' }}
-          >
-            {this.state.message}
-          </Alert>
-        </Snackbar>
-      </div>
+          Sign up
+        </Button>
+
+        <Link className="signup__link accent-color" to={'/signin'}>
+          <span>I already have an account</span>
+        </Link>
+      </Card>
+    </div>
+
+    <Snackbar
+      open={this.state.message !== undefined}
+      autoHideDuration={6000}
+      onClose={this.closeAlert}
+    >
+      <Alert
+        onClose={this.closeAlert}
+        severity={this.state.messageType}
+        sx={{ width: '100%' }}
+      >
+        {this.state.message}
+      </Alert>
+    </Snackbar>
+  </div>
     );
   }
 }

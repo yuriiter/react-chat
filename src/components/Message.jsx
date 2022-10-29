@@ -30,8 +30,8 @@ class Message extends Component {
                 message = (
                     <audio controls>
                         <source src={recordingMessage} type="audio/mpeg" />
-                        Your browser does not support the audio element.
-                    </audio>
+                    Your browser does not support the audio element.
+                </audio>
                 )
                 break
             case "FILE":
@@ -65,23 +65,23 @@ class Message extends Component {
                 (this.props.isMessagePartners ? " message--partner" : " message--user")}
             >
 
-                <div className="message__text-wrapper">
-                    {this.props.isMessagePartners ? null : (
-                        <img className={"message__points"} src={iconPointsHorizontal}  alt={""}/>
-                    )}
+            <div className="message__text-wrapper">
+            {this.props.isMessagePartners ? null : (
+                <img className={"message__points"} src={iconPointsHorizontal}  alt={""}/>
+            )}
 
-                    <div className="message__text">{message}</div>
+            <div className="message__text">{message}</div>
 
-                    {this.props.isMessagePartners ? (
-                        <img className={"message__points"} src={iconPointsHorizontal}  alt={""}/>
-                    ) : null}
+            {this.props.isMessagePartners ? (
+                <img className={"message__points"} src={iconPointsHorizontal}  alt={""}/>
+            ) : null}
 
-                    {messageStatus}
+            {messageStatus}
 
-                </div>
-                <span className={"message__time-ago"}>{onlineString(this.props.ago)} ago</span>
+        </div>
+        <span className={"message__time-ago"}>{onlineString(this.props.ago)} ago</span>
 
-            </div>
+    </div>
         );
     }
 }

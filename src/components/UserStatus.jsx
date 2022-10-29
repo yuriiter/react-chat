@@ -19,7 +19,7 @@ class UserStatus extends Component {
             )
         }
         else if(this.props.status === "RECORDING") {
-             return (
+            return (
                 <div className={"user-status " + this.props.className} style={this.props.style}>
                     <div className="user-status__animation--recording user-status__animation">
                         <div></div>

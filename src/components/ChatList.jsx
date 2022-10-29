@@ -35,6 +35,7 @@ class ChatList extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.chats !== this.props.chats) {
+      console.log('HELLO');
       this.setState({ chats: this.props.chats });
     }
   }

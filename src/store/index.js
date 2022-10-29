@@ -93,31 +93,27 @@ const reducerFn = (state = initialState, action) => {
     return { ...state, chats: sortChats([...state.chats, newChat]) };
   }
 
-  /* if (action.type === 'LOAD_MESSAGES') { */
-  /*   return { ...state, messages: action.payload }; */
-  /* } */
+  if (action.type === 'ADD_MESSAGE') {
+    const { message } = action.payload;
+    const chatId = message.chatId;
+    const chats = state.chats;
+    const chat = chats.find((chat) => chat.id == chatId);
+    if (!chat) {
+      return state;
+    }
 
-  /* if (action.type === 'ADD_MESSAGE') { */
-  /*   const { message } = action.payload; */
-  /*   const chatId = message.chatId; */
-  /*   const chats = state.chats; */
-  /*   const chat = chats.find((chat) => chat.id == chatId); */
-  /*   if (!chat) { */
-  /*     return state; */
-  /*   } */
-  /**/
-  /*   chat.messages.push(message); */
-  /*   chat.messages = JSON.parse(JSON.stringify(chat.messages)); */
-  /**/
-  /*   if (state.chat?.id === message.chatId) { */
-  /*     return { */
-  /*       ...state, */
-  /*       chats: JSON.parse(JSON.stringify(sortChats(chats))), */
-  /*       chat: JSON.parse(JSON.stringify(chat)), */
-  /*     }; */
-  /*   } */
-  /*   return { ...state, chats: JSON.parse(JSON.stringify(sortChats(chats))) }; */
-  /* } */
+    chat.messages.push(message);
+    chat.messages = JSON.parse(JSON.stringify(chat.messages));
+
+    if (state.chat?.id === message.chatId) {
+      return {
+        ...state,
+        chats: JSON.parse(JSON.stringify(sortChats(chats))),
+        chat: JSON.parse(JSON.stringify(chat)),
+      };
+    }
+    return { ...state, chats: JSON.parse(JSON.stringify(sortChats(chats))) };
+  }
 
   if (action.type === 'UPDATE_GLOBAL_TIMER') {
     return { ...state, currentTime: Date.now() };

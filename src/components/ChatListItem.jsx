@@ -42,19 +42,19 @@ class ChatListItem extends Component {
           <div className={'message-text'}>
             <p>
               {(lastMessage.authorId === this.props.user.id ? 'You: ' : '') +
-                lastMessage.messageContent}
-            </p>
-            <div className="message-files">
-              <div className="message-files__item message-files__item--file">
-                <IconFile active={this.props.chat.active} />
-                <span>Files (x2)</span>
+                  lastMessage.messageContent}
+                </p>
+                <div className="message-files">
+                  <div className="message-files__item message-files__item--file">
+                    <IconFile active={this.props.chat.active} />
+                    <span>Files (x2)</span>
+                  </div>
+                  <div className="message-files__item message-files__item--image">
+                    <IconImage active={this.props.chat.active} />
+                    <span>Photo</span>
+                  </div>
+                </div>
               </div>
-              <div className="message-files__item message-files__item--image">
-                <IconImage active={this.props.chat.active} />
-                <span>Photo</span>
-              </div>
-            </div>
-          </div>
         );
         break;
       case 'RECORDING':
@@ -124,8 +124,8 @@ class ChatListItem extends Component {
     const status = chat.status;
     const lastMessageTime =
       chat.messages.length === 0
-        ? undefined
-        : Date.parse(chat.messages[0].sentDateTime);
+      ? undefined
+      : Date.parse(chat.messages[0].sentDateTime);
     const userLastOnline = remoteUser.lastOnline;
     const ago = (this.props.currentTime - lastMessageTime) / 1000;
 
@@ -148,35 +148,35 @@ class ChatListItem extends Component {
             <div className="chat-list__list-item__user-avatar">
               <img src={avatarImage} alt="" />
               {this.props.chat.status === 'ONLINE' ||
-              this.props.chat.status === 'RECODRING' ||
-              this.props.chat.status === 'WRITING' ? (
-                <div className="online-status"></div>
+                  this.props.chat.status === 'RECODRING' ||
+                  this.props.chat.status === 'WRITING' ? (
+                    <div className="online-status"></div>
+                  ) : null}
+                </div>
+                <div className="chat-list__list-item__user-text">
+                  <h3 className="chat-list__list-item__user-name">
+                    {remoteUser.fullName}
+                  </h3>
+                  <span className="chat-list__list-item__user-status">
+                    <UserStatus status={status} ago={userLastOnlineAgo} />
+                  </span>
+                </div>
+              </div>
+
+              <div className="chat-list__list-item__message-time">
+                {onlineString(ago)} ago
+              </div>
+            </div>
+
+            <div className="chat-list__list-item__message">
+              {this.state.messageChunk}
+              {this.countOfNewMessagesValue > 0 ? (
+                <span className={'chat-list__list-item__message-count'}>
+                  <span>{this.countOfNewMessagesValue}</span>
+                </span>
               ) : null}
             </div>
-            <div className="chat-list__list-item__user-text">
-              <h3 className="chat-list__list-item__user-name">
-                {remoteUser.fullName}
-              </h3>
-              <span className="chat-list__list-item__user-status">
-                <UserStatus status={status} ago={userLastOnlineAgo} />
-              </span>
-            </div>
           </div>
-
-          <div className="chat-list__list-item__message-time">
-            {onlineString(ago)} ago
-          </div>
-        </div>
-
-        <div className="chat-list__list-item__message">
-          {this.state.messageChunk}
-          {this.countOfNewMessagesValue > 0 ? (
-            <span className={'chat-list__list-item__message-count'}>
-              <span>{this.countOfNewMessagesValue}</span>
-            </span>
-          ) : null}
-        </div>
-      </div>
     );
   }
 }

@@ -62,5 +62,27 @@ export const getRemoteUser = (userId, users) => {
 };
 
 export const sortChats = (chats) => {
-  return chats;
+  const sortedChats = [...chats];
+  return sortedChats.sort((chat1, chat2) => {
+    const emptyChatDate = new Date();
+    emptyChatDate.setDate(emptyChatDate.getDate() + 7);
+
+    const lastMessage1 =
+      chat1.messages.length === 0
+        ? undefined
+        : chat1.messages[chat1.messages.length - 1];
+    const lastMessage2 =
+      chat2.messages.length === 0
+        ? undefined
+        : chat1.messages[chat1.messages.length - 1];
+
+    const lastMessageTime1 = lastMessage1
+      ? lastMessage1.sentDateTime
+      : emptyChatDate;
+    const lastMessageTime2 = lastMessage2
+      ? lastMessage2.sentDateTime
+      : emptyChatDate;
+
+    return -(Date.parse(lastMessageTime1) - Date.parse(lastMessageTime2));
+  });
 };

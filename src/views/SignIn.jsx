@@ -54,7 +54,7 @@ class SignIn extends Component {
         })
     }
   }
-  
+
   componentDidMount() {
     console.log(this.props.accessToken)
     if(this.props.accessToken !== null) {
@@ -83,7 +83,7 @@ class SignIn extends Component {
               required
               value={this.state.emailInputValue}
               onChange={this.changeEmailInputValue}
-              />
+            />
             <TextField
               className="signup__input"
               error={!isPasswordValid(this.state.passwordInputValue)}
@@ -94,30 +94,30 @@ class SignIn extends Component {
               required
               value={this.state.passwordInputValue}
               onChange={this.changePasswordInputValue}
-              />
+            />
 
 
-            <Button
-              className="signup__input signup__button"
-              variant="contained"
-              onClick={this.signIn}
-            >
-              Sign in
-            </Button>
+          <Button
+            className="signup__input signup__button"
+            variant="contained"
+            onClick={this.signIn}
+          >
+            Sign in
+          </Button>
 
-            <Link className="signup__link accent-color" to={"/signup" }>
-              <span>I don't have an account</span>
-            </Link>
-          </Card>
-        </div>
-
-        <Snackbar open={this.state.message !== undefined} autoHideDuration={6000} onClose={this.closeAlert}>
-          <Alert onClose={this.closeAlert} severity={this.state.messageType} sx={{ width: '100%' }}>
-            {this.state.message}
-          </Alert>
-        </Snackbar> 
-        
+          <Link className="signup__link accent-color" to={"/signup" }>
+            <span>I don't have an account</span>
+          </Link>
+        </Card>
       </div>
+
+      <Snackbar open={this.state.message !== undefined} autoHideDuration={6000} onClose={this.closeAlert}>
+        <Alert onClose={this.closeAlert} severity={this.state.messageType} sx={{ width: '100%' }}>
+          {this.state.message}
+        </Alert>
+      </Snackbar> 
+
+    </div>
     )
   }
 }
