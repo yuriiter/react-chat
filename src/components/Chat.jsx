@@ -59,19 +59,26 @@ class Chat extends Component {
     });
     this.socket.on('onMessage', (newMessage) => {
       console.log('onMessage event received!');
-      this.setState(
-        (prevState) => {
-          return {
-            messages: [...prevState.messages, newMessage],
-          };
-        },
-        () => {
-          this.props.dispatch({
-            type: 'ADD_MESSAGE',
-            payload: { message: newMessage },
-          });
-        },
-      );
+      if (newMessage.chatId === this.props.chat.id) {
+        this.setState(
+          (prevState) => {
+            return {
+              messages: [...prevState.messages, newMessage],
+            };
+          },
+          () => {
+            this.props.dispatch({
+              type: 'ADD_MESSAGE',
+              payload: { message: newMessage },
+            });
+          },
+        );
+      } else {
+        this.props.dispatch({
+          type: 'ADD_MESSAGE',
+          payload: { message: newMessage },
+        });
+      }
     });
   }
 
@@ -214,11 +221,7 @@ class Chat extends Component {
                 <span className="chat-list__list-item__user-status">
                   <UserStatus
                     status={this.props.status}
-                    ago={
-                      (this.props.currentTime -
-                        Date.parse(this.remoteUser?.lastOnline)) /
-                      1000
-                    }
+                    dt={this.remoteUser?.lastOnline}
                   />
                 </span>
               </div>
@@ -242,14 +245,11 @@ class Chat extends Component {
             {this.state.messages?.map((message) => {
               const isMessagePartners =
                 message.receiverId === this.props.user?.id;
-              const ago =
-                (this.props.currentTime - Date.parse(message.sentDateTime)) /
-                1000;
               return (
                 <Message
                   key={message.id}
                   isMessagePartners={isMessagePartners}
-                  ago={ago}
+                  dt={message.sentDateTime}
                   messageType={message.messageType}
                   content={message.messageContent}
                 />

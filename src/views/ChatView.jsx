@@ -96,7 +96,7 @@ class ChatView extends Component {
         <div className={'box'}>
           <Navigation />
           <ChatList />
-          <Chat status={'LAST_ONLINE'} onlineAgo={2000} />
+          <Chat status={'LAST_ONLINE'} />
           <div
             className={
               'box__black-overlay' +

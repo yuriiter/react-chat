@@ -72,7 +72,7 @@ const reducerFn = (state = initialState, action) => {
       const newChat = { ...chat, active: false, status: status };
       return newChat;
     });
-    return { ...state, chats: sortChats(newChats) };
+    return { ...state, chats: sortChats(JSON.parse(JSON.stringify(newChats))) };
   }
   if (action.type === 'ADD_CHAT') {
     const newChat = action.payload;
@@ -103,16 +103,18 @@ const reducerFn = (state = initialState, action) => {
     }
 
     chat.messages.push(message);
-    chat.messages = JSON.parse(JSON.stringify(chat.messages));
 
     if (state.chat?.id === message.chatId) {
       return {
         ...state,
-        chats: JSON.parse(JSON.stringify(sortChats(chats))),
+        chats: sortChats(JSON.parse(JSON.stringify(chats))),
         chat: JSON.parse(JSON.stringify(chat)),
       };
     }
-    return { ...state, chats: JSON.parse(JSON.stringify(sortChats(chats))) };
+    return {
+      ...state,
+      chats: sortChats(JSON.parse(JSON.stringify(chats))),
+    };
   }
 
   if (action.type === 'UPDATE_GLOBAL_TIMER') {

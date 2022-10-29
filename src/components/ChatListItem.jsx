@@ -16,6 +16,8 @@ class ChatListItem extends Component {
     messageChunk: '',
     countOfNewMessagesValue: 0,
     remoteUser: {},
+    chat: this.props.chat,
+    status: this.props.chat.status,
   };
   constructor(props) {
     super(props);
@@ -42,19 +44,19 @@ class ChatListItem extends Component {
           <div className={'message-text'}>
             <p>
               {(lastMessage.authorId === this.props.user.id ? 'You: ' : '') +
-                  lastMessage.messageContent}
-                </p>
-                <div className="message-files">
-                  <div className="message-files__item message-files__item--file">
-                    <IconFile active={this.props.chat.active} />
-                    <span>Files (x2)</span>
-                  </div>
-                  <div className="message-files__item message-files__item--image">
-                    <IconImage active={this.props.chat.active} />
-                    <span>Photo</span>
-                  </div>
-                </div>
+                lastMessage.messageContent}
+            </p>
+            <div className="message-files">
+              <div className="message-files__item message-files__item--file">
+                <IconFile active={this.props.chat.active} />
+                <span>Files (x2)</span>
               </div>
+              <div className="message-files__item message-files__item--image">
+                <IconImage active={this.props.chat.active} />
+                <span>Photo</span>
+              </div>
+            </div>
+          </div>
         );
         break;
       case 'RECORDING':
@@ -86,16 +88,20 @@ class ChatListItem extends Component {
         break;
     }
 
-    const remoteUser = getRemoteUser(
-      this.props.user?.id,
-      this.props.chat?.users,
-    );
     const countOfNewMessagesValue = this.countOfNewMessages(this.props.chat);
+
+    const remoteUser = getRemoteUser(this.props.user.id, this.props.chat.users);
+    const status = this.props.chat.status;
+    const lastMessageTime = lastMessage.sentDateTime;
 
     this.setState({
       remoteUser: remoteUser,
       countOfNewMessagesValue: countOfNewMessagesValue,
       messageChunk: messageChunk,
+      chat: this.props.chat,
+      status: status,
+      userDt: remoteUser.lastOnline,
+      messageDt: lastMessageTime,
     });
   };
 
@@ -109,37 +115,24 @@ class ChatListItem extends Component {
     this.props.dispatch({ type: 'OPEN_CHAT', payload: this.props.chat.id });
   };
 
-  componentDidMount(prevProps, prevState) {
+  componentDidMount() {
     this.renderMessage();
   }
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.chat !== this.props.chat) {
+    if (
+      prevProps.chat !== this.props.chat ||
+      prevProps.chat.messages !== this.props.chat.messages
+    ) {
       this.renderMessage();
     }
   }
 
   render() {
-    const chat = this.props.chat;
-    const remoteUser = getRemoteUser(this.props.user.id, chat.users);
-    const status = chat.status;
-    const lastMessageTime =
-      chat.messages.length === 0
-      ? undefined
-      : Date.parse(chat.messages[0].sentDateTime);
-    const userLastOnline = remoteUser.lastOnline;
-    const ago = (this.props.currentTime - lastMessageTime) / 1000;
-
-    let userLastOnlineAgo;
-    if (status === 'LAST_ONLINE') {
-      userLastOnlineAgo =
-        (this.props.currentTime - Date.parse(userLastOnline)) / 1000;
-    }
-
     return (
       <div
         className={
           'chat-list__list-item ' +
-          (chat.active ? 'chat-list__list-item--active' : '')
+          (this.state.chat.active ? 'chat-list__list-item--active' : '')
         }
         onClick={this.openChat}
       >
@@ -147,36 +140,36 @@ class ChatListItem extends Component {
           <div className="chat-list__list-item__user">
             <div className="chat-list__list-item__user-avatar">
               <img src={avatarImage} alt="" />
-              {this.props.chat.status === 'ONLINE' ||
-                  this.props.chat.status === 'RECODRING' ||
-                  this.props.chat.status === 'WRITING' ? (
-                    <div className="online-status"></div>
-                  ) : null}
-                </div>
-                <div className="chat-list__list-item__user-text">
-                  <h3 className="chat-list__list-item__user-name">
-                    {remoteUser.fullName}
-                  </h3>
-                  <span className="chat-list__list-item__user-status">
-                    <UserStatus status={status} ago={userLastOnlineAgo} />
-                  </span>
-                </div>
-              </div>
-
-              <div className="chat-list__list-item__message-time">
-                {onlineString(ago)} ago
-              </div>
-            </div>
-
-            <div className="chat-list__list-item__message">
-              {this.state.messageChunk}
-              {this.countOfNewMessagesValue > 0 ? (
-                <span className={'chat-list__list-item__message-count'}>
-                  <span>{this.countOfNewMessagesValue}</span>
-                </span>
+              {this.state.status === 'ONLINE' ||
+              this.state.status === 'RECODRING' ||
+              this.state.status === 'WRITING' ? (
+                <div className="online-status"></div>
               ) : null}
             </div>
+            <div className="chat-list__list-item__user-text">
+              <h3 className="chat-list__list-item__user-name">
+                {this.state.remoteUser.fullName}
+              </h3>
+              <span className="chat-list__list-item__user-status">
+                <UserStatus status={this.state.status} dt={this.state.userDt} />
+              </span>
+            </div>
           </div>
+
+          <div className="chat-list__list-item__message-time">
+            {onlineString(this.state.messageDt)}
+          </div>
+        </div>
+
+        <div className="chat-list__list-item__message">
+          {this.state.messageChunk}
+          {this.countOfNewMessagesValue > 0 ? (
+            <span className={'chat-list__list-item__message-count'}>
+              <span>{this.countOfNewMessagesValue}</span>
+            </span>
+          ) : null}
+        </div>
+      </div>
     );
   }
 }

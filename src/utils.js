@@ -1,26 +1,51 @@
-export const onlineString = (ago) => {
-  const dateTable = {
-    dateStrings: ['min', 'hour', 'day', 'week', 'month', 'year'],
-    containsSeconds: [60, 3600, 86400, 597800, 17934000, 215208000],
-  };
-  if (ago < 60) {
-    return 'less than a minute';
-  } else if (ago > 215208000) {
-    return 'more than a year';
-  } else {
-    for (let i = 0; i < dateTable.containsSeconds.length - 1; i++) {
-      const low = dateTable.containsSeconds[i];
-      const high = dateTable.containsSeconds[i + 1];
-      if (ago < high) {
-        const rounded = Math.floor(ago / low);
-        if (rounded === 1) {
-          return `1 ${dateTable.dateStrings[i]}`;
-        } else {
-          return `${rounded} ${dateTable.dateStrings[i]}s`;
-        }
-      }
-    }
+export const onlineString = (dt_) => {
+  if (!dt_) return;
+
+  const dt = new Date(Date.parse(dt_));
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  const now = new Date();
+
+  const nowDay = now.getDay();
+  const nowMonth = now.getMonth();
+  const nowYear = now.getFullYear();
+
+  const dtDay = dt.getDay();
+  const dtMonth = dt.getMonth();
+  const dtYear = dt.getFullYear();
+
+  let dtMinutes = dt.getMinutes();
+  let dtHours = dt.getHours();
+
+  if (dtHours < 10) {
+    dtHours = `0${dtHours}`;
   }
+  if (dtMinutes < 10) {
+    dtMinutes = `0${dtMinutes}`;
+  }
+
+  let timeString = `${dtHours}:${dtMinutes}`;
+
+  if (nowDay !== dtDay) {
+    timeString += `, ${dtDay} ${months[dtMonth]}`;
+  }
+  if (nowYear !== dtYear) {
+    timeString += `, ${dtYear}`;
+  }
+
+  return timeString;
 };
 
 export const isEmailValid = (email) => {
@@ -66,6 +91,7 @@ export const sortChats = (chats) => {
   return sortedChats.sort((chat1, chat2) => {
     const emptyChatDate = new Date();
     emptyChatDate.setDate(emptyChatDate.getDate() + 7);
+    const emptyChatTime = emptyChatDate.getTime();
 
     const lastMessage1 =
       chat1.messages.length === 0
@@ -74,15 +100,16 @@ export const sortChats = (chats) => {
     const lastMessage2 =
       chat2.messages.length === 0
         ? undefined
-        : chat1.messages[chat1.messages.length - 1];
+        : chat2.messages[chat2.messages.length - 1];
 
     const lastMessageTime1 = lastMessage1
-      ? lastMessage1.sentDateTime
-      : emptyChatDate;
+      ? Date.parse(lastMessage1.sentDateTime)
+      : emptyChatTime;
     const lastMessageTime2 = lastMessage2
-      ? lastMessage2.sentDateTime
-      : emptyChatDate;
+      ? Date.parse(lastMessage2.sentDateTime)
+      : emptyChatTime;
+    console.log(lastMessageTime1 > lastMessage2);
 
-    return -(Date.parse(lastMessageTime1) - Date.parse(lastMessageTime2));
+    return -(lastMessageTime1 - lastMessageTime2);
   });
 };
