@@ -97,7 +97,7 @@ anonymousObject83a6cdf20b05	src/views/SignUp.jsx	/^            this.setState({$/
 anonymousObject8edfbb640105	src/components/Navigation.jsx	/^        this.props.dispatch({type: "SET_ACCESS_TOKEN", payload: null})$/;"	v
 anonymousObjectc51c18140105	src/components/Chat.jsx	/^    this.setState({ scrollFromTop: e.target.scrollTop });$/;"	v	class:Chat
 anonymousObjectc51c18140205	src/components/Chat.jsx	/^    this.setState({$/;"	v	method:Chat.componentDidMount
-anonymousObjectc51c18140305	src/components/Chat.jsx	/^      this.props.dispatch({ type: 'ADD_MESSAGE', payload: newMessage });$/;"	v
+anonymousObjectc51c18140305	src/components/Chat.jsx	/^        this.props.dispatch({type: "ADD_MESSAGE", payload: {message: newMessage}})$/;"	v
 anonymousObjectc51c18140405	src/components/Chat.jsx	/^          {$/;"	v	method:Chat.componentDidUpdate
 anonymousObjectc51c18140505	src/components/Chat.jsx	/^                this.setState({$/;"	v
 anonymousObjectc51c18140605	src/components/Chat.jsx	/^                this.setState({$/;"	v
@@ -249,6 +249,7 @@ message	src/components/Chat.jsx	/^                  content={message.messageCont
 message	src/components/Chat.jsx	/^                  key={message.id}$/;"	M
 message	src/components/Chat.jsx	/^                  message: 'Unauthorized',$/;"	p	variable:anonymousObjectc51c18140505
 message	src/components/Chat.jsx	/^                  messageType={message.messageType}$/;"	M
+message	src/components/Chat.jsx	/^        this.props.dispatch({type: "ADD_MESSAGE", payload: {message: newMessage}})$/;"	p	property:anonymousObjectc51c18140305.payload
 message	src/components/ChatList.jsx	/^                            this.setState({ message: json.message, messageType: 'error' });$/;"	p	variable:anonymousObject096161500c05
 message	src/components/ChatList.jsx	/^                        this.setState({ message: json.message, messageType: 'error' });$/;"	p	variable:anonymousObject096161500705
 message	src/components/ChatList.jsx	/^        this.setState({ message: undefined, messageType: undefined });$/;"	p	variable:anonymousObject096161500305
@@ -321,7 +322,7 @@ password	src/views/SignIn.jsx	/^          password: this.state.passwordInputValu
 password	src/views/SignUp.jsx	/^          password: this.state.passwordInputValue,$/;"	p	variable:SignUp.anonymousObject83a6cdf20605.anonymousObject83a6cdf20705
 passwordInputValue	src/views/SignIn.jsx	/^    this.setState({passwordInputValue: e.target.value})$/;"	p	variable:SignIn.anonymousObject6784b5640205
 passwordInputValue	src/views/SignUp.jsx	/^    this.setState({ passwordInputValue: e.target.value });$/;"	p	variable:SignUp.anonymousObject83a6cdf20305
-payload	src/components/Chat.jsx	/^      this.props.dispatch({ type: 'ADD_MESSAGE', payload: newMessage });$/;"	p	variable:anonymousObjectc51c18140305
+payload	src/components/Chat.jsx	/^        this.props.dispatch({type: "ADD_MESSAGE", payload: {message: newMessage}})$/;"	p	variable:anonymousObjectc51c18140305
 payload	src/components/ChatList.jsx	/^                    this.props.dispatch({ type: 'ADD_CHAT', payload: json });$/;"	p	variable:anonymousObject096161500905
 payload	src/components/ChatList.jsx	/^                    this.props.dispatch({ type: 'OPEN_CHAT', payload: json.id });$/;"	p	variable:anonymousObject096161500a05
 payload	src/components/ChatListItem.jsx	/^    this.props.dispatch({ type: 'OPEN_CHAT', payload: this.props.chat.id });$/;"	p	variable:anonymousObject7e3521df0205
@@ -395,7 +396,7 @@ toggleAttachmentsButtonOpen	src/components/Chat.jsx	/^  toggleAttachmentsButtonO
 toggleDialog	src/components/ChatList.jsx	/^    toggleDialog = () => this.setState({ openDialog: !this.state.openDialog });$/;"	M	class:ChatList
 toggleMobileNavOpen	src/views/ChatView.jsx	/^  toggleMobileNavOpen = () =>$/;"	M	class:ChatView
 type	src/components/Chat.jsx	/^                type="text"$/;"	M	class:Chat
-type	src/components/Chat.jsx	/^      this.props.dispatch({ type: 'ADD_MESSAGE', payload: newMessage });$/;"	p	variable:anonymousObjectc51c18140305
+type	src/components/Chat.jsx	/^        this.props.dispatch({type: "ADD_MESSAGE", payload: {message: newMessage}})$/;"	p	variable:anonymousObjectc51c18140305
 type	src/components/Chat.jsx	/^  closeChat = () => this.props.dispatch({ type: 'CLOSE_CHAT' });$/;"	p	variable:anonymousObjectc51c18140b05
 type	src/components/ChatList.jsx	/^                            type="email"$/;"	M	class:ChatList
 type	src/components/ChatList.jsx	/^                    this.props.dispatch({ type: 'ADD_CHAT', payload: json });$/;"	p	variable:anonymousObject096161500905

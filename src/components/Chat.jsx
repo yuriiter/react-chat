@@ -59,12 +59,19 @@ class Chat extends Component {
     });
     this.socket.on('onMessage', (newMessage) => {
       console.log('onMessage event received!');
-      this.props.dispatch({ type: 'ADD_MESSAGE', payload: newMessage });
-      this.setState((prevState) => {
-        return {
-          messages: [...prevState.messages, newMessage],
-        };
-      });
+      this.setState(
+        (prevState) => {
+          return {
+            messages: [...prevState.messages, newMessage],
+          };
+        },
+        () => {
+          this.props.dispatch({
+            type: 'ADD_MESSAGE',
+            payload: { message: newMessage },
+          });
+        },
+      );
     });
   }
 
