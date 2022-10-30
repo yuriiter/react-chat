@@ -117,6 +117,31 @@ const reducerFn = (state = initialState, action) => {
     };
   }
 
+  if (action.type === 'CHANGE_STATUS') {
+    const { newStatus, chatId } = action.payload;
+    const userChat = state.chats.find((chat) => chat.id === chatId);
+
+    if (!userChat) {
+      return state;
+    }
+
+    userChat.status = newStatus;
+    if (newStatus === 'LAST_ONLINE') {
+      const remoteUser = getRemoteUser(state.user.id, userChat.users);
+      remoteUser.lastOnline = new Date();
+    }
+
+    if (userChat.id === state.chat.id) {
+      return {
+        ...state,
+        chats: JSON.parse(JSON.stringify(state.chats)),
+        chat: JSON.parse(JSON.stringify(userChat)),
+      };
+    }
+
+    return { ...state, chats: JSON.parse(JSON.stringify(state.chats)) };
+  }
+
   if (action.type === 'UPDATE_GLOBAL_TIMER') {
     return { ...state, currentTime: Date.now() };
   }

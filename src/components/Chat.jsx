@@ -27,6 +27,7 @@ class Chat extends Component {
     chatInput: '',
   };
 
+  chatIdsToStatusTimeouts = [];
   messageContainerRef = React.createRef(null);
 
   socketOptions = {
@@ -78,6 +79,48 @@ class Chat extends Component {
           type: 'ADD_MESSAGE',
           payload: { message: newMessage },
         });
+      }
+    });
+
+    this.socket.on('statusOfUsers', (status) => {
+      if (status.newStatus === 'WRITING' || status.newStatus === 'RECORDING') {
+        const chatId = this.props.chat.id;
+        const objToClear = this.chatIdsToStatusTimeouts.find(
+          (el) => el.chatId === chatId,
+        );
+        if (objToClear) {
+          const timeout = objToClear.timeout;
+          clearTimeout(timeout);
+          this.chatIdsToStatusTimeouts = this.chatIdsToStatusTimeouts.filter(
+            (el) => el.chatId !== chatId,
+          );
+        }
+        const chat = this.props.chats.find((chat) => chat.id === status.chatId);
+        if (chat) {
+          this.props.dispatch({ type: 'CHANGE_STATUS', payload: status });
+          const newTimeout = setTimeout(() => {
+            let returnStatus;
+            if (chat.status === 'LAST_ONLINE') {
+              returnStatus = 'LAST_ONLINE';
+            } else {
+              returnStatus = 'ONLINE';
+            }
+            this.props.dispatch({
+              type: 'CHANGE_STATUS',
+              payload: { newStatus: returnStatus, chatId: chat.id },
+            });
+          }, 2000);
+
+          this.chatIdsToStatusTimeouts.push({
+            chatId: chatId,
+            timeout: newTimeout,
+          });
+        }
+      } else if (
+        status.newStatus === 'ONLINE' ||
+        status.newStatus === 'LAST_ONLINE'
+      ) {
+        this.props.dispatch({ type: 'CHANGE_STATUS', payload: status });
       }
     });
   }
@@ -152,11 +195,15 @@ class Chat extends Component {
 
   componentWillUnmount() {
     this.socket.off('onMessage');
+    this.socket.off('statusOfUsers');
     this.socket.off('connect');
   }
 
   handleChatInputChange = (e) => {
-    this.socket.emit('newStatus', { newStatus: 'WRITING' });
+    this.socket.emit('newStatus', {
+      newStatus: 'WRITING',
+      receiverId: this.remoteUser.id,
+    });
     this.setState({ chatInput: e.target.value });
   };
 
@@ -220,7 +267,7 @@ class Chat extends Component {
                 </h3>
                 <span className="chat-list__list-item__user-status">
                   <UserStatus
-                    status={this.props.status}
+                    status={this.props.chat.status}
                     dt={this.remoteUser?.lastOnline}
                   />
                 </span>
@@ -316,8 +363,8 @@ class Chat extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    chats: state.chats,
     chat: state.chat,
-    /* messages: state.messages, */
     user: state.user,
     currentTime: state.currentTime,
     accessToken: state.accessToken,

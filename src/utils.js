@@ -108,7 +108,6 @@ export const sortChats = (chats) => {
     const lastMessageTime2 = lastMessage2
       ? Date.parse(lastMessage2.sentDateTime)
       : emptyChatTime;
-    console.log(lastMessageTime1 > lastMessage2);
 
     return -(lastMessageTime1 - lastMessageTime2);
   });
