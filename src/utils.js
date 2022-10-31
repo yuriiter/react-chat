@@ -19,7 +19,6 @@ export const onlineString = (dt_) => {
   const now = new Date();
 
   const nowDay = now.getDay();
-  const nowMonth = now.getMonth();
   const nowYear = now.getFullYear();
 
   const dtDay = dt.getDay();

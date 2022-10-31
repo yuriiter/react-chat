@@ -19,9 +19,6 @@ class ChatListItem extends Component {
     chat: this.props.chat,
     status: this.props.chat.status,
   };
-  constructor(props) {
-    super(props);
-  }
 
   renderMessage = () => {
     const lastMessageIdx = this.props.chat.messages.length - 1;

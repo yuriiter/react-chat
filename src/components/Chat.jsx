@@ -17,7 +17,7 @@ import iconAttachImage from '../assets/img/icon_attach_image.svg';
 import iconSend from '../assets/img/icon_send.svg';
 import iconArrowLeft from '../assets/img/icon_arrow_left.svg';
 
-const messagesPerPage = 15;
+/* const messagesPerPage = 15; */
 
 class Chat extends Component {
   state = {
@@ -256,12 +256,12 @@ class Chat extends Component {
   };
 
   render() {
-    const content = 'https://google.com';
-    const file = {
-      download: 'https://google.com',
-    };
-    const isUserDefined =
-      JSON.stringify(this.props.chat) === JSON.stringify({});
+    /* const content = 'https://google.com'; */
+    /* const file = { */
+    /*   download: 'https://google.com', */
+    /* }; */
+    /* const isUserDefined = */
+    /* JSON.stringify(this.props.chat) === JSON.stringify({}); */
 
     this.remoteUser = getRemoteUser(
       this.props.user?.id,
@@ -278,9 +278,10 @@ class Chat extends Component {
                 src={iconArrowLeft}
                 className={'chat-messages__back-button'}
                 onClick={this.closeChat}
+                alt="Close chat"
               />
               <div className="chat-list__list-item__user-avatar">
-                <img src={avatarImage} alt="" />
+                <img src={avatarImage} alt="User avatar" />
                 {getRemoteUser(
                   this.props.user?.id,
                   this.props.chat?.users?.fullName,
@@ -303,10 +304,10 @@ class Chat extends Component {
 
             <div className="chat-messages__buttons">
               <div className="chat-messages__button chat-messages__buttons__attachment">
-                <img src={iconAttachment} alt={''} />
+                <img src={iconAttachment} alt="Attach a file" />
               </div>
               <div className="chat-messages__button chat-messages__buttons__options">
-                <img src={iconPoints} alt={''} />
+                <img src={iconPoints} alt="Options" />
               </div>
             </div>
           </div>
@@ -336,7 +337,7 @@ class Chat extends Component {
               <span className="chat-messages__input__attach-inside chat-messages__input__attach-inside--2 chat-messages__input__round-button">
                 <img
                   src={iconAttachImage}
-                  alt=""
+                  alt="Attachment"
                   style={{ width: '18px', height: '18px' }}
                 />
               </span>
@@ -348,7 +349,7 @@ class Chat extends Component {
                 className="chat-messages__input__attach-open chat-messages__input__round-button"
                 onClick={this.toggleAttachmentsButtonOpen}
               >
-                <img src={iconPlus} alt="" />
+                <img src={iconPlus} alt="Open buttons" />
               </span>
             </div>
 
@@ -369,7 +370,7 @@ class Chat extends Component {
               className="chat-messages__input__send chat-messages__input__round-button"
               onClick={this.sendTextMessage}
             >
-              <img src={iconSend} />
+              <img alt="Send a message" src={iconSend} />
             </span>
           </div>
         </div>

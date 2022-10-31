@@ -97,7 +97,7 @@ const reducerFn = (state = initialState, action) => {
     const { message } = action.payload;
     const chatId = message.chatId;
     const chats = state.chats;
-    const chat = chats.find((chat) => chat.id == chatId);
+    const chat = chats.find((chat) => chat.id === chatId);
     if (!chat) {
       return state;
     }
@@ -150,7 +150,6 @@ const reducerFn = (state = initialState, action) => {
 
   if (action.type === 'READ_MESSAGES') {
     const { chatId, countOfNewMessagesToUsers } = action.payload;
-    const userId = state.user.id;
     const chat = state.chats.find((chat) => chat.id === chatId);
     chat.countOfNewMessagesToUsers = countOfNewMessagesToUsers;
     if (state.chat?.id === chat.id) {

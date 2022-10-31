@@ -16,7 +16,7 @@ import iconPlus from '../assets/img/icon_plus.svg';
 import iconSearch from '../assets/img/icon_search.svg';
 import ChatListItem from './ChatListItem';
 import { connect } from 'react-redux';
-import { isEmailValid, sortChats } from '../utils';
+import { isEmailValid } from '../utils';
 
 class ChatList extends Component {
   state = {
@@ -111,7 +111,7 @@ class ChatList extends Component {
               className="button primary-button chat-list__new-chat"
               onClick={this.toggleDialog}
             >
-              <img src={iconPlus} />
+              <img alt="New chat" src={iconPlus} />
               <span>new chat</span>
             </button>
           </div>
