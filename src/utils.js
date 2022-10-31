@@ -112,3 +112,34 @@ export const sortChats = (chats) => {
     return -(lastMessageTime1 - lastMessageTime2);
   });
 };
+
+export const mapUnreadMessages = (messages, chat, authorId) => {
+  if (!chat || !chat.users || !authorId || !messages) {
+    return;
+  }
+
+  let countOfNewMessages =
+    chat.users[0].id === authorId
+      ? chat.countOfNewMessagesToUsers[1]
+      : chat.countOfNewMessagesToUsers[0];
+
+  const newMessages = messages.map((m) => {
+    return {
+      ...m,
+      isMessageRead: true,
+    };
+  });
+  for (let i = newMessages.length - 1; i >= 0; i--) {
+    if (countOfNewMessages === 0) {
+      break;
+    }
+
+    const currentMessage = newMessages[i];
+    if (currentMessage.authorId === authorId) {
+      currentMessage.isMessageRead = false;
+      countOfNewMessages--;
+    }
+  }
+
+  return newMessages;
+};

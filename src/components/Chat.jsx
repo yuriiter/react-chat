@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { io } from 'socket.io-client';
 
-import { getRemoteUser } from '../utils';
+import { getRemoteUser, mapUnreadMessages } from '../utils';
 
 import UserStatus from './UserStatus';
 import Message from './Message';
@@ -55,16 +55,17 @@ class Chat extends Component {
       scrollFromTop: this.messageContainerRef.current.scrollTop,
     });
 
-    this.socket.on('connect', () => {
-      console.log('Connected!');
-    });
+    this.socket.on('connect');
     this.socket.on('onMessage', (newMessage) => {
-      console.log('onMessage event received!');
       if (newMessage.chatId === this.props.chat.id) {
         this.setState(
           (prevState) => {
             return {
-              messages: [...prevState.messages, newMessage],
+              messages: mapUnreadMessages(
+                [...prevState.messages, newMessage],
+                this.props.chat,
+                this.props.user.id,
+              ),
             };
           },
           () => {
@@ -109,7 +110,7 @@ class Chat extends Component {
               type: 'CHANGE_STATUS',
               payload: { newStatus: returnStatus, chatId: chat.id },
             });
-          }, 2000);
+          }, 500);
 
           this.chatIdsToStatusTimeouts.push({
             chatId: chatId,
@@ -122,6 +123,10 @@ class Chat extends Component {
       ) {
         this.props.dispatch({ type: 'CHANGE_STATUS', payload: status });
       }
+    });
+
+    this.socket.on('readMessages', (readMessagesData) => {
+      this.props.dispatch({ type: 'READ_MESSAGES', payload: readMessagesData });
     });
   }
 
@@ -155,12 +160,32 @@ class Chat extends Component {
                 });
               }
             } else {
-              this.setState({ messages: json }, () => {
-                this.messageContainerRef.current.scrollTo(
-                  0,
-                  this.messageContainerRef.current.scrollHeight,
-                );
-              });
+              if (this.props.chat.id !== prevProps.chat.id) {
+                this.socket.emit('readChat', { chatId: this.props.chat.id });
+              } else if (
+                this.props.chat.messages.length >
+                  prevProps.chat.messages.length &&
+                this.props.chat.messages[this.props.chat.messages.length - 1]
+                  .authorId !== this.props.user.id &&
+                this.props.chat.id === prevProps.chat.id
+              ) {
+                this.socket.emit('readChat', { chatId: this.props.chat.id });
+              }
+              this.setState(
+                {
+                  messages: mapUnreadMessages(
+                    json,
+                    this.props.chat,
+                    this.props.user.id,
+                  ),
+                },
+                () => {
+                  this.messageContainerRef.current.scrollTo(
+                    0,
+                    this.messageContainerRef.current.scrollHeight,
+                  );
+                },
+              );
             }
           });
       }
@@ -168,6 +193,7 @@ class Chat extends Component {
 
     if (prevState.messages !== this.state.messages) {
       if (prevState.messages) {
+        /* this.socket.emit('readChat', { chatId: this.props.chat.id}); */
         const currentMessagesCount = this.state.messages.length;
         const newMessage = this.state.messages[currentMessagesCount - 1];
         if (newMessage?.authorId === this.props.user.id) {
@@ -176,7 +202,6 @@ class Chat extends Component {
             this.messageContainerRef.current.scrollHeight,
           );
         } else {
-          /* console.log(e.target.scrollHeight - e.target.scrollTop - e.target.offsetHeight) */
           if (
             this.messageContainerRef.current.scrollHeight -
               this.messageContainerRef.current.offsetHeight -
@@ -196,7 +221,10 @@ class Chat extends Component {
   componentWillUnmount() {
     this.socket.off('onMessage');
     this.socket.off('statusOfUsers');
+    this.socket.off('readMessages');
     this.socket.off('connect');
+
+    this.chatIdsToStatusTimeouts.forEach((item) => clearTimeout(item.timout));
   }
 
   handleChatInputChange = (e) => {
@@ -232,7 +260,6 @@ class Chat extends Component {
     const file = {
       download: 'https://google.com',
     };
-
     const isUserDefined =
       JSON.stringify(this.props.chat) === JSON.stringify({});
 
@@ -290,17 +317,7 @@ class Chat extends Component {
             onScroll={this.handleMessageContainerScroll}
           >
             {this.state.messages?.map((message) => {
-              const isMessagePartners =
-                message.receiverId === this.props.user?.id;
-              return (
-                <Message
-                  key={message.id}
-                  isMessagePartners={isMessagePartners}
-                  dt={message.sentDateTime}
-                  messageType={message.messageType}
-                  content={message.messageContent}
-                />
-              );
+              return <Message key={message.id} message={message} />;
             })}
             {/* <Message isMessagePartners={false} ago={1000} messageType={"FILE"} content={file}/> */}
             {/* <Message isMessagePartners={false} ago={1000} messageType={"RECORDING"} content={content}/> */}

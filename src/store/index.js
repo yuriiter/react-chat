@@ -104,7 +104,13 @@ const reducerFn = (state = initialState, action) => {
 
     chat.messages.push(message);
 
-    if (state.chat?.id === message.chatId) {
+    const countOfNewMessagesToUsers = chat.countOfNewMessagesToUsers;
+    if (chat.users[0].id === message.authorId) {
+      countOfNewMessagesToUsers[1] += 1;
+    } else {
+      countOfNewMessagesToUsers[0] += 1;
+    }
+    if (state.chat?.id === chatId) {
       return {
         ...state,
         chats: sortChats(JSON.parse(JSON.stringify(chats))),
@@ -139,6 +145,21 @@ const reducerFn = (state = initialState, action) => {
       };
     }
 
+    return { ...state, chats: JSON.parse(JSON.stringify(state.chats)) };
+  }
+
+  if (action.type === 'READ_MESSAGES') {
+    const { chatId, countOfNewMessagesToUsers } = action.payload;
+    const userId = state.user.id;
+    const chat = state.chats.find((chat) => chat.id === chatId);
+    chat.countOfNewMessagesToUsers = countOfNewMessagesToUsers;
+    if (state.chat?.id === chat.id) {
+      return {
+        ...state,
+        chats: JSON.parse(JSON.stringify(state.chats)),
+        chat: JSON.parse(JSON.stringify(chat)),
+      };
+    }
     return { ...state, chats: JSON.parse(JSON.stringify(state.chats)) };
   }
 

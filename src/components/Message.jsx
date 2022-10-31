@@ -1,3 +1,4 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
 import IconFileInChat from '../icon_components/IconFileInChat';
@@ -13,9 +14,12 @@ import { onlineString } from '../utils';
 
 class Message extends Component {
   render() {
-    let messageStatus = null;
-    if (!this.props.isMessagePartners) {
-      messageStatus = !this.props.isMessagePartners ? (
+    const isMessagePartners =
+      this.props.message.receiverId === this.props.user?.id;
+
+    let messageStatusChunk = null;
+    if (!isMessagePartners) {
+      messageStatusChunk = this.props.message.isMessageRead ? (
         <img src={iconRead} className={'message__status'} alt={''} />
       ) : (
         <img src={iconSent} className={'message__status'} alt={''} />
@@ -23,9 +27,9 @@ class Message extends Component {
     }
 
     let message = null;
-    switch (this.props.messageType) {
+    switch (this.props.message.messageType) {
       case 'TEXT':
-        message = this.props.content;
+        message = this.props.message.messageContent;
         break;
       case 'RECORDING':
         message = (
@@ -39,13 +43,11 @@ class Message extends Component {
         message = (
           <a
             className="message__download"
-            href={this.props.content.download}
+            href={this.props.message.messageContent.download}
             download
           >
             <div className="message__download__wrapper">
-              <IconFileInChat
-                color={this.props.isMessagePartners ? '#fff' : null}
-              />
+              <IconFileInChat color={isMessagePartners ? '#fff' : null} />
             </div>
             <div className="message__download__data">
               <span className="message__download__data-name">Style.zip</span>
@@ -63,20 +65,18 @@ class Message extends Component {
         break;
 
       default:
-        message = this.props.content;
+        message = this.props.message.messageContent;
     }
 
     return (
       <div
         className={
           'message' +
-          (this.props.isMessagePartners
-            ? ' message--partner'
-            : ' message--user')
+          (isMessagePartners ? ' message--partner' : ' message--user')
         }
       >
         <div className="message__text-wrapper">
-          {this.props.isMessagePartners ? null : (
+          {isMessagePartners ? null : (
             <img
               className={'message__points'}
               src={iconPointsHorizontal}
@@ -86,7 +86,7 @@ class Message extends Component {
 
           <div className="message__text">{message}</div>
 
-          {this.props.isMessagePartners ? (
+          {isMessagePartners ? (
             <img
               className={'message__points'}
               src={iconPointsHorizontal}
@@ -94,14 +94,20 @@ class Message extends Component {
             />
           ) : null}
 
-          {messageStatus}
+          {messageStatusChunk}
         </div>
         <span className={'message__time-ago'}>
-          {onlineString(this.props.dt)}
+          {onlineString(this.props.message.sentDateTime)}
         </span>
       </div>
     );
   }
 }
 
-export default Message;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(Message);

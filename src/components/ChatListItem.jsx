@@ -107,7 +107,7 @@ class ChatListItem extends Component {
 
   countOfNewMessages = (chat) => {
     const userId = this.props.user.id;
-    const arrayIndexOfCurrentUser = chat.users[0].id === userId ? 1 : 0;
+    const arrayIndexOfCurrentUser = chat.users[0].id === userId ? 0 : 1;
     return chat.countOfNewMessagesToUsers[arrayIndexOfCurrentUser];
   };
 
