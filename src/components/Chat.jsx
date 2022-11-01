@@ -55,7 +55,9 @@ class Chat extends Component {
       scrollFromTop: this.messageContainerRef.current.scrollTop,
     });
 
-    this.socket.on('connect');
+    this.socket.on('connect', () => {
+      console.log('Connected to the server');
+    });
     this.socket.on('onMessage', (newMessage) => {
       if (newMessage.chatId === this.props.chat.id) {
         this.setState(
@@ -167,7 +169,8 @@ class Chat extends Component {
                   prevProps.chat.messages.length &&
                 this.props.chat.messages[this.props.chat.messages.length - 1]
                   .authorId !== this.props.user.id &&
-                this.props.chat.id === prevProps.chat.id
+                this.props.chat.id === prevProps.chat.id &&
+                this.props.isChatOpen
               ) {
                 this.socket.emit('readChat', { chatId: this.props.chat.id });
               }
@@ -246,6 +249,7 @@ class Chat extends Component {
       return;
     }
 
+    /* console.log(this.remoteUser.id, ) */
     this.socket.emit('newMessage', {
       receiverId: this.remoteUser.id,
       chatId: this.props.chat.id,
@@ -386,6 +390,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     currentTime: state.currentTime,
     accessToken: state.accessToken,
+    isChatOpen: state.isChatOpen,
   };
 };
 export default connect(mapStateToProps)(Chat);

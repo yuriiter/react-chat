@@ -110,6 +110,7 @@ const reducerFn = (state = initialState, action) => {
     } else {
       countOfNewMessagesToUsers[0] += 1;
     }
+
     if (state.chat?.id === chatId) {
       return {
         ...state,
