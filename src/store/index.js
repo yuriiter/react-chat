@@ -10,6 +10,8 @@ const initialState = {
   user: {},
   currentTime: Date.now(),
   accessToken: localStorage.getItem('accessToken'),
+  snackBarMessage: null,
+  snackBarMessageType: null,
 };
 
 const reducerFn = (state = initialState, action) => {
@@ -165,6 +167,14 @@ const reducerFn = (state = initialState, action) => {
 
   if (action.type === 'UPDATE_GLOBAL_TIMER') {
     return { ...state, currentTime: Date.now() };
+  }
+
+  if (action.type === 'SET_SNACKBAR') {
+    return {
+      ...state,
+      snackBarMessage: action.payload.snackBarMessage,
+      snackBarMessageType: action.payload.snackBarMessageType,
+    };
   }
 
   return state;

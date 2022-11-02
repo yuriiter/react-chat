@@ -151,15 +151,14 @@ class Chat extends Component {
 
             if (statusCode) {
               if (statusCode === 401) {
-                this.setState({
-                  message: 'Unauthorized',
-                  messageType: 'error',
+                this.props.dispatch({
+                  type: 'SET_SNACKBAR',
+                  payload: {
+                    snackBarMessage: 'Unauthorized',
+                    snackBarMessageType: 'error',
+                  },
                 });
-                this.setState({
-                  changeLocationTimer: setTimeout(() => {
-                    window.location.href = '/signin';
-                  }, 2000),
-                });
+                this.setState({ navigate: '/signin' });
               }
             } else {
               if (this.props.chat.id !== prevProps.chat.id) {

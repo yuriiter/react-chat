@@ -7,13 +7,11 @@ import {
   DialogContentText,
   TextField,
   Button,
-  Snackbar,
-  Alert,
 } from '@mui/material';
 
-import iconArrow from '../assets/img/icon_arrow.svg';
+/* import iconArrow from '../assets/img/icon_arrow.svg'; */
 import iconPlus from '../assets/img/icon_plus.svg';
-import iconSearch from '../assets/img/icon_search.svg';
+/* import iconSearch from '../assets/img/icon_search.svg'; */
 import ChatListItem from './ChatListItem';
 import { connect } from 'react-redux';
 import { isEmailValid } from '../utils';
@@ -31,7 +29,10 @@ class ChatList extends Component {
   handleSearchUserEmailChange = (e) =>
     this.setState({ searchedUserEmail: e.target.value });
   closeAlert = () =>
-    this.setState({ message: undefined, messageType: undefined });
+    this.props.dispatch({
+      type: 'SET_SNACKBAR',
+      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },
+    });
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.chats !== this.props.chats) {
@@ -53,7 +54,13 @@ class ChatList extends Component {
         const statusCode = json.statusCode;
         if (statusCode) {
           if (statusCode === 400) {
-            this.setState({ message: json.message, messageType: 'error' });
+            this.props.dispatch({
+              type: 'SET_SNACKBAR',
+              payload: {
+                snackBarMessage: json.message,
+                snackBarMessageType: 'error',
+              },
+            });
           }
         } else {
           this.setState({ searchedUserEmail: '' });
@@ -82,6 +89,13 @@ class ChatList extends Component {
           const statusCode = json.statusCode;
           if (statusCode) {
             if (statusCode === 400) {
+              this.props.dispatch({
+                type: 'SET_SNACKBAR',
+                payload: {
+                  snackBarMessage: 'Unauthorized',
+                  snackBarMessageType: 'error',
+                },
+              });
               this.setState({ message: json.message, messageType: 'error' });
             }
           } else {
@@ -102,9 +116,9 @@ class ChatList extends Component {
           <div className="chat-list__top">
             <div className="chat-list__top-filter">
               <h2>Chats</h2>
-              <span>
-                Recent chats <img src={iconArrow} alt="" />
-              </span>
+              {/* <span> */}
+              {/*   Recent chats <img src={iconArrow} alt="" /> */}
+              {/* </span> */}
             </div>
 
             <button
@@ -116,23 +130,23 @@ class ChatList extends Component {
             </button>
           </div>
 
-          <div className="chat-list__search">
-            <div className="chat-list__search__shadow-container">
-              <div className="chat-list__search__shadow"></div>
-            </div>
-            <div className="chat-list__search__overlayer"></div>
-            <div
-              className="chat-list__search__input"
-              onClick={() => this.searchRef.current?.focus()}
-            >
-              <img src={iconSearch} alt="" />
-              <input type="text" placeholder={'Search'} ref={this.searchRef} />
-            </div>
-            <div className="chat-list__search__options button">
-              <span>Messages</span>
-              <img src={iconArrow} alt="" style={{ marginLeft: '4px' }} />
-            </div>
-          </div>
+          {/* <div className="chat-list__search"> */}
+          {/*   <div className="chat-list__search__shadow-container"> */}
+          {/*     <div className="chat-list__search__shadow"></div> */}
+          {/*   </div> */}
+          {/*   <div className="chat-list__search__overlayer"></div> */}
+          {/*   <div */}
+          {/*     className="chat-list__search__input" */}
+          {/*     onClick={() => this.searchRef.current?.focus()} */}
+          {/*   > */}
+          {/*     <img src={iconSearch} alt="" /> */}
+          {/*     <input type="text" placeholder={'Search'} ref={this.searchRef} /> */}
+          {/*   </div> */}
+          {/*   <div className="chat-list__search__options button"> */}
+          {/*     <span>Messages</span> */}
+          {/*     <img src={iconArrow} alt="" style={{ marginLeft: '4px' }} /> */}
+          {/*   </div> */}
+          {/* </div> */}
         </div>
 
         <div className="chat-list__list">
@@ -174,20 +188,6 @@ class ChatList extends Component {
             <Button onClick={this.startChatting}>Start chatting</Button>
           </DialogActions>
         </Dialog>
-
-        <Snackbar
-          open={this.state.message !== undefined}
-          autoHideDuration={6000}
-          onClose={this.closeAlert}
-        >
-          <Alert
-            onClose={this.closeAlert}
-            severity={this.state.messageType}
-            sx={{ width: '100%' }}
-          >
-            {this.state.message}
-          </Alert>
-        </Snackbar>
       </div>
     );
   }
@@ -200,6 +200,8 @@ const mapStateToProps = (state) => {
     user: state.user,
     chats: state.chats,
     currentTime: state.currentTime,
+    snackBarMessage: state.snackBarMessage,
+    snackBarMessageType: state.snackBarMessageType,
   };
 };
 

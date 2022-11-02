@@ -1,72 +1,92 @@
-import { Component } from 'react'
-import {TextField, Button, Card, Typography, Snackbar, Alert} from '@mui/material'
-import {Link} from "react-router-dom"
-import {connect} from "react-redux"
-import {isEmailValid, isPasswordValid} from "../utils";
+import { Component } from 'react';
+import {
+  TextField,
+  Button,
+  Card,
+  Typography,
+  Snackbar,
+  Alert,
+} from '@mui/material';
+import { Link, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { isEmailValid, isPasswordValid } from '../utils';
 
 class SignIn extends Component {
   state = {
-    emailInputValue: "",
-    passwordInputValue: "",
-  }
+    emailInputValue: '',
+    passwordInputValue: '',
+  };
 
-  changeEmailInputValue = e => {
-    this.setState({emailInputValue: e.target.value})
-  }
-  changePasswordInputValue = e => {
-    this.setState({passwordInputValue: e.target.value})
-  }
+  changeEmailInputValue = (e) => {
+    this.setState({ emailInputValue: e.target.value });
+  };
+  changePasswordInputValue = (e) => {
+    this.setState({ passwordInputValue: e.target.value });
+  };
 
-  closeAlert = () => {
-    this.setState({message: undefined, messageType: undefined});
-  }
-
+  closeAlert = () =>
+    this.props.dispatch({
+      type: 'SET_SNACKBAR',
+      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },
+    });
 
   signIn = () => {
-    if(isEmailValid(this.state.emailInputValue) && isPasswordValid(this.state.passwordInputValue)) {
-      fetch(process.env.REACT_APP_BACKEND_API_URL + "/auth/signin", {
-        method: "POST",
+    if (
+      isEmailValid(this.state.emailInputValue) &&
+      isPasswordValid(this.state.passwordInputValue)
+    ) {
+      fetch(process.env.REACT_APP_BACKEND_API_URL + '/auth/signin', {
+        method: 'POST',
         body: JSON.stringify({
           email: this.state.emailInputValue,
-          password: this.state.passwordInputValue
+          password: this.state.passwordInputValue,
         }),
         headers: {
-          "Content-Type": "application/json"
-        }
+          'Content-Type': 'application/json',
+        },
       })
-        .then(response => response.json())
-        .then(json => {
-          if(json.statusCode)  {
-            if(json.statusCode === 403) {
-              this.setState({message: "A user with the same email exists", messageType: "error"})
+        .then((response) => response.json())
+        .then((json) => {
+          if (json.statusCode) {
+            if (json.statusCode === 403) {
+              this.props.dispatch({
+                type: 'SET_SNACKBAR',
+                payload: {
+                  snackBarMessage: 'A user with the same email exists',
+                  snackBarMessageType: 'error',
+                },
+              });
+            } else if (json.statusCode === 400) {
+              this.setState({
+                message: 'Bad parameters',
+                messageType: 'error',
+              });
             }
-            else if(json.statusCode === 400) {
-              this.setState({message: "Bad parameters", messageType: "error"})
-            }
+          } else {
+            this.setState({
+              message: 'You have succesfully signed in',
+              messageType: 'success',
+            });
+            this.props.dispatch({
+              type: 'SET_ACCESS_TOKEN',
+              payload: json.access_token,
+            });
+            this.setState({ navigate: '/' });
           }
-          else {
-            this.setState({message: "You have succesfully signed in", messageType: "success"})
-            this.setState({changeLocationTimer: setTimeout(() => {
-              this.props.dispatch({type: "SET_ACCESS_TOKEN", payload: json.access_token})
-              window.location.href = "/chat"
-            }, 2000)})
-          }
-        })
+        });
     }
-  }
+  };
 
   componentDidMount() {
-    console.log(this.props.accessToken)
-    if(this.props.accessToken !== null) {
-      window.location.href = "/chat"
+    if (this.props.accessToken !== null) {
+      this.setState({ navigate: '/chat' });
     }
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.state.changeLocationTimer)
-  }
-
-  render () {
+  render() {
+    if (this.state.navigate) {
+      return <Navigate to={this.state.navigate} replace />;
+    }
     return (
       <div className="signup">
         <div className="signup__box">
@@ -96,37 +116,46 @@ class SignIn extends Component {
               onChange={this.changePasswordInputValue}
             />
 
+            <Button
+              className="signup__input signup__button"
+              variant="contained"
+              onClick={this.signIn}
+            >
+              Sign in
+            </Button>
 
-          <Button
-            className="signup__input signup__button"
-            variant="contained"
-            onClick={this.signIn}
+            <Link className="signup__link accent-color" to={'/signup'}>
+              <span>I don't have an account</span>
+            </Link>
+          </Card>
+        </div>
+        <Snackbar
+          open={
+            this.props.snackBarMessage !== undefined &&
+            this.props.snackBarMessage !== null
+          }
+          autoHideDuration={6000}
+          onClose={this.closeAlert}
+        >
+          <Alert
+            onClose={this.closeAlert}
+            severity={this.props.snackBarMessageType}
+            sx={{ width: '100%' }}
           >
-            Sign in
-          </Button>
-
-          <Link className="signup__link accent-color" to={"/signup" }>
-            <span>I don't have an account</span>
-          </Link>
-        </Card>
+            {this.props.snackBarMessage}
+          </Alert>
+        </Snackbar>
       </div>
-
-      <Snackbar open={this.state.message !== undefined} autoHideDuration={6000} onClose={this.closeAlert}>
-        <Alert onClose={this.closeAlert} severity={this.state.messageType} sx={{ width: '100%' }}>
-          {this.state.message}
-        </Alert>
-      </Snackbar> 
-
-    </div>
-    )
+    );
   }
 }
 
-
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    accessToken: state.accessToken
-  }
-}
+    accessToken: state.accessToken,
+    snackBarMessage: state.snackBarMessage,
+    snackBarMessageType: state.snackBarMessageType,
+  };
+};
 
-export default connect(mapStateToProps)(SignIn)
+export default connect(mapStateToProps)(SignIn);

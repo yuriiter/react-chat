@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Snackbar, Alert } from '@mui/material';
@@ -12,7 +13,12 @@ class ChatView extends Component {
   toggleMobileNavOpen = () =>
     this.props.dispatch({ type: 'TOGGLE_MOBILENAVOPEN' });
 
-  // Example of a request to backend
+  closeAlert = () =>
+    this.props.dispatch({
+      type: 'SET_SNACKBAR',
+      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },
+    });
+
   componentDidMount() {
     this.interval = setInterval(() => {
       this.props.dispatch({ type: 'UPDATE_GLOBAL_TIMER' });
@@ -31,12 +37,14 @@ class ChatView extends Component {
           if (statusCode === 401) {
             this.props.dispatch({ type: 'SET_ACCESS_TOKEN', payload: null });
             this.props.dispatch({ type: 'SET_USER', payload: null });
-            this.setState({ message: 'Unauthorized', messageType: 'error' });
-            this.setState({
-              changeLocationTimer: setTimeout(() => {
-                window.location.href = '/signin';
-              }, 2000),
+            this.props.dispatch({
+              type: 'SET_SNACKBAR',
+              payload: {
+                snackBarMessage: 'Unauthorized',
+                snackBarMessageType: 'error',
+              },
             });
+            this.setState({ navigate: '/signin' });
           }
         }
 
@@ -54,15 +62,14 @@ class ChatView extends Component {
             const statusCode = json.statusCode;
             if (statusCode) {
               if (statusCode === 401) {
-                this.setState({
-                  message: 'Unauthorized',
-                  messageType: 'error',
+                this.props.dispatch({
+                  type: 'SET_SNACKBAR',
+                  payload: {
+                    snackBarMessage: 'Unauthorized',
+                    snackBarMessageType: 'error',
+                  },
                 });
-                this.setState({
-                  changeLocationTimer: setTimeout(() => {
-                    window.location.href = '/signin';
-                  }, 2000),
-                });
+                this.setState({ navigate: '/signin' });
               }
             } else {
               this.props.dispatch({ type: 'SET_CHATS', payload: json });
@@ -71,12 +78,10 @@ class ChatView extends Component {
       });
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.state.changeLocationTimer);
-    this.setState({ changeLocationTimer: null });
-  }
-
   render() {
+    if (this.state.navigate) {
+      return <Navigate to={this.state.navigate} replace />;
+    }
     return (
       <>
         <div
@@ -107,16 +112,19 @@ class ChatView extends Component {
         </div>
 
         <Snackbar
-          open={this.state.message !== undefined}
+          open={
+            this.props.snackBarMessage !== undefined &&
+            this.props.snackBarMessage !== null
+          }
           autoHideDuration={6000}
           onClose={this.closeAlert}
         >
           <Alert
             onClose={this.closeAlert}
-            severity={this.state.messageType}
+            severity={this.props.snackBarMessageType}
             sx={{ width: '100%' }}
           >
-            {this.state.message}
+            {this.props.snackBarMessage}
           </Alert>
         </Snackbar>
       </>
@@ -130,6 +138,8 @@ const mapStateToProps = (state) => {
     isChatOpen: state.isChatOpen,
     user: state.user,
     accessToken: state.accessToken,
+    snackBarMessage: state.snackBarMessage,
+    snackBarMessageType: state.snackBarMessageType,
   };
 };
 

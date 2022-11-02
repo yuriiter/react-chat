@@ -1,13 +1,6 @@
 import { Component } from 'react';
-import {
-  TextField,
-  Button,
-  Card,
-  Typography,
-  Snackbar,
-  Alert,
-} from '@mui/material';
-import { Link } from 'react-router-dom';
+import { TextField, Button, Card, Typography } from '@mui/material';
+import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isEmailValid, isPasswordValid } from '../utils';
 
@@ -17,7 +10,6 @@ class SignUp extends Component {
     passwordInputValue: '',
     fullName: '',
     repeatPasswordInputValue: '',
-    changeLocationTimer: null,
   };
 
   changeFullNameInputValue = (e) => {
@@ -33,15 +25,17 @@ class SignUp extends Component {
     this.setState({ repeatPasswordInputValue: e.target.value });
   };
 
-  closeAlert = () => {
-    this.setState({ message: undefined, messageType: undefined });
-  };
+  closeAlert = () =>
+    this.props.dispatch({
+      type: 'SET_SNACKBAR',
+      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },
+    });
 
   signUp = () => {
     if (
       isEmailValid(this.state.emailInputValue) &&
       isPasswordValid(this.state.passwordInputValue) &&
-      this.state.passwordInputValue == this.state.repeatPasswordInputValue
+      this.state.passwordInputValue === this.state.repeatPasswordInputValue
     ) {
       fetch(process.env.REACT_APP_BACKEND_API_URL + '/auth/signup', {
         method: 'POST',
@@ -58,25 +52,32 @@ class SignUp extends Component {
         .then((json) => {
           if (json.statusCode) {
             if (json.statusCode === 403) {
-              this.setState({
-                message: 'A user with the same email exists',
-                messageType: 'error',
+              this.props.dispatch({
+                type: 'SET_SNACKBAR',
+                payload: {
+                  snackBarMessage: 'A user with the same email exists',
+                  snackBarMessageType: 'error',
+                },
               });
             } else if (json.statusCode === 400) {
-              this.setState({
-                message: 'Bad parameters',
-                messageType: 'error',
+              this.props.dispatch({
+                type: 'SET_SNACKBAR',
+                payload: {
+                  snackBarMessage: 'Bad parameters',
+                  snackBarMessageType: 'error',
+                },
               });
             }
           } else {
-            this.setState({
-              message: 'You have succesfully signed up',
-              messageType: 'success',
+            this.props.dispatch({
+              type: 'SET_SNACKBAR',
+              payload: {
+                snackBarMessage: 'You have succesfully signed up',
+                snackBarMessageType: 'success',
+              },
             });
             this.setState({
-              changeLocationTimer: setTimeout(() => {
-                window.location.href = '/signin';
-              }, 2000),
+              changeLocationTimer: setTimeout(() => {}, 2000),
             });
           }
         });
@@ -85,7 +86,7 @@ class SignUp extends Component {
 
   componentDidMount() {
     if (this.props.accessToken) {
-      window.location.href = '/chat';
+      this.setState({ navigate: '/chat' });
     }
   }
 
@@ -94,6 +95,9 @@ class SignUp extends Component {
   }
 
   render() {
+    if (this.state.navigate) {
+      return <Navigate to={this.state.navigate} replace />;
+    }
     return (
       <div className="signup">
         <div className="signup__box">
@@ -132,49 +136,35 @@ class SignUp extends Component {
               onChange={this.changePasswordInputValue}
             />
 
-          <TextField
-            className="signup__input"
-            error={
-              this.state.passwordInputValue !=
-              this.state.repeatPasswordInputValue
-            }
-            label="Repeat password"
-            variant="outlined"
-            type="password"
-            helperText="Passwords must be the same"
-            required
-            value={this.state.repeatPasswordInputValue}
-            onChange={this.changeRepeatPasswordInputValue}
-          />
+            <TextField
+              className="signup__input"
+              error={
+                this.state.passwordInputValue !==
+                this.state.repeatPasswordInputValue
+              }
+              label="Repeat password"
+              variant="outlined"
+              type="password"
+              helperText="Passwords must be the same"
+              required
+              value={this.state.repeatPasswordInputValue}
+              onChange={this.changeRepeatPasswordInputValue}
+            />
 
-        <Button
-          className="signup__input signup__button"
-          variant="contained"
-          onClick={this.signUp}
-        >
-          Sign up
-        </Button>
+            <Button
+              className="signup__input signup__button"
+              variant="contained"
+              onClick={this.signUp}
+            >
+              Sign up
+            </Button>
 
-        <Link className="signup__link accent-color" to={'/signin'}>
-          <span>I already have an account</span>
-        </Link>
-      </Card>
-    </div>
-
-    <Snackbar
-      open={this.state.message !== undefined}
-      autoHideDuration={6000}
-      onClose={this.closeAlert}
-    >
-      <Alert
-        onClose={this.closeAlert}
-        severity={this.state.messageType}
-        sx={{ width: '100%' }}
-      >
-        {this.state.message}
-      </Alert>
-    </Snackbar>
-  </div>
+            <Link className="signup__link accent-color" to={'/signin'}>
+              <span>I already have an account</span>
+            </Link>
+          </Card>
+        </div>
+      </div>
     );
   }
 }
@@ -182,6 +172,8 @@ class SignUp extends Component {
 const mapStateToProps = (state) => {
   return {
     accessToken: state.accessToken,
+    snackBarMessage: state.snackBarMessage,
+    snackBarMessageType: state.snackBarMessageType,
   };
 };
 

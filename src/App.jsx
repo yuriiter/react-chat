@@ -1,6 +1,6 @@
 import { Component, React } from 'react';
 import { Provider } from 'react-redux';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
 
 import ChatView from './views/ChatView';
 import SignUp from './views/SignUp';
@@ -17,9 +17,10 @@ class App extends Component {
         <BrowserRouter>
           <Routes>
             <Route path="/">
-              <Route path="chat" element={<ChatView />} />
+              <Route path="/" element={<ChatView />} />
               <Route path="signup" element={<SignUp />} />
               <Route path="signin" element={<SignIn />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
           </Routes>
         </BrowserRouter>
