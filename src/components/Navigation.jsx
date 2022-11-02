@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -36,34 +36,34 @@ class Navigation extends Component {
         <nav className="navigation">
           <ul className={'navigation__list'}>
             <li className={'navigation__list-item--active'}>
-              <a href="/">
+              <Link to="/">
                 <img src={iconChat} alt="Chat" />
                 <span>chat</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/">
+              <Link to="/">
                 <img src={iconPerson} alt="Contact" />
                 <span>contact</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/">
+              <Link to="/">
                 <img src={iconBell} alt="Notification" />
                 <span>notification</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/">
+              <Link to="/">
                 <img src={iconCalendar} alt="Calendar" />
                 <span>calendar</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/">
+              <Link to="/">
                 <img src={iconSettings} alt="Settings" />
                 <span>settings</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

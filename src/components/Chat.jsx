@@ -9,7 +9,6 @@ import Message from './Message';
 
 import IconFileInChat from '../icon_components/IconFileInChat';
 
-import avatarImage from '../assets/img/avatar_image.jpg';
 import iconAttachment from '../assets/img/icon_attachment.svg';
 import iconPoints from '../assets/img/icon_points.svg';
 import iconPlus from '../assets/img/icon_plus.svg';
@@ -336,7 +335,11 @@ class Chat extends Component {
               </div>
             </div>
 
-            <div className="chat-messages__buttons">
+            <div
+              className={
+                'chat-messages__buttons' + !this.props.chat.id ? ' d-none' : ''
+              }
+            >
               <div className="chat-messages__button chat-messages__buttons__attachment">
                 <img src={iconAttachment} alt="Attach a file" />
               </div>
@@ -357,9 +360,22 @@ class Chat extends Component {
             {/* <Message isMessagePartners={false} ago={1000} messageType={"FILE"} content={file}/> */}
             {/* <Message isMessagePartners={false} ago={1000} messageType={"RECORDING"} content={content}/> */}
             {/* <Message isMessagePartners={false} ago={1000} messageType={"IMAGE"} content={content}/> */}
+            <span
+              className={
+                'chat-messages__no-chat-caption' +
+                (this.props.chat.id ? ' d-none' : '')
+              }
+            >
+              Select a chat to start messaging
+            </span>
           </div>
 
-          <div className="chat-messages__input" onClick={this.focusInput}>
+          <div
+            className={
+              'chat-messages__input' + (!this.props.chat.id ? ' d-none' : '')
+            }
+            onClick={this.focusInput}
+          >
             <div
               className={
                 'chat-messages__input__attach' +

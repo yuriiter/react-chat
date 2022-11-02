@@ -5,8 +5,6 @@ import UserStatus from './UserStatus';
 
 import { onlineString, getRemoteUser } from '../utils';
 
-import avatarImage from '../assets/img/avatar_image.jpg';
-
 import IconFile from '../icon_components/IconFile';
 import IconImage from '../icon_components/IconImage';
 import IconMic from '../icon_components/IconMic';

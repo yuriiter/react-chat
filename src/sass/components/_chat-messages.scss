@@ -1,6 +1,7 @@
 .chat-messages {
   position: relative;
-  margin: $--o-padding-vertical-box $--o-padding-horizontal-box $--o-padding-vertical-box 64px;
+  margin: $--o-padding-vertical-box $--o-padding-horizontal-box
+    $--o-padding-vertical-box 64px;
   width: calc(50% - 207px);
   z-index: 1;
 
@@ -12,6 +13,20 @@
   @media (max-width: 1000px) {
     margin: 0;
     width: 100%;
+  }
+
+  &__no-chat-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2em;
+    background-color: #f3f3f3;
+    padding: 10px 23px;
+    color: #6a6a6a;
+    border-radius: 1000px;
   }
 
   &__shadow {
@@ -36,7 +51,7 @@
     justify-content: space-between;
     width: 100%;
     padding: 28px 60px;
-    background: #FAFBFF;
+    background: #fafbff;
     border-bottom: 2px solid rgba(112, 124, 151, 0.1);
 
     @media (max-width: 1560px) {
@@ -114,7 +129,7 @@
   &__input {
     width: auto;
     margin: 0 60px 0 68px;
-    border-top: 2px solid rgba(#707C97, 0.15);
+    border-top: 2px solid rgba(#707c97, 0.15);
     border-radius: 2px;
     padding: 19px 0 30px 0;
     display: flex;
@@ -160,7 +175,7 @@
       width: 200px;
       z-index: 1;
       opacity: 0;
-      transition: .2s left, .2s opacity;
+      transition: 0.2s left, 0.2s opacity;
       position: absolute;
       top: 10px;
       left: 150px;
@@ -172,9 +187,7 @@
       position: relative;
 
       &--active {
-
         .chat-messages__input__attach {
-
           &-inside {
             &--2 {
               top: -108px;
@@ -193,10 +206,10 @@
 
       &-open {
         position: relative;
-        background: linear-gradient(325.78deg, #2A8BF2 14.76%, #7CB8F7 87.3%);
+        background: linear-gradient(325.78deg, #2a8bf2 14.76%, #7cb8f7 87.3%);
 
         & > img {
-          transition: transform .1s ease-in-out;
+          transition: transform 0.1s ease-in-out;
         }
       }
 
@@ -204,11 +217,11 @@
         position: absolute;
         top: 0;
         left: 0;
-        background: #2A8BF2;
+        background: #2a8bf2;
         box-shadow: 0 10px 15px rgba(0, 0, 0, 0.03),
           0 7px 25px rgba(42, 139, 242, 0.03),
           0 5px 25px rgba(42, 139, 242, 0.07);
-        transition: top .1s ease-in-out;
+        transition: top 0.1s ease-in-out;
       }
     }
 
@@ -220,7 +233,8 @@
       justify-content: center;
       align-items: center;
 
-      & > img, & > .img {
+      & > img,
+      & > .img {
         width: 24px;
         height: 24px;
       }
@@ -229,17 +243,17 @@
     &__send {
       margin-left: auto;
       flex-shrink: 0;
-      background: linear-gradient(325.78deg, #2A8BF2 14.76%, #7CB8F7 87.3%);
+      background: linear-gradient(325.78deg, #2a8bf2 14.76%, #7cb8f7 87.3%);
       box-shadow: 4px 4px 25px rgba(42, 139, 242, 0.15),
         2px 2px 25px rgba(42, 139, 242, 0.05),
         4px 6px 10px rgba(42, 139, 242, 0.15);
 
-      & > img, & > .img {
+      & > img,
+      & > .img {
         width: 20px;
         height: 20px;
       }
     }
-
   }
 
   &__back-button {

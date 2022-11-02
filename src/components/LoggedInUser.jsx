@@ -1,8 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
-import avatarImage from '../assets/img/avatar_image.jpg';
-
 const colors = ['#70A9A1', '#FAB3A9', '#DAB6FC', '#C7D66D', '#9ee37d'];
 
 class LoggedInUser extends Component {

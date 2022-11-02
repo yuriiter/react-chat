@@ -149,7 +149,10 @@ chat-list__list-item 	src/components/ChatListItem.jsx	/^          'chat-list__li
 chat-list__list-item__message-count	src/components/ChatListItem.jsx	/^            <span className={'chat-list__list-item__message-count'}>$/;"	M	variable:
 chat-messages	src/components/Chat.jsx	/^      <div className={'chat-messages'}>$/;"	M
 chat-messages__back-button	src/components/Chat.jsx	/^                className={'chat-messages__back-button'}$/;"	M
+chat-messages__buttons	src/components/Chat.jsx	/^                'chat-messages__buttons' + !this.props.chat.id ? ' d-none' : ''$/;"	M
+chat-messages__input	src/components/Chat.jsx	/^              'chat-messages__input' + ( !this.props.chat.id ? ' d-none' : '' )$/;"	M
 chat-messages__input__attach	src/components/Chat.jsx	/^                'chat-messages__input__attach' +$/;"	M
+chat-messages__no-chat-caption	src/components/Chat.jsx	/^                'chat-messages__no-chat-caption' +$/;"	M
 chatAlreadyExists	src/store/index.js	/^    const chatAlreadyExists = chats.filter((chat) => chat.id === newChat.id);$/;"	C
 chatId	src/components/Chat.jsx	/^                this.socket.emit('readChat', { chatId: this.props.chat.id });$/;"	p	variable:anonymousObjectc51c18140d05
 chatId	src/components/Chat.jsx	/^                this.socket.emit('readChat', { chatId: this.props.chat.id });$/;"	p	variable:anonymousObjectc51c18140e05
