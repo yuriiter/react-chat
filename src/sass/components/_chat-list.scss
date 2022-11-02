@@ -1,10 +1,11 @@
 .chat-list {
-  padding: $--o-padding-vertical-box 0 $--o-padding-vertical-box $--o-padding-horizontal-box;
+  padding: $--o-padding-vertical-box 0 $--o-padding-vertical-box
+    $--o-padding-horizontal-box;
   width: calc(50% - 207px);
   height: 100%;
   z-index: 2;
   transform: translateX(0);
-  transition: transform .2s;
+  transition: transform 0.2s;
 
   @media (max-width: 1560px) {
     padding-left: 15px;
@@ -13,12 +14,11 @@
 
   @media (max-width: 1000px) {
     position: absolute;
-    background-color: #F6F5FC;
+    background-color: #f6f5fc;
     width: 100%;
   }
 
   &--closed {
-
     @media (max-width: 1000px) {
       transform: translateX(-100%);
     }
@@ -33,7 +33,6 @@
     justify-content: space-between;
 
     &-filter {
-
       & > h2 {
         font-size: 2em;
         color: $--c-dark-text;
@@ -46,14 +45,14 @@
         margin-top: 15px;
         text-transform: capitalize;
 
-        & > img, .img {
+        & > img,
+        .img {
           width: 16px;
           height: 16px;
           position: relative;
           top: 3px;
           margin-left: 3px;
         }
-
       }
     }
   }
@@ -65,11 +64,12 @@
     margin-top: 24px;
 
     &__overlayer {
-      background: #FFF;
+      background: #fff;
       border-radius: 6px;
     }
 
-    &__shadow-container, &__overlayer {
+    &__shadow-container,
+    &__overlayer {
       position: absolute;
       left: 0;
       top: 0;
@@ -79,18 +79,20 @@
 
     &__shadow {
       box-shadow: 0px 10px 55px rgba(0, 0, 0, 0.05),
-        0px 4px 10px rgba(0, 0, 0, 0.25),
-        0px 10px 25px rgba(0, 0, 0, 0.05);
+        0px 4px 10px rgba(0, 0, 0, 0.25), 0px 10px 25px rgba(0, 0, 0, 0.05);
       border-radius: 6px;
       width: 100%;
       height: 100%;
     }
 
-    &__input, &__options, &__shadow-container {
+    &__input,
+    &__options,
+    &__shadow-container {
       padding: 10px 20px;
     }
 
-    &__input, &__options {
+    &__input,
+    &__options {
       position: relative;
       z-index: 1;
       min-height: 50px;
@@ -105,7 +107,8 @@
         width: calc(100% - 88px);
       }
 
-      & > img, .img {
+      & > img,
+      .img {
         width: 24px;
         height: 100%;
         margin-right: 10px;
@@ -123,7 +126,7 @@
     }
 
     &__options {
-      border-left: 2px solid #F5F4FB;
+      border-left: 2px solid #f5f4fb;
       width: 179px;
       color: $--c-light-text;
 
@@ -131,7 +134,8 @@
         font-size: 1.125em;
       }
 
-      & > img, .img {
+      & > img,
+      .img {
         width: 16px;
         height: 16px;
         position: relative;
@@ -180,6 +184,10 @@
           filter: drop-shadow(1px 1px 50px rgba(198, 27, 74, 0.15));
           -webkit-filter: drop-shadow(1px 1px 50px rgba(198, 27, 74, 0.15));
 
+          .avatar__image > span {
+            font-size: 1.2em;
+          }
+
           @media (max-width: 500px) {
             width: 40px;
             height: 40px;
@@ -192,11 +200,12 @@
             border-radius: 10000px;
             width: 10px;
             height: 10px;
-            background-color: #00C305;
-            border: 1.5px solid #FFFFFF;
+            background-color: #00c305;
+            border: 1.5px solid #ffffff;
           }
 
-          & > img, .img {
+          & > img,
+          .img {
             width: 100%;
             height: 100%;
             border-radius: 100000px;
@@ -265,23 +274,22 @@
       }
 
       &--active {
-        background: linear-gradient(96.78deg, #7CB8F7 0%, #2A8BF2 100%);
+        background: linear-gradient(96.78deg, #7cb8f7 0%, #2a8bf2 100%);
 
         .chat-list__list-item {
-
           &__user {
-
             &-avatar {
               filter: drop-shadow(4px 4px 15px rgba(255, 255, 255, 0.05))
-              drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.1))
-              drop-shadow(1px 1px 50px rgba(255, 255, 255, 0.15));
-              -webkit-filter: drop-shadow(4px 4px 15px rgba(255, 255, 255, 0.05))
-              drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.1))
-              drop-shadow(1px 1px 50px rgba(255, 255, 255, 0.15));
+                drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.1))
+                drop-shadow(1px 1px 50px rgba(255, 255, 255, 0.15));
+              -webkit-filter: drop-shadow(
+                  4px 4px 15px rgba(255, 255, 255, 0.05)
+                )
+                drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.1))
+                drop-shadow(1px 1px 50px rgba(255, 255, 255, 0.15));
             }
 
             &-text {
-
               h3 {
                 color: #fff;
               }
@@ -293,11 +301,9 @@
           }
 
           &__message {
-
             p {
               color: #fff;
             }
-
           }
         }
       }
@@ -305,7 +311,8 @@
   }
 }
 
-.message-recording > img, .message-recording > .img {
+.message-recording > img,
+.message-recording > .img {
   width: 18px;
   height: 18px;
   margin-right: 6px;
@@ -324,7 +331,8 @@
     padding: 10px 13px;
     border-radius: 1000px;
 
-    & > img, .img {
+    & > img,
+    .img {
       width: 20px;
       height: 20px;
       margin-right: 5px;
@@ -353,13 +361,9 @@
   }
 }
 
-
 .chat-list__list-item--active {
-
   .message-files {
-
     &__item {
-
       &--image {
         background-color: rgba(#fff, 0.25);
 

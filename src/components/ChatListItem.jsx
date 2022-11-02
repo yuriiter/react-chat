@@ -11,6 +11,8 @@ import IconFile from '../icon_components/IconFile';
 import IconImage from '../icon_components/IconImage';
 import IconMic from '../icon_components/IconMic';
 
+const colors = ['#70A9A1', '#FAB3A9', '#DAB6FC', '#C7D66D', '#9ee37d'];
+
 class ChatListItem extends Component {
   state = {
     messageChunk: '',
@@ -125,6 +127,15 @@ class ChatListItem extends Component {
   }
 
   render() {
+    if (this.state.remoteUser && this.state.remoteUser.fullName) {
+      this.alias =
+        this.state.remoteUser.fullName[0] + this.state.remoteUser.fullName[1];
+
+      this.colorIdx =
+        (this.state.remoteUser.fullName[0].charCodeAt(0) +
+          this.state.remoteUser.fullName[1].charCodeAt(0)) %
+        colors.length;
+    }
     return (
       <div
         className={
@@ -136,7 +147,19 @@ class ChatListItem extends Component {
         <div className="chat-list__list-item__top">
           <div className="chat-list__list-item__user">
             <div className="chat-list__list-item__user-avatar">
-              <img src={avatarImage} alt="" />
+              <div
+                alt=""
+                className="avatar__image avatar__image--navigation chat-list__user-avatar__image"
+                style={
+                  this.alias
+                    ? {
+                        backgroundColor: colors[this.colorIdx],
+                      }
+                    : {}
+                }
+              >
+                <span>{this.alias}</span>
+              </div>
               {this.state.status === 'ONLINE' ||
               this.state.status === 'RECODRING' ||
               this.state.status === 'WRITING' ? (

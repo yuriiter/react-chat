@@ -57,15 +57,21 @@ class SignIn extends Component {
                 },
               });
             } else if (json.statusCode === 400) {
-              this.setState({
-                message: 'Bad parameters',
-                messageType: 'error',
+              this.props.dispatch({
+                type: 'SET_SNACKBAR',
+                payload: {
+                  snackBarMessage: 'Bad parameters',
+                  snackBarMessageType: 'error',
+                },
               });
             }
           } else {
-            this.setState({
-              message: 'You have succesfully signed in',
-              messageType: 'success',
+            this.props.dispatch({
+              type: 'SET_SNACKBAR',
+              payload: {
+                snackBarMessage: 'You have succesfully signed in',
+                snackBarMessageType: 'success',
+              },
             });
             this.props.dispatch({
               type: 'SET_ACCESS_TOKEN',

@@ -92,7 +92,7 @@ class ChatList extends Component {
               this.props.dispatch({
                 type: 'SET_SNACKBAR',
                 payload: {
-                  snackBarMessage: 'Unauthorized',
+                  snackBarMessage: "User doesn't exist or unavaliable",
                   snackBarMessageType: 'error',
                 },
               });

@@ -19,6 +19,8 @@ import iconArrowLeft from '../assets/img/icon_arrow_left.svg';
 
 /* const messagesPerPage = 15; */
 
+const colors = ['#70A9A1', '#FAB3A9', '#DAB6FC', '#C7D66D', '#9ee37d'];
+
 class Chat extends Component {
   state = {
     attachmentsButtonOpen: false,
@@ -270,6 +272,14 @@ class Chat extends Component {
       this.props.user?.id,
       this.props.chat?.users,
     );
+    if (this.remoteUser && this.remoteUser.fullName) {
+      this.alias = this.remoteUser.fullName[0] + this.remoteUser.fullName[1];
+
+      this.colorIdx =
+        (this.remoteUser.fullName[0].charCodeAt(0) +
+          this.remoteUser.fullName[1].charCodeAt(0)) %
+        colors.length;
+    }
 
     return (
       <div className={'chat-messages'}>
@@ -283,8 +293,29 @@ class Chat extends Component {
                 onClick={this.closeChat}
                 alt="Close chat"
               />
+              {/* <div className="chat-list__list-item__user-avatar"> */}
+              {/*   <img src={avatarImage} alt="User avatar" /> */}
+              {/*   {getRemoteUser( */}
+              {/*     this.props.user?.id, */}
+              {/*     this.props.chat?.users?.fullName, */}
+              {/*   )?.status === 'ONLINE' ? ( */}
+              {/*     <div className="online-status"></div> */}
+              {/*   ) : null} */}
+              {/* </div> */}
               <div className="chat-list__list-item__user-avatar">
-                <img src={avatarImage} alt="User avatar" />
+                <div
+                  alt=""
+                  className="avatar__image avatar__image--navigation chat-list__user-avatar__image"
+                  style={
+                    this.alias
+                      ? {
+                          backgroundColor: colors[this.colorIdx],
+                        }
+                      : {}
+                  }
+                >
+                  <span>{this.alias}</span>
+                </div>
                 {getRemoteUser(
                   this.props.user?.id,
                   this.props.chat?.users?.fullName,

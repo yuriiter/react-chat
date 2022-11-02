@@ -65,8 +65,8 @@ anonymousObject6784b5640305	src/views/SignIn.jsx	/^    this.props.dispatch({$/;"
 anonymousObject6784b5640405	src/views/SignIn.jsx	/^      fetch(process.env.REACT_APP_BACKEND_API_URL + '\/auth\/signin', {$/;"	v	class:SignIn
 anonymousObject6784b5640505	src/views/SignIn.jsx	/^        body: JSON.stringify({$/;"	v	variable:SignIn.anonymousObject6784b5640405
 anonymousObject6784b5640605	src/views/SignIn.jsx	/^              this.props.dispatch({$/;"	v
-anonymousObject6784b5640705	src/views/SignIn.jsx	/^              this.setState({$/;"	v
-anonymousObject6784b5640805	src/views/SignIn.jsx	/^            this.setState({$/;"	v
+anonymousObject6784b5640705	src/views/SignIn.jsx	/^              this.props.dispatch({$/;"	v
+anonymousObject6784b5640805	src/views/SignIn.jsx	/^            this.props.dispatch({$/;"	v
 anonymousObject6784b5640905	src/views/SignIn.jsx	/^            this.props.dispatch({$/;"	v
 anonymousObject6784b5640a05	src/views/SignIn.jsx	/^            this.setState({ navigate: '\/' });$/;"	v
 anonymousObject6784b5640b05	src/views/SignIn.jsx	/^      this.setState({ navigate: '\/chat' });$/;"	v	method:SignIn.componentDidMount
@@ -126,7 +126,7 @@ app	server/index.js	/^const app = express()$/;"	C
 arrayIndexOfCurrentUser	src/components/ChatListItem.jsx	/^    const arrayIndexOfCurrentUser = chat.users[0].id === userId ? 0 : 1;$/;"	C	class:ChatListItem
 attachmentsButtonOpen	src/components/Chat.jsx	/^    this.setState({ attachmentsButtonOpen: !this.state.attachmentsButtonOpen });$/;"	p	variable:anonymousObjectc51c18141205
 autoFocus	src/components/ChatList.jsx	/^              autoFocus$/;"	M	class:ChatList
-avatar	src/components/LoggedInUser.jsx	/^      <div className={"avatar"}>$/;"	M
+avatar	src/components/LoggedInUser.jsx	/^      <div className={'avatar'}>$/;"	M
 body	src/components/ChatList.jsx	/^      body: JSON.stringify({ users: [this.props.user.id, newUserId] }),$/;"	p	variable:ChatList.anonymousObject096161500505
 body	src/views/SignIn.jsx	/^        body: JSON.stringify({$/;"	p	variable:SignIn.anonymousObject6784b5640405
 body	src/views/SignUp.jsx	/^        body: JSON.stringify({$/;"	p	variable:SignUp.anonymousObject83a6cdf20605
@@ -174,6 +174,9 @@ closeAlert	src/views/ChatView.jsx	/^  closeAlert = () =>$/;"	M	class:ChatView
 closeAlert	src/views/SignIn.jsx	/^  closeAlert = () =>$/;"	M	class:SignIn
 closeAlert	src/views/SignUp.jsx	/^  closeAlert = () =>$/;"	M	class:SignUp
 closeChat	src/components/Chat.jsx	/^  closeChat = () => this.props.dispatch({ type: 'CLOSE_CHAT' });$/;"	M	class:Chat
+colors	src/components/Chat.jsx	/^const colors = ['#70A9A1', '#FAB3A9', '#DAB6FC', '#C7D66D', '#9ee37d'];$/;"	v
+colors	src/components/ChatListItem.jsx	/^const colors = ['#70A9A1', '#FAB3A9', '#DAB6FC', '#C7D66D', '#9ee37d'];$/;"	v
+colors	src/components/LoggedInUser.jsx	/^const colors = ['#70A9A1', '#FAB3A9', '#DAB6FC', '#C7D66D', '#9ee37d'];$/;"	v
 componentDidMount	src/components/Chat.jsx	/^  componentDidMount() {$/;"	m	class:Chat
 componentDidMount	src/components/ChatListItem.jsx	/^  componentDidMount() {$/;"	m	class:ChatListItem
 componentDidMount	src/views/ChatView.jsx	/^  componentDidMount() {$/;"	m	class:ChatView
@@ -256,7 +259,7 @@ logOut	src/components/Navigation.jsx	/^  logOut = () => {$/;"	M	class:Navigation
 mapStateToProps	src/components/Chat.jsx	/^const mapStateToProps = (state) => {$/;"	f
 mapStateToProps	src/components/ChatList.jsx	/^const mapStateToProps = (state) => {$/;"	f
 mapStateToProps	src/components/ChatListItem.jsx	/^const mapStateToProps = (state) => {$/;"	f
-mapStateToProps	src/components/LoggedInUser.jsx	/^const mapStateToProps = state => {$/;"	f
+mapStateToProps	src/components/LoggedInUser.jsx	/^const mapStateToProps = (state) => {$/;"	f
 mapStateToProps	src/components/Message.jsx	/^const mapStateToProps = (state) => {$/;"	f
 mapStateToProps	src/components/Navigation.jsx	/^const mapStateToProps = (state) => {$/;"	f
 mapStateToProps	src/components/UserStatus.jsx	/^const mapStateToProps = (state) => {$/;"	f
@@ -270,8 +273,6 @@ message	src/components/Chat.jsx	/^              return <Message key={message.id}
 message	src/components/Chat.jsx	/^          payload: { message: newMessage },$/;"	p	property:anonymousObjectc51c18140405.payload
 message	src/components/ChatList.jsx	/^              this.setState({ message: json.message, messageType: 'error' });$/;"	p	variable:anonymousObject096161500d05
 message	src/components/Message.jsx	/^          'message' +$/;"	M
-message	src/views/SignIn.jsx	/^                message: 'Bad parameters',$/;"	p	variable:anonymousObject6784b5640705
-message	src/views/SignIn.jsx	/^              message: 'You have succesfully signed in',$/;"	p	variable:anonymousObject6784b5640805
 messageChunk	src/components/ChatListItem.jsx	/^      messageChunk: messageChunk,$/;"	p	variable:ChatListItem.anonymousObject7e3521df0105
 messageChunk	src/components/ChatListItem.jsx	/^    let messageChunk;$/;"	v	class:ChatListItem
 messageContainerRef	src/components/Chat.jsx	/^  messageContainerRef = React.createRef(null);$/;"	M	class:Chat
@@ -280,8 +281,6 @@ messageDt	src/components/ChatListItem.jsx	/^      messageDt: lastMessageTime,$/;
 messageType	src/components/Chat.jsx	/^      messageType: 'TEXT',$/;"	p	variable:anonymousObjectc51c18141505
 messageType	src/components/ChatList.jsx	/^              this.setState({ message: json.message, messageType: 'error' });$/;"	p	variable:anonymousObject096161500d05
 messageType	src/components/ChatListItem.jsx	/^    const messageType = lastMessage.messageType;$/;"	C	class:ChatListItem
-messageType	src/views/SignIn.jsx	/^                messageType: 'error',$/;"	p	variable:anonymousObject6784b5640705
-messageType	src/views/SignIn.jsx	/^              messageType: 'success',$/;"	p	variable:anonymousObject6784b5640805
 message__points	src/components/Message.jsx	/^              className={'message__points'}$/;"	M	variable:Message.render
 message__status	src/components/Message.jsx	/^        <img src={iconRead} className={'message__status'} alt={''} \/>$/;"	M	variable:Message.render
 message__status	src/components/Message.jsx	/^        <img src={iconSent} className={'message__status'} alt={''} \/>$/;"	M	variable:Message.render
@@ -351,7 +350,9 @@ payload	src/views/ChatView.jsx	/^            this.props.dispatch({ type: 'SET_US
 payload	src/views/ChatView.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject6925e8b70905
 payload	src/views/ChatView.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	variable:anonymousObject6925e8b70205
 payload	src/views/SignIn.jsx	/^                payload: {$/;"	p	variable:anonymousObject6784b5640605
+payload	src/views/SignIn.jsx	/^                payload: {$/;"	p	variable:anonymousObject6784b5640705
 payload	src/views/SignIn.jsx	/^              payload: json.access_token,$/;"	p	variable:anonymousObject6784b5640905
+payload	src/views/SignIn.jsx	/^              payload: {$/;"	p	variable:anonymousObject6784b5640805
 payload	src/views/SignIn.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	variable:anonymousObject6784b5640305
 payload	src/views/SignUp.jsx	/^                payload: {$/;"	p	variable:anonymousObject83a6cdf20805
 payload	src/views/SignUp.jsx	/^                payload: {$/;"	p	variable:anonymousObject83a6cdf20905
@@ -373,7 +374,7 @@ render	src/App.jsx	/^  render() {$/;"	m	class:App
 render	src/components/Chat.jsx	/^  render() {$/;"	m	class:Chat
 render	src/components/ChatList.jsx	/^  render() {$/;"	m	class:ChatList
 render	src/components/ChatListItem.jsx	/^  render() {$/;"	m	class:ChatListItem
-render	src/components/LoggedInUser.jsx	/^  render () {$/;"	m	class:LoggedInUser
+render	src/components/LoggedInUser.jsx	/^  render() {$/;"	m	class:LoggedInUser
 render	src/components/Message.jsx	/^  render() {$/;"	m	class:Message
 render	src/components/Navigation.jsx	/^  render() {$/;"	m	class:Navigation
 render	src/components/UserStatus.jsx	/^  render() {$/;"	m	class:UserStatus
@@ -401,7 +402,7 @@ server	server/index.js	/^const server = http.createServer(app)$/;"	C
 signIn	src/views/SignIn.jsx	/^  signIn = () => {$/;"	M	class:SignIn
 signUp	src/views/SignUp.jsx	/^  signUp = () => {$/;"	M	class:SignUp
 snackBarMessage	src/components/Chat.jsx	/^                    snackBarMessage: 'Unauthorized',$/;"	p	property:anonymousObjectc51c18140b05.payload
-snackBarMessage	src/components/ChatList.jsx	/^                  snackBarMessage: 'Unauthorized',$/;"	p	property:anonymousObject096161500c05.payload
+snackBarMessage	src/components/ChatList.jsx	/^                  snackBarMessage: "User doesn't exist or unavaliable",$/;"	p	property:anonymousObject096161500c05.payload
 snackBarMessage	src/components/ChatList.jsx	/^                snackBarMessage: json.message,$/;"	p	property:anonymousObject096161500705.payload
 snackBarMessage	src/components/ChatList.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject096161500305.payload
 snackBarMessage	src/store/index.js	/^  snackBarMessage: null,$/;"	p	variable:initialState
@@ -410,6 +411,8 @@ snackBarMessage	src/views/ChatView.jsx	/^                snackBarMessage: 'Unaut
 snackBarMessage	src/views/ChatView.jsx	/^            {this.props.snackBarMessage}$/;"	M	class:ChatView
 snackBarMessage	src/views/ChatView.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject6925e8b70205.payload
 snackBarMessage	src/views/SignIn.jsx	/^                  snackBarMessage: 'A user with the same email exists',$/;"	p	property:anonymousObject6784b5640605.payload
+snackBarMessage	src/views/SignIn.jsx	/^                  snackBarMessage: 'Bad parameters',$/;"	p	property:anonymousObject6784b5640705.payload
+snackBarMessage	src/views/SignIn.jsx	/^                snackBarMessage: 'You have succesfully signed in',$/;"	p	property:anonymousObject6784b5640805.payload
 snackBarMessage	src/views/SignIn.jsx	/^            {this.props.snackBarMessage}$/;"	M	class:SignIn
 snackBarMessage	src/views/SignIn.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject6784b5640305.payload
 snackBarMessage	src/views/SignUp.jsx	/^                  snackBarMessage: 'A user with the same email exists',$/;"	p	property:anonymousObject83a6cdf20805.payload
@@ -425,6 +428,8 @@ snackBarMessageType	src/views/ChatView.jsx	/^                    snackBarMessage
 snackBarMessageType	src/views/ChatView.jsx	/^                snackBarMessageType: 'error',$/;"	p	property:anonymousObject6925e8b70705.payload
 snackBarMessageType	src/views/ChatView.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject6925e8b70205.payload
 snackBarMessageType	src/views/SignIn.jsx	/^                  snackBarMessageType: 'error',$/;"	p	property:anonymousObject6784b5640605.payload
+snackBarMessageType	src/views/SignIn.jsx	/^                  snackBarMessageType: 'error',$/;"	p	property:anonymousObject6784b5640705.payload
+snackBarMessageType	src/views/SignIn.jsx	/^                snackBarMessageType: 'success',$/;"	p	property:anonymousObject6784b5640805.payload
 snackBarMessageType	src/views/SignIn.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject6784b5640305.payload
 snackBarMessageType	src/views/SignUp.jsx	/^                  snackBarMessageType: 'error',$/;"	p	property:anonymousObject83a6cdf20805.payload
 snackBarMessageType	src/views/SignUp.jsx	/^                  snackBarMessageType: 'error',$/;"	p	property:anonymousObject83a6cdf20905.payload
@@ -482,7 +487,9 @@ type	src/views/ChatView.jsx	/^      this.props.dispatch({ type: 'UPDATE_GLOBAL_T
 type	src/views/ChatView.jsx	/^      type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6925e8b70205
 type	src/views/ChatView.jsx	/^    this.props.dispatch({ type: 'TOGGLE_MOBILENAVOPEN' });$/;"	p	variable:anonymousObject6925e8b70105
 type	src/views/SignIn.jsx	/^                type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640605
+type	src/views/SignIn.jsx	/^                type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640705
 type	src/views/SignIn.jsx	/^              type: 'SET_ACCESS_TOKEN',$/;"	p	variable:anonymousObject6784b5640905
+type	src/views/SignIn.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640805
 type	src/views/SignIn.jsx	/^      type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640305
 type	src/views/SignUp.jsx	/^                type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20805
 type	src/views/SignUp.jsx	/^                type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20905
