@@ -8,6 +8,8 @@ import UserStatus from './UserStatus';
 import Message from './Message';
 
 import IconFileInChat from '../icon_components/IconFileInChat';
+import IconMic from '../icon_components/IconMic';
+import IconPlus from '../icon_components/IconPlus';
 
 import iconAttachment from '../assets/img/icon_attachment.svg';
 import iconPoints from '../assets/img/icon_points.svg';
@@ -15,8 +17,6 @@ import iconPlus from '../assets/img/icon_plus.svg';
 import iconAttachImage from '../assets/img/icon_attach_image.svg';
 import iconSend from '../assets/img/icon_send.svg';
 import iconArrowLeft from '../assets/img/icon_arrow_left.svg';
-
-/* const messagesPerPage = 15; */
 
 const colors = ['#70A9A1', '#FAB3A9', '#DAB6FC', '#C7D66D', '#9ee37d'];
 
@@ -26,10 +26,71 @@ class Chat extends Component {
     scrollFromTop: null,
     messages: [],
     chatInput: '',
+    file: null,
+    messageType: 'TEXT',
+    loadingMessage: false,
   };
 
   chatIdsToStatusTimeouts = [];
   messageContainerRef = React.createRef(null);
+
+  clearFile = () => {
+    this.setState({ file: null, messageType: 'TEXT' });
+  };
+
+  upload = (file, messageType) => {
+    if (file.size < 1024 * 1024 * 10) {
+      if (messageType === 'IMAGE') {
+        const fileNameSplitArray = file.name.split('.');
+        const extension = fileNameSplitArray[fileNameSplitArray.length - 1];
+        const allowedExtensions = ['jpeg', 'jpg', 'gif', 'png'];
+
+        if (allowedExtensions.indexOf(extension) === -1) {
+          this.props.dispatch({
+            type: 'SET_SNACKBAR',
+            payload: {
+              snackBarMessage: `Image must have one of the extensions: ${allowedExtensions.join(
+                ', ',
+              )}`,
+              snackBarMessageType: 'error',
+            },
+          });
+        } else {
+          this.setState({
+            file: file,
+            messageType: messageType,
+            attachmentsButtonOpen: false,
+          });
+        }
+      } else {
+        this.setState({
+          file: file,
+          messageType: messageType,
+          attachmentsButtonOpen: false,
+        });
+      }
+    } else {
+      this.props.dispatch({
+        type: 'SET_SNACKBAR',
+        payload: {
+          snackBarMessage: 'File size must be less than 10 MB',
+          snackBarMessageType: 'error',
+        },
+      });
+    }
+  };
+
+  onFileChange = (e) => {
+    this.upload(e.target.files[0], 'FILE');
+  };
+
+  onImageChange = (e) => {
+    this.upload(e.target.files[0], 'IMAGE');
+  };
+
+  onRecordingChange = (e) => {
+    this.upload(e.target.files[0], 'RECORDING');
+  };
 
   socketOptions = {
     transportOptions: {
@@ -44,7 +105,7 @@ class Chat extends Component {
 
   handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      this.sendTextMessage();
+      this.sendMessage();
     }
   };
   handleMessageContainerScroll = (e) => {
@@ -69,6 +130,33 @@ class Chat extends Component {
                 this.props.chat,
                 this.props.user.id,
               ),
+            };
+          },
+          () => {
+            this.props.dispatch({
+              type: 'ADD_MESSAGE',
+              payload: { message: newMessage },
+            });
+          },
+        );
+      } else {
+        this.props.dispatch({
+          type: 'ADD_MESSAGE',
+          payload: { message: newMessage },
+        });
+      }
+    });
+    this.socket.on('onMessageBack', (newMessage) => {
+      if (newMessage.chatId === this.props.chat.id) {
+        this.setState(
+          (prevState) => {
+            return {
+              messages: mapUnreadMessages(
+                [...prevState.messages, newMessage],
+                this.props.chat,
+                this.props.user.id,
+              ),
+              loadingMessage: false,
             };
           },
           () => {
@@ -225,6 +313,7 @@ class Chat extends Component {
     this.socket.off('onMessage');
     this.socket.off('statusOfUsers');
     this.socket.off('readMessages');
+    this.socket.off('onMessageBack');
     this.socket.off('connect');
 
     this.chatIdsToStatusTimeouts.forEach((item) => clearTimeout(item.timout));
@@ -243,20 +332,37 @@ class Chat extends Component {
 
   closeChat = () => this.props.dispatch({ type: 'CLOSE_CHAT' });
 
-  sendTextMessage = () => {
-    if (this.state.chatInput.trim().length === 0) {
-      this.setState({ chatInput: '' });
-      return;
+  sendMessage = () => {
+    if (this.state.messageType === 'TEXT') {
+      if (this.state.chatInput.trim().length === 0) {
+        this.setState({ chatInput: '' });
+        return;
+      }
     }
 
-    /* console.log(this.remoteUser.id, ) */
     this.socket.emit('newMessage', {
       receiverId: this.remoteUser.id,
       chatId: this.props.chat.id,
-      messageType: 'TEXT',
-      messageContent: this.state.chatInput,
+      messageType: this.state.messageType,
+      messageContent:
+        this.state.messageType === 'TEXT'
+          ? this.state.chatInput
+          : this.state.file,
     });
-    this.setState({ chatInput: '' });
+    this.setState({ chatInput: '', loadingMessage: true, messageType: 'TEXT' });
+  };
+
+  renderInputSwitch = (messageType) => {
+    switch (messageType) {
+      case 'TEXT':
+        return 'Type a message';
+      case 'FILE':
+        return `File ${this.state.file.name}`;
+      case 'IMAGE':
+        return `Image ${this.state.file.name}`;
+      case 'RECORDING':
+        return `Recording ${this.state.file.name}`;
+    }
   };
 
   render() {
@@ -384,22 +490,42 @@ class Chat extends Component {
                   : '')
               }
             >
+              <span className="chat-messages__input__attach-inside chat-messages__input__attach-inside--3 chat-messages__input__round-button">
+                <IconMic active />
+                <input
+                  type="image"
+                  alt="Upload"
+                  className="hidden-input"
+                  onChange={this.onRecordingChange}
+                />
+              </span>
               <span className="chat-messages__input__attach-inside chat-messages__input__attach-inside--2 chat-messages__input__round-button">
                 <img
                   src={iconAttachImage}
                   alt="Attachment"
                   style={{ width: '18px', height: '18px' }}
                 />
+                <input
+                  type="file"
+                  alt="Upload"
+                  className="hidden-input"
+                  onChange={this.onImageChange}
+                />
               </span>
               <span className="chat-messages__input__attach-inside chat-messages__input__attach-inside--1 chat-messages__input__round-button">
                 <IconFileInChat color={'#fff'} />
+                <input
+                  type="file"
+                  className="hidden-input"
+                  onChange={this.onFileChange}
+                />
               </span>
 
               <span
                 className="chat-messages__input__attach-open chat-messages__input__round-button"
                 onClick={this.toggleAttachmentsButtonOpen}
               >
-                <img src={iconPlus} alt="Open buttons" />
+                <IconPlus />
               </span>
             </div>
 
@@ -410,17 +536,36 @@ class Chat extends Component {
                 value={this.state.chatInput}
                 onChange={this.handleChatInputChange}
                 onKeyDown={this.handleKeyDown}
+                hidden={!!this.state.file}
               />
               <span className="chat-messages__input__placeholder">
-                Type a message
+                {this.renderInputSwitch(this.state.messageType)}
               </span>
             </div>
 
+            {this.state.messageType !== 'TEXT' ? (
+              <span className="chat-messages__input__clear-file">
+                <IconPlus
+                  color="#000"
+                  className="rotate45"
+                  onClick={this.clearFile}
+                />
+              </span>
+            ) : null}
             <span
               className="chat-messages__input__send chat-messages__input__round-button"
-              onClick={this.sendTextMessage}
+              onClick={this.sendMessage}
             >
-              <img alt="Send a message" src={iconSend} />
+              {this.state.loading ? (
+                <div class="lds-ring">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              ) : (
+                <img alt="Send a message" src={iconSend} />
+              )}
             </span>
           </div>
         </div>
