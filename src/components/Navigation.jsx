@@ -1,6 +1,7 @@
 import { Navigate, Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import LoggedInUser from './LoggedInUser';
 
@@ -12,11 +13,17 @@ import iconCalendar from '../assets/img/icon_calendar.svg';
 import iconSettings from '../assets/img/icon_settings.svg';
 import iconPower from '../assets/img/icon_power.svg';
 
+axios.defaults.withCredentials = true;
+
 class Navigation extends Component {
   state = {};
   logOut = () => {
-    this.props.dispatch({ type: 'SET_ACCESS_TOKEN', payload: null });
-    this.setState({ navigate: '/signin' });
+    axios
+      .get(process.env.REACT_APP_BACKEND_API_URL + '/auth/signout')
+      .then(() => {
+        this.props.dispatch({ type: 'SET_USER', payload: null });
+        this.setState({ navigate: '/signin' });
+      });
   };
 
   render() {

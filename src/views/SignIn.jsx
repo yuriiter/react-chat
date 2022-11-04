@@ -9,7 +9,11 @@ import {
 } from '@mui/material';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from 'axios';
+
 import { isEmailValid, isPasswordValid } from '../utils';
+
+axios.defaults.withCredentials = true;
 
 class SignIn extends Component {
   state = {
@@ -35,18 +39,21 @@ class SignIn extends Component {
       isEmailValid(this.state.emailInputValue) &&
       isPasswordValid(this.state.passwordInputValue)
     ) {
-      fetch(process.env.REACT_APP_BACKEND_API_URL + '/auth/signin', {
-        method: 'POST',
-        body: JSON.stringify({
-          email: this.state.emailInputValue,
-          password: this.state.passwordInputValue,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
+      axios
+        .post(
+          process.env.REACT_APP_BACKEND_API_URL + '/auth/signin',
+          {
+            email: this.state.emailInputValue,
+            password: this.state.passwordInputValue,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then((response) => {
+          const json = response.data;
           if (json.statusCode) {
             if (json.statusCode === 403) {
               this.props.dispatch({
@@ -73,21 +80,37 @@ class SignIn extends Component {
                 snackBarMessageType: 'success',
               },
             });
-            this.props.dispatch({
-              type: 'SET_ACCESS_TOKEN',
-              payload: json.access_token,
-            });
             this.setState({ navigate: '/' });
           }
         });
     }
   };
 
-  componentDidMount() {
-    if (this.props.accessToken !== null) {
-      this.setState({ navigate: '/chat' });
-    }
-  }
+  /* componentDidMount() { */
+  /*   fetch(process.env.REACT_APP_BACKEND_API_URL + '/users/me', { */
+  /*     method: 'GET', */
+  /*     credentials: 'include', */
+  /*   }) */
+  /*     .then((response) => { */
+  /*       const statusCode = json.statusCode; */
+  /*       if (statusCode) { */
+  /*         if (statusCode === 401) { */
+  /*           this.props.dispatch({ type: 'SET_USER', payload: null }); */
+  /*           this.props.dispatch({ */
+  /*             type: 'SET_SNACKBAR', */
+  /*             payload: { */
+  /*               snackBarMessage: 'Unauthorized', */
+  /*               snackBarMessageType: 'error', */
+  /*             }, */
+  /*           }); */
+  /*           this.setState({ navigate: '/signin' }); */
+  /*         } */
+  /*       } else { */
+  /*         this.props.dispatch({ type: 'SET_USER', payload: json }); */
+  /*         this.setState({ navigate: '/chat' }); */
+  /*       } */
+  /*     }); */
+  /* } */
 
   render() {
     if (this.state.navigate) {

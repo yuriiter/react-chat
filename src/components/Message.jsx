@@ -3,14 +3,13 @@ import React, { Component } from 'react';
 
 import IconFileInChat from '../icon_components/IconFileInChat';
 
-import avatarImage from '../assets/img/avatar_image.jpg';
 import iconPointsHorizontal from '../assets/img/icon_points_horizontal.svg';
 import iconRead from '../assets/img/icon_read.svg';
 import iconSent from '../assets/img/icon_sent.svg';
 
 import recordingMessage from '../assets/audio.mp3';
 
-import { onlineString } from '../utils';
+import { onlineString, displaySize } from '../utils';
 
 class Message extends Component {
   render() {
@@ -27,11 +26,20 @@ class Message extends Component {
     }
 
     let message = null;
+    let fileActualName, fileSize, fileName, path;
+    if (this.props.message.messageType !== 'TEXT') {
+      fileActualName = this.props.message.fileActualName;
+      fileSize = this.props.message.fileSize;
+      fileName = this.props.message.fileName;
+    }
+
     switch (this.props.message.messageType) {
       case 'TEXT':
         message = this.props.message.messageContent;
         break;
       case 'RECORDING':
+        path = `${process.env.REACT_APP_BACKEND_API_URL}/chat_assets/recordings/${fileActualName}`;
+
         message = (
           <audio controls>
             <source src={recordingMessage} type="audio/mpeg" />
@@ -40,26 +48,28 @@ class Message extends Component {
         );
         break;
       case 'FILE':
+        path = `${process.env.REACT_APP_BACKEND_API_URL}/chat_assets/files/${fileActualName}`;
+
         message = (
-          <a
-            className="message__download"
-            href={this.props.message.messageContent.download}
-            download
-          >
+          <a className="message__download" href={path} download>
             <div className="message__download__wrapper">
               <IconFileInChat color={isMessagePartners ? '#fff' : null} />
             </div>
             <div className="message__download__data">
-              <span className="message__download__data-name">Style.zip</span>
-              <span className="message__download__data-size">41.36 Mb</span>
+              <span className="message__download__data-name">{fileName}</span>
+              <span className="message__download__data-size">
+                {displaySize(parseInt(fileSize))}
+              </span>
             </div>
           </a>
         );
         break;
       case 'IMAGE':
+        path = `${process.env.REACT_APP_BACKEND_API_URL}/chat_assets/img/${fileActualName}`;
+
         message = (
           <div className="message__photo">
-            <img src={avatarImage} alt={''} />
+            <img src={path} alt="User's attachment" />
           </div>
         );
         break;

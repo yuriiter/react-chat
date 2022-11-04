@@ -19,6 +19,7 @@ export const onlineString = (dt_) => {
   const now = new Date();
 
   const nowDay = now.getDay();
+  const nowMonth = now.getMonth();
   const nowYear = now.getFullYear();
 
   const dtDay = dt.getDay();
@@ -139,6 +140,28 @@ export const mapUnreadMessages = (messages, chat, authorId) => {
       countOfNewMessages--;
     }
   }
-
   return newMessages;
+};
+
+export const displaySize = (byteLength) => {
+  if (!byteLength) {
+    return;
+  }
+
+  const denotions = ['B', 'KB', 'MB'];
+  const checks = [
+    byteLength < 1024,
+    byteLength >= 1024 && byteLength < 1024 * 1024,
+    byteLength >= 1024 * 1024,
+  ];
+  const dividers = [1, 1024, 1024 * 1024];
+
+  const idx = checks.indexOf(true);
+
+  if (!idx) {
+    return;
+  }
+  console.log(Math.round((byteLength * 100) / dividers[idx]) / 100);
+
+  return Math.round((byteLength * 100) / dividers[idx]) / 100 + denotions[idx];
 };

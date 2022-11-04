@@ -9,8 +9,6 @@ const initialState = {
   chat: {},
   user: {},
   currentTime: Date.now(),
-  accessToken: localStorage.getItem('accessToken'),
-  snackBarMessage: null,
   snackBarMessageType: null,
 };
 
@@ -53,14 +51,7 @@ const reducerFn = (state = initialState, action) => {
   if (action.type === 'SET_USER') {
     return { ...state, user: action.payload };
   }
-  if (action.type === 'SET_ACCESS_TOKEN') {
-    if (action.payload === null) {
-      localStorage.removeItem('accessToken');
-    } else {
-      localStorage.setItem('accessToken', action.payload);
-    }
-    return { ...state, accessToken: action.payload };
-  }
+
   if (action.type === 'SET_CHATS') {
     const chats = action.payload || state.chats;
     if (!state.user.id) {

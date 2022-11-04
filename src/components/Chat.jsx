@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { io } from 'socket.io-client';
+import axios from 'axios';
 
 import { getRemoteUser, mapUnreadMessages } from '../utils';
 
@@ -19,6 +20,7 @@ import iconSend from '../assets/img/icon_send.svg';
 import iconArrowLeft from '../assets/img/icon_arrow_left.svg';
 
 const colors = ['#70A9A1', '#FAB3A9', '#DAB6FC', '#C7D66D', '#9ee37d'];
+axios.defaults.withCredentials = true;
 
 class Chat extends Component {
   state = {
@@ -92,16 +94,18 @@ class Chat extends Component {
     this.upload(e.target.files[0], 'RECORDING');
   };
 
-  socketOptions = {
-    transportOptions: {
-      polling: {
-        extraHeaders: {
-          Authorization: `Bearer ${this.props.accessToken}`,
-        },
-      },
-    },
-  };
-  socket = io(process.env.REACT_APP_BACKEND_API_URL, this.socketOptions);
+  /* socketOptions = { */
+  /*   transportOptions: { */
+  /*     polling: { */
+  /*       extraHeaders: { */
+  /*         Cookie: `Bearer ${this.props.accessToken}`, */
+  /*       }, */
+  /*     }, */
+  /*   }, */
+  /* }; */
+  socket = io(process.env.REACT_APP_BACKEND_API_URL, {
+    withCredentials: true,
+  });
 
   handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -224,18 +228,13 @@ class Chat extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.chat !== this.props.chat) {
       if (this.props.chat.id) {
-        fetch(
-          process.env.REACT_APP_BACKEND_API_URL +
-            `/chats/${this.props.chat.id}/messages?take=100000`,
-          {
-            method: 'GET',
-            headers: {
-              Authorization: `Bearer ${this.props.accessToken}`,
-            },
-          },
-        )
-          .then((response) => response.json())
-          .then((json) => {
+        axios
+          .get(
+            process.env.REACT_APP_BACKEND_API_URL +
+              `/chats/${this.props.chat.id}/messages?take=100000`,
+          )
+          .then((response) => {
+            const json = response.data;
             const statusCode = json.statusCode;
 
             if (statusCode) {
@@ -345,9 +344,14 @@ class Chat extends Component {
       chatId: this.props.chat.id,
       messageType: this.state.messageType,
       messageContent:
+        this.state.messageType === 'TEXT' ? this.state.chatInput : undefined,
+      file:
         this.state.messageType === 'TEXT'
-          ? this.state.chatInput
-          : this.state.file,
+          ? undefined
+          : {
+              buffer: this.state.file,
+              name: this.state.file.name,
+            },
     });
     this.setState({ chatInput: '', loadingMessage: true, messageType: 'TEXT' });
   };

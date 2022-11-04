@@ -2,10 +2,13 @@ import { Navigate } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Snackbar, Alert } from '@mui/material';
+import axios from 'axios';
 
 import Navigation from '../components/Navigation';
 import ChatList from '../components/ChatList';
 import Chat from '../components/Chat';
+
+axios.defaults.withCredentials = true;
 
 class ChatView extends Component {
   state = {};
@@ -24,18 +27,13 @@ class ChatView extends Component {
       this.props.dispatch({ type: 'UPDATE_GLOBAL_TIMER' });
     }, 1000 * 1);
 
-    fetch(process.env.REACT_APP_BACKEND_API_URL + '/users/me', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${this.props.accessToken}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
+    axios
+      .get(process.env.REACT_APP_BACKEND_API_URL + '/users/me')
+      .then((response) => {
+        const json = response.data;
         const statusCode = json.statusCode;
         if (statusCode) {
           if (statusCode === 401) {
-            this.props.dispatch({ type: 'SET_ACCESS_TOKEN', payload: null });
             this.props.dispatch({ type: 'SET_USER', payload: null });
             this.props.dispatch({
               type: 'SET_SNACKBAR',
@@ -46,19 +44,15 @@ class ChatView extends Component {
             });
             this.setState({ navigate: '/signin' });
           }
+        } else {
+          this.props.dispatch({ type: 'SET_USER', payload: json });
         }
-
-        this.props.dispatch({ type: 'SET_USER', payload: json });
       })
       .then(() => {
-        fetch(process.env.REACT_APP_BACKEND_API_URL + '/chats', {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${this.props.accessToken}`,
-          },
-        })
-          .then((response) => response.json())
-          .then((json) => {
+        axios
+          .get(process.env.REACT_APP_BACKEND_API_URL + '/chats')
+          .then((response) => {
+            const json = response.data;
             const statusCode = json.statusCode;
             if (statusCode) {
               if (statusCode === 401) {

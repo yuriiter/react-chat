@@ -1,8 +1,19 @@
 import { Component } from 'react';
-import { TextField, Button, Card, Typography } from '@mui/material';
+import {
+  TextField,
+  Button,
+  Card,
+  Typography,
+  Snackbar,
+  Alert,
+} from '@mui/material';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from 'axios';
+
 import { isEmailValid, isPasswordValid } from '../utils';
+
+axios.defaults.withCredentials = true;
 
 class SignUp extends Component {
   state = {
@@ -37,19 +48,22 @@ class SignUp extends Component {
       isPasswordValid(this.state.passwordInputValue) &&
       this.state.passwordInputValue === this.state.repeatPasswordInputValue
     ) {
-      fetch(process.env.REACT_APP_BACKEND_API_URL + '/auth/signup', {
-        method: 'POST',
-        body: JSON.stringify({
-          email: this.state.emailInputValue,
-          password: this.state.passwordInputValue,
-          fullName: this.state.fullName,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
+      axios
+        .post(
+          process.env.REACT_APP_BACKEND_API_URL + '/auth/signup',
+          {
+            email: this.state.emailInputValue,
+            password: this.state.passwordInputValue,
+            fullName: this.state.fullName,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then((response) => {
+          const json = response.data;
           if (json.statusCode) {
             if (json.statusCode === 403) {
               this.props.dispatch({
@@ -76,9 +90,7 @@ class SignUp extends Component {
                 snackBarMessageType: 'success',
               },
             });
-            this.setState({
-              changeLocationTimer: setTimeout(() => {}, 2000),
-            });
+            this.setState({ navigate: '/chat' });
           }
         });
     }
@@ -164,6 +176,22 @@ class SignUp extends Component {
             </Link>
           </Card>
         </div>
+        <Snackbar
+          open={
+            this.props.snackBarMessage !== undefined &&
+            this.props.snackBarMessage !== null
+          }
+          autoHideDuration={6000}
+          onClose={this.closeAlert}
+        >
+          <Alert
+            onClose={this.closeAlert}
+            severity={this.props.snackBarMessageType}
+            sx={{ width: '100%' }}
+          >
+            {this.props.snackBarMessage}
+          </Alert>
+        </Snackbar>
       </div>
     );
   }
