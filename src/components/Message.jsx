@@ -69,7 +69,7 @@ class Message extends Component {
 
         message = (
           <div className="message__photo">
-            <img src={path} alt="User's attachment" />
+            <img crossOrigin="use-credentials" src={path} alt={fileName} />
           </div>
         );
         break;

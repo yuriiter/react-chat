@@ -49,7 +49,7 @@ class Chat extends Component {
   };
 
   upload = (file, messageType) => {
-    if (file.size < 1024 * 1024 * 10) {
+    if (file.size < 1 * 1024 * 1024 * 10) {
       if (messageType === 'IMAGE') {
         const fileNameSplitArray = file.name.split('.');
         const extension = fileNameSplitArray[fileNameSplitArray.length - 1];
