@@ -506,16 +506,16 @@ class Chat extends Component {
                   : '')
               }
             >
-              <span className="chat-messages__input__attach-inside chat-messages__input__attach-inside--3 chat-messages__input__round-button">
-                <IconMic active />
-                <input
-                  type="image"
-                  alt="Upload"
-                  className="hidden-input"
-                  onChange={this.onRecordingChange}
-                  ref={this.fileInputRefs[0]}
-                />
-              </span>
+              {/* <span className="chat-messages__input__attach-inside chat-messages__input__attach-inside--3 chat-messages__input__round-button"> */}
+              {/*   <IconMic active /> */}
+              {/*   <input */}
+              {/*     type="image" */}
+              {/*     alt="Upload" */}
+              {/*     className="hidden-input" */}
+              {/*     onChange={this.onRecordingChange} */}
+              {/*     ref={this.fileInputRefs[0]} */}
+              {/*   /> */}
+              {/* </span> */}
               <span className="chat-messages__input__attach-inside chat-messages__input__attach-inside--2 chat-messages__input__round-button">
                 <img
                   src={iconAttachImage}

@@ -43,16 +43,6 @@ class ChatListItem extends Component {
               {(lastMessage.authorId === this.props.user.id ? 'You: ' : '') +
                 lastMessage.messageContent}
             </p>
-            <div className="message-files">
-              <div className="message-files__item message-files__item--file">
-                <IconFile active={this.props.chat.active} />
-                <span>Files (x2)</span>
-              </div>
-              <div className="message-files__item message-files__item--image">
-                <IconImage active={this.props.chat.active} />
-                <span>Photo</span>
-              </div>
-            </div>
           </div>
         );
         break;
@@ -65,17 +55,35 @@ class ChatListItem extends Component {
         );
         break;
       case 'FILE':
+        messageChunk = (
+          <div className={'message-text'}>
+            <p>
+              {(lastMessage.authorId === this.props.user.id ? 'You: ' : '') +
+                (lastMessage.messageContent || '')}
+            </p>
+            <div className={'message-files'}>
+              <div className="message-files">
+                <div className="message-files__item message-files__item--file">
+                  <IconFile active={this.props.chat.active} />
+                  <span>{lastMessage.fileName}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       case 'IMAGE':
         messageChunk = (
-          <div className={'message-files'}>
-            <div className="message-files">
-              <div className="message-files__item message-files__item--file">
-                <IconFile active={this.props.chat.active} />
-                <span>Files (x2)</span>
-              </div>
-              <div className="message-files__item message-files__item--image">
-                <IconImage active={this.props.chat.active} />
-                <span>Photo</span>
+          <div className={'message-text'}>
+            <p>
+              {(lastMessage.authorId === this.props.user.id ? 'You: ' : '') +
+                (lastMessage.messageContent || '')}
+            </p>
+            <div className={'message-files'}>
+              <div className="message-files">
+                <div className="message-files__item message-files__item--file">
+                  <IconImage active={this.props.chat.active} />
+                  <span>{lastMessage.fileName}</span>
+                </div>
               </div>
             </div>
           </div>
