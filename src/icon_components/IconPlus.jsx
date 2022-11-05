@@ -2,9 +2,6 @@ import { Component } from 'react';
 
 class IconPlus extends Component {
   render() {
-    if (this.props.color) {
-      console.log('ICON');
-    }
     return (
       <svg
         width={this.props.width || 24}

@@ -52,36 +52,35 @@ class SignIn extends Component {
             },
           },
         )
-        .then((response) => {
-          const json = response.data;
-          if (json.statusCode) {
-            if (json.statusCode === 403) {
-              this.props.dispatch({
-                type: 'SET_SNACKBAR',
-                payload: {
-                  snackBarMessage: 'A user with the same email exists',
-                  snackBarMessageType: 'error',
-                },
-              });
-            } else if (json.statusCode === 400) {
-              this.props.dispatch({
-                type: 'SET_SNACKBAR',
-                payload: {
-                  snackBarMessage: 'Bad parameters',
-                  snackBarMessageType: 'error',
-                },
-              });
-            }
-          } else {
+        .catch((error) => {
+          const statusCode = error.response.status;
+          if (statusCode === 403) {
             this.props.dispatch({
               type: 'SET_SNACKBAR',
               payload: {
-                snackBarMessage: 'You have succesfully signed in',
-                snackBarMessageType: 'success',
+                snackBarMessage: 'Bad credentials',
+                snackBarMessageType: 'error',
               },
             });
-            this.setState({ navigate: '/' });
+          } else if (statusCode === 400) {
+            this.props.dispatch({
+              type: 'SET_SNACKBAR',
+              payload: {
+                snackBarMessage: 'Bad parameters',
+                snackBarMessageType: 'error',
+              },
+            });
           }
+        })
+        .then(() => {
+          this.props.dispatch({
+            type: 'SET_SNACKBAR',
+            payload: {
+              snackBarMessage: 'You have succesfully signed in',
+              snackBarMessageType: 'success',
+            },
+          });
+          this.setState({ navigate: '/' });
         });
     }
   };

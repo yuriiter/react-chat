@@ -14,7 +14,6 @@ import IconPlus from '../icon_components/IconPlus';
 
 import iconAttachment from '../assets/img/icon_attachment.svg';
 import iconPoints from '../assets/img/icon_points.svg';
-import iconPlus from '../assets/img/icon_plus.svg';
 import iconAttachImage from '../assets/img/icon_attach_image.svg';
 import iconSend from '../assets/img/icon_send.svg';
 import iconArrowLeft from '../assets/img/icon_arrow_left.svg';
@@ -35,8 +34,17 @@ class Chat extends Component {
 
   chatIdsToStatusTimeouts = [];
   messageContainerRef = React.createRef(null);
+  fileInputRefs = [];
+
+  constructor() {
+    super();
+    for (let i = 0; i < 3; i++) {
+      this.fileInputRefs.push(React.createRef(null));
+    }
+  }
 
   clearFile = () => {
+    this.clearFileInputs();
     this.setState({ file: null, messageType: 'TEXT' });
   };
 
@@ -94,15 +102,6 @@ class Chat extends Component {
     this.upload(e.target.files[0], 'RECORDING');
   };
 
-  /* socketOptions = { */
-  /*   transportOptions: { */
-  /*     polling: { */
-  /*       extraHeaders: { */
-  /*         Cookie: `Bearer ${this.props.accessToken}`, */
-  /*       }, */
-  /*     }, */
-  /*   }, */
-  /* }; */
   socket = io(process.env.REACT_APP_BACKEND_API_URL, {
     withCredentials: true,
   });
@@ -233,50 +232,49 @@ class Chat extends Component {
             process.env.REACT_APP_BACKEND_API_URL +
               `/chats/${this.props.chat.id}/messages?take=100000`,
           )
+          .catch((error) => {
+            const statusCode = error.response.status;
+            if (statusCode === 401) {
+              this.props.dispatch({
+                type: 'SET_SNACKBAR',
+                payload: {
+                  snackBarMessage: 'Unauthorized',
+                  snackBarMessageType: 'error',
+                },
+              });
+              this.setState({ navigate: '/signin' });
+            }
+          })
           .then((response) => {
             const json = response.data;
-            const statusCode = json.statusCode;
 
-            if (statusCode) {
-              if (statusCode === 401) {
-                this.props.dispatch({
-                  type: 'SET_SNACKBAR',
-                  payload: {
-                    snackBarMessage: 'Unauthorized',
-                    snackBarMessageType: 'error',
-                  },
-                });
-                this.setState({ navigate: '/signin' });
-              }
-            } else {
-              if (this.props.chat.id !== prevProps.chat.id) {
-                this.socket.emit('readChat', { chatId: this.props.chat.id });
-              } else if (
-                this.props.chat.messages.length >
-                  prevProps.chat.messages.length &&
-                this.props.chat.messages[this.props.chat.messages.length - 1]
-                  .authorId !== this.props.user.id &&
-                this.props.chat.id === prevProps.chat.id &&
-                this.props.isChatOpen
-              ) {
-                this.socket.emit('readChat', { chatId: this.props.chat.id });
-              }
-              this.setState(
-                {
-                  messages: mapUnreadMessages(
-                    json,
-                    this.props.chat,
-                    this.props.user.id,
-                  ),
-                },
-                () => {
-                  this.messageContainerRef.current.scrollTo(
-                    0,
-                    this.messageContainerRef.current.scrollHeight,
-                  );
-                },
-              );
+            if (this.props.chat.id !== prevProps.chat.id) {
+              this.socket.emit('readChat', { chatId: this.props.chat.id });
+            } else if (
+              this.props.chat.messages.length >
+                prevProps.chat.messages.length &&
+              this.props.chat.messages[this.props.chat.messages.length - 1]
+                .authorId !== this.props.user.id &&
+              this.props.chat.id === prevProps.chat.id &&
+              this.props.isChatOpen
+            ) {
+              this.socket.emit('readChat', { chatId: this.props.chat.id });
             }
+            this.setState(
+              {
+                messages: mapUnreadMessages(
+                  json,
+                  this.props.chat,
+                  this.props.user.id,
+                ),
+              },
+              () => {
+                this.messageContainerRef.current.scrollTo(
+                  0,
+                  this.messageContainerRef.current.scrollHeight,
+                );
+              },
+            );
           });
       }
     }
@@ -315,6 +313,8 @@ class Chat extends Component {
     this.socket.off('onMessageBack');
     this.socket.off('connect');
 
+    this.socket.disconnect();
+
     this.chatIdsToStatusTimeouts.forEach((item) => clearTimeout(item.timout));
   }
 
@@ -330,6 +330,12 @@ class Chat extends Component {
     this.setState({ attachmentsButtonOpen: !this.state.attachmentsButtonOpen });
 
   closeChat = () => this.props.dispatch({ type: 'CLOSE_CHAT' });
+
+  clearFileInputs = () => {
+    for (let i = 0; i < 3; i++) {
+      this.fileInputRefs[i].current.value = null;
+    }
+  };
 
   sendMessage = () => {
     if (this.state.messageType === 'TEXT') {
@@ -353,7 +359,13 @@ class Chat extends Component {
               name: this.state.file.name,
             },
     });
-    this.setState({ chatInput: '', loadingMessage: true, messageType: 'TEXT' });
+    this.clearFile();
+    this.setState({
+      file: null,
+      chatInput: '',
+      loadingMessage: true,
+      messageType: 'TEXT',
+    });
   };
 
   renderInputSwitch = (messageType) => {
@@ -501,6 +513,7 @@ class Chat extends Component {
                   alt="Upload"
                   className="hidden-input"
                   onChange={this.onRecordingChange}
+                  ref={this.fileInputRefs[0]}
                 />
               </span>
               <span className="chat-messages__input__attach-inside chat-messages__input__attach-inside--2 chat-messages__input__round-button">
@@ -514,6 +527,7 @@ class Chat extends Component {
                   alt="Upload"
                   className="hidden-input"
                   onChange={this.onImageChange}
+                  ref={this.fileInputRefs[1]}
                 />
               </span>
               <span className="chat-messages__input__attach-inside chat-messages__input__attach-inside--1 chat-messages__input__round-button">
@@ -522,6 +536,7 @@ class Chat extends Component {
                   type="file"
                   className="hidden-input"
                   onChange={this.onFileChange}
+                  ref={this.fileInputRefs[2]}
                 />
               </span>
 

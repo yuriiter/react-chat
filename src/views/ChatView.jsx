@@ -29,9 +29,8 @@ class ChatView extends Component {
 
     axios
       .get(process.env.REACT_APP_BACKEND_API_URL + '/users/me')
-      .then((response) => {
-        const json = response.data;
-        const statusCode = json.statusCode;
+      .catch((error) => {
+        const statusCode = error.response.status;
         if (statusCode) {
           if (statusCode === 401) {
             this.props.dispatch({ type: 'SET_USER', payload: null });
@@ -44,16 +43,17 @@ class ChatView extends Component {
             });
             this.setState({ navigate: '/signin' });
           }
-        } else {
-          this.props.dispatch({ type: 'SET_USER', payload: json });
         }
+      })
+      .then((response) => {
+        const json = response.data;
+        this.props.dispatch({ type: 'SET_USER', payload: json });
       })
       .then(() => {
         axios
           .get(process.env.REACT_APP_BACKEND_API_URL + '/chats')
-          .then((response) => {
-            const json = response.data;
-            const statusCode = json.statusCode;
+          .catch((error) => {
+            const statusCode = error.response.status;
             if (statusCode) {
               if (statusCode === 401) {
                 this.props.dispatch({
@@ -65,9 +65,11 @@ class ChatView extends Component {
                 });
                 this.setState({ navigate: '/signin' });
               }
-            } else {
-              this.props.dispatch({ type: 'SET_CHATS', payload: json });
             }
+          })
+          .then((response) => {
+            const json = response.data;
+            this.props.dispatch({ type: 'SET_CHATS', payload: json });
           });
       });
   }

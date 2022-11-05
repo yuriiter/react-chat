@@ -52,25 +52,26 @@ class ChatList extends Component {
           },
         },
       )
-      .then((response) => {
-        const json = response.data;
-        const statusCode = json.statusCode;
+      .catch((error) => {
+        const statusCode = error.response.status;
         if (statusCode) {
           if (statusCode === 400) {
             this.props.dispatch({
               type: 'SET_SNACKBAR',
               payload: {
-                snackBarMessage: json.message,
+                snackBarMessage: 'Something went wrong',
                 snackBarMessageType: 'error',
               },
             });
           }
-        } else {
-          this.setState({ searchedUserEmail: '' });
-          this.toggleDialog();
-          this.props.dispatch({ type: 'ADD_CHAT', payload: json });
-          this.props.dispatch({ type: 'OPEN_CHAT', payload: json.id });
         }
+      })
+      .then((response) => {
+        const json = response.data;
+        this.setState({ searchedUserEmail: '' });
+        this.toggleDialog();
+        this.props.dispatch({ type: 'ADD_CHAT', payload: json });
+        this.props.dispatch({ type: 'OPEN_CHAT', payload: json.id });
       });
   };
 
@@ -82,9 +83,8 @@ class ChatList extends Component {
             '/users?email=' +
             this.state.searchedUserEmail,
         )
-        .then((response) => {
-          const json = response.data;
-          const statusCode = json.statusCode;
+        .catch((error) => {
+          const statusCode = error.response.status;
           if (statusCode) {
             if (statusCode === 400) {
               this.props.dispatch({
@@ -94,11 +94,16 @@ class ChatList extends Component {
                   snackBarMessageType: 'error',
                 },
               });
-              this.setState({ message: json.message, messageType: 'error' });
+              this.setState({
+                message: "User doesn't exist or unavaliable",
+                messageType: 'error',
+              });
             }
-          } else {
-            this.createChat(json.id);
           }
+        })
+        .then((response) => {
+          const json = response.data;
+          this.createChat(json.id);
         });
     }
   };

@@ -46,7 +46,10 @@ const reducerFn = (state = initialState, action) => {
   }
 
   if (action.type === 'CLOSE_CHAT') {
-    return { ...state, isChatOpen: false, chatId: null };
+    const newChats = state.chats.map((chat) => {
+      return { ...chat, active: false };
+    });
+    return { ...state, isChatOpen: false, chat: {}, chats: newChats };
   }
   if (action.type === 'SET_USER') {
     return { ...state, user: action.payload };

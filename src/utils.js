@@ -161,7 +161,6 @@ export const displaySize = (byteLength) => {
   if (!idx) {
     return;
   }
-  console.log(Math.round((byteLength * 100) / dividers[idx]) / 100);
 
   return Math.round((byteLength * 100) / dividers[idx]) / 100 + denotions[idx];
 };
