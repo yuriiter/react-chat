@@ -85,31 +85,18 @@ class SignIn extends Component {
     }
   };
 
-  /* componentDidMount() { */
-  /*   fetch(process.env.REACT_APP_BACKEND_API_URL + '/users/me', { */
-  /*     method: 'GET', */
-  /*     credentials: 'include', */
-  /*   }) */
-  /*     .then((response) => { */
-  /*       const statusCode = json.statusCode; */
-  /*       if (statusCode) { */
-  /*         if (statusCode === 401) { */
-  /*           this.props.dispatch({ type: 'SET_USER', payload: null }); */
-  /*           this.props.dispatch({ */
-  /*             type: 'SET_SNACKBAR', */
-  /*             payload: { */
-  /*               snackBarMessage: 'Unauthorized', */
-  /*               snackBarMessageType: 'error', */
-  /*             }, */
-  /*           }); */
-  /*           this.setState({ navigate: '/signin' }); */
-  /*         } */
-  /*       } else { */
-  /*         this.props.dispatch({ type: 'SET_USER', payload: json }); */
-  /*         this.setState({ navigate: '/chat' }); */
-  /*       } */
-  /*     }); */
-  /* } */
+  componentDidMount() {
+    axios
+      .get(process.env.REACT_APP_BACKEND_API_URL + '/users/me')
+      .catch((error) => {
+        console.log('Not authorized.');
+      })
+      .then((response) => {
+        const json = response.data;
+        this.props.dispatch({ type: 'SET_USER', payload: json });
+        this.setState({ navigate: '/' });
+      });
+  }
 
   render() {
     if (this.state.navigate) {

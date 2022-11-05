@@ -96,9 +96,16 @@ class SignUp extends Component {
   };
 
   componentDidMount() {
-    if (this.props.accessToken) {
-      this.setState({ navigate: '/chat' });
-    }
+    axios
+      .get(process.env.REACT_APP_BACKEND_API_URL + '/users/me')
+      .catch((error) => {
+        console.log('Not authorized.');
+      })
+      .then((response) => {
+        const json = response.data;
+        this.props.dispatch({ type: 'SET_USER', payload: json });
+        this.setState({ navigate: '/' });
+      });
   }
 
   componentWillUnmount() {

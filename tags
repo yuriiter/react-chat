@@ -35,7 +35,7 @@ LoggedInUser	src/components/LoggedInUser.jsx	/^class LoggedInUser extends Compon
 Message	src/components/Message.jsx	/^class Message extends Component {$/;"	c
 Navigation	src/components/Navigation.jsx	/^class Navigation extends Component {$/;"	c
 PORT	server/index.js	/^const PORT = 8000$/;"	C
-React App	public/index.html	/^    <title>React App<\/title>$/;"	j
+React Chat	public/index.html	/^    <title>React Chat<\/title>$/;"	j
 SignIn	src/views/SignIn.jsx	/^class SignIn extends Component {$/;"	c
 SignUp	src/views/SignUp.jsx	/^class SignUp extends Component {$/;"	c
 UserStatus	src/components/UserStatus.jsx	/^class UserStatus extends Component {$/;"	c
@@ -64,6 +64,8 @@ anonymousObject6784b5640605	src/views/SignIn.jsx	/^            this.props.dispat
 anonymousObject6784b5640705	src/views/SignIn.jsx	/^            this.props.dispatch({$/;"	v
 anonymousObject6784b5640805	src/views/SignIn.jsx	/^          this.props.dispatch({$/;"	v
 anonymousObject6784b5640905	src/views/SignIn.jsx	/^          this.setState({ navigate: '\/' });$/;"	v
+anonymousObject6784b5640a05	src/views/SignIn.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	v
+anonymousObject6784b5640b05	src/views/SignIn.jsx	/^        this.setState({ navigate: '\/' });$/;"	v
 anonymousObject6925e8b70105	src/views/ChatView.jsx	/^    this.props.dispatch({ type: 'TOGGLE_MOBILENAVOPEN' });$/;"	v
 anonymousObject6925e8b70205	src/views/ChatView.jsx	/^    this.props.dispatch({$/;"	v
 anonymousObject6925e8b70305	src/views/ChatView.jsx	/^      this.props.dispatch({ type: 'UPDATE_GLOBAL_TIMER' });$/;"	v
@@ -86,8 +88,9 @@ anonymousObject83a6cdf20705	src/views/SignUp.jsx	/^          {$/;"	v
 anonymousObject83a6cdf20805	src/views/SignUp.jsx	/^            this.props.dispatch({$/;"	v
 anonymousObject83a6cdf20905	src/views/SignUp.jsx	/^            this.props.dispatch({$/;"	v
 anonymousObject83a6cdf20a05	src/views/SignUp.jsx	/^          this.props.dispatch({$/;"	v
-anonymousObject83a6cdf20b05	src/views/SignUp.jsx	/^            this.setState({ navigate: '\/signin' });$/;"	v
-anonymousObject83a6cdf20c05	src/views/SignUp.jsx	/^      this.setState({ navigate: '\/chat' });$/;"	v	method:SignUp.componentDidMount
+anonymousObject83a6cdf20b05	src/views/SignUp.jsx	/^          this.setState({ navigate: '\/signin' });$/;"	v
+anonymousObject83a6cdf20c05	src/views/SignUp.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	v
+anonymousObject83a6cdf20d05	src/views/SignUp.jsx	/^        this.setState({ navigate: '\/' });$/;"	v
 anonymousObject8edfbb640105	src/components/Navigation.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: null });$/;"	v
 anonymousObject8edfbb640205	src/components/Navigation.jsx	/^        this.setState({ navigate: '\/signin' });$/;"	v
 anonymousObjectc51c18140105	src/components/Chat.jsx	/^    this.setState({ file: null, messageType: 'TEXT' });$/;"	v	class:Chat
@@ -184,6 +187,7 @@ colors	src/components/LoggedInUser.jsx	/^const colors = ['#70A9A1', '#FAB3A9', '
 componentDidMount	src/components/Chat.jsx	/^  componentDidMount() {$/;"	m	class:Chat
 componentDidMount	src/components/ChatListItem.jsx	/^  componentDidMount() {$/;"	m	class:ChatListItem
 componentDidMount	src/views/ChatView.jsx	/^  componentDidMount() {$/;"	m	class:ChatView
+componentDidMount	src/views/SignIn.jsx	/^  componentDidMount() {$/;"	m	class:SignIn
 componentDidMount	src/views/SignUp.jsx	/^  componentDidMount() {$/;"	m	class:SignUp
 componentDidUpdate	src/components/Chat.jsx	/^  componentDidUpdate(prevProps, prevState) {$/;"	m	class:Chat
 componentDidUpdate	src/components/ChatList.jsx	/^  componentDidUpdate(prevProps, prevState) {$/;"	m	class:ChatList
@@ -330,8 +334,9 @@ navigate	src/components/Navigation.jsx	/^        this.setState({ navigate: '\/si
 navigate	src/views/ChatView.jsx	/^                this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObject6925e8b70905
 navigate	src/views/ChatView.jsx	/^            this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObject6925e8b70605
 navigate	src/views/SignIn.jsx	/^          this.setState({ navigate: '\/' });$/;"	p	variable:anonymousObject6784b5640905
-navigate	src/views/SignUp.jsx	/^            this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObject83a6cdf20b05
-navigate	src/views/SignUp.jsx	/^      this.setState({ navigate: '\/chat' });$/;"	p	variable:SignUp.componentDidMount.anonymousObject83a6cdf20c05
+navigate	src/views/SignIn.jsx	/^        this.setState({ navigate: '\/' });$/;"	p	variable:anonymousObject6784b5640b05
+navigate	src/views/SignUp.jsx	/^          this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObject83a6cdf20b05
+navigate	src/views/SignUp.jsx	/^        this.setState({ navigate: '\/' });$/;"	p	variable:anonymousObject83a6cdf20d05
 navigation__wrapper	src/components/Navigation.jsx	/^          'navigation__wrapper' +$/;"	M
 newChat	src/store/index.js	/^      const newChat = { ...chat, active: false, status: status };$/;"	C
 newChat	src/store/index.js	/^    const newChat = action.payload;$/;"	C
@@ -390,10 +395,12 @@ payload	src/views/ChatView.jsx	/^      payload: { snackBarMessage: undefined, sn
 payload	src/views/SignIn.jsx	/^              payload: {$/;"	p	variable:anonymousObject6784b5640605
 payload	src/views/SignIn.jsx	/^              payload: {$/;"	p	variable:anonymousObject6784b5640705
 payload	src/views/SignIn.jsx	/^            payload: {$/;"	p	variable:anonymousObject6784b5640805
+payload	src/views/SignIn.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject6784b5640a05
 payload	src/views/SignIn.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	variable:anonymousObject6784b5640305
 payload	src/views/SignUp.jsx	/^              payload: {$/;"	p	variable:anonymousObject83a6cdf20805
 payload	src/views/SignUp.jsx	/^              payload: {$/;"	p	variable:anonymousObject83a6cdf20905
 payload	src/views/SignUp.jsx	/^            payload: {$/;"	p	variable:anonymousObject83a6cdf20a05
+payload	src/views/SignUp.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject83a6cdf20c05
 payload	src/views/SignUp.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	variable:anonymousObject83a6cdf20505
 pickedChat	src/store/index.js	/^    let pickedChat = null;$/;"	v
 placeholder	src/components/Chat.jsx	/^                placeholder={' '}$/;"	M	class:Chat
@@ -539,10 +546,12 @@ type	src/views/ChatView.jsx	/^    this.props.dispatch({ type: 'TOGGLE_MOBILENAVO
 type	src/views/SignIn.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640605
 type	src/views/SignIn.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640705
 type	src/views/SignIn.jsx	/^            type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640805
+type	src/views/SignIn.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject6784b5640a05
 type	src/views/SignIn.jsx	/^      type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640305
 type	src/views/SignUp.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20805
 type	src/views/SignUp.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20905
 type	src/views/SignUp.jsx	/^            type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20a05
+type	src/views/SignUp.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject83a6cdf20c05
 type	src/views/SignUp.jsx	/^      type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20505
 upload	src/components/Chat.jsx	/^  upload = (file, messageType) => {$/;"	M	class:Chat
 user	src/store/index.js	/^  user: {},$/;"	p	variable:initialState
