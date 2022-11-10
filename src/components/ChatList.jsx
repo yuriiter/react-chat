@@ -67,6 +67,9 @@ class ChatList extends Component {
         }
       })
       .then((response) => {
+        if (!response) {
+          return;
+        }
         const json = response.data;
         this.setState({ searchedUserEmail: '' });
         this.toggleDialog();
@@ -102,6 +105,9 @@ class ChatList extends Component {
           }
         })
         .then((response) => {
+          if (!response) {
+            return;
+          }
           const json = response.data;
           this.createChat(json.id);
         });

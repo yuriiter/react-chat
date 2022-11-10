@@ -246,6 +246,9 @@ class Chat extends Component {
             }
           })
           .then((response) => {
+            if (!response) {
+              return;
+            }
             const json = response.data;
 
             if (this.props.chat.id !== prevProps.chat.id) {
@@ -333,6 +336,9 @@ class Chat extends Component {
 
   clearFileInputs = () => {
     for (let i = 0; i < 3; i++) {
+      if (!this.fileInputRefs[i].current) {
+        continue;
+      }
       this.fileInputRefs[i].current.value = null;
     }
   };

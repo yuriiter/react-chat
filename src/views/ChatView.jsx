@@ -46,6 +46,9 @@ class ChatView extends Component {
         }
       })
       .then((response) => {
+        if (!response) {
+          return;
+        }
         const json = response.data;
         this.props.dispatch({ type: 'SET_USER', payload: json });
       })
@@ -68,6 +71,9 @@ class ChatView extends Component {
             }
           })
           .then((response) => {
+            if (!response) {
+              return;
+            }
             const json = response.data;
             this.props.dispatch({ type: 'SET_CHATS', payload: json });
           });

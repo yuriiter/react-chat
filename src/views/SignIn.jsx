@@ -72,7 +72,10 @@ class SignIn extends Component {
             });
           }
         })
-        .then(() => {
+        .then((response) => {
+          if (!response) {
+            return;
+          }
           this.props.dispatch({
             type: 'SET_SNACKBAR',
             payload: {
@@ -92,6 +95,9 @@ class SignIn extends Component {
         console.log('Not authorized.');
       })
       .then((response) => {
+        if (!response) {
+          return;
+        }
         const json = response.data;
         this.props.dispatch({ type: 'SET_USER', payload: json });
         this.setState({ navigate: '/' });

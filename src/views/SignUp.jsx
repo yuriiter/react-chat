@@ -102,6 +102,9 @@ class SignUp extends Component {
         console.log('Not authorized.');
       })
       .then((response) => {
+        if (!response) {
+          return;
+        }
         const json = response.data;
         this.props.dispatch({ type: 'SET_USER', payload: json });
         this.setState({ navigate: '/' });
