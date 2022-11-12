@@ -151,8 +151,7 @@ changePasswordInputValue	src/views/SignUp.jsx	/^  changePasswordInputValue = (e)
 changeRepeatPasswordInputValue	src/views/SignUp.jsx	/^  changeRepeatPasswordInputValue = (e) => {$/;"	M	class:SignUp
 chat	src/components/ChatList.jsx	/^              return <ChatListItem key={chat.id} chat={chat} \/>;$/;"	M
 chat	src/components/ChatListItem.jsx	/^      chat: this.props.chat,$/;"	p	variable:ChatListItem.anonymousObject7e3521df0105
-chat	src/store/index.js	/^    const chat = chats.find((chat) => chat.id === chatId);$/;"	C
-chat	src/store/index.js	/^    const chat = state.chats.find((chat) => chat.id === chatId);$/;"	C
+chat	src/store/index.js	/^    let chat = chats.find((chat) => chat.id === chatId);$/;"	v
 chat	src/store/index.js	/^  chat: {},$/;"	p	variable:initialState
 chat-list	src/components/ChatList.jsx	/^          'chat-list' + (this.props.isChatOpen ? ' chat-list--closed' : '')$/;"	M
 chat-list__list-item 	src/components/ChatListItem.jsx	/^          'chat-list__list-item ' +$/;"	M

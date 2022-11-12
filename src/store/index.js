@@ -93,9 +93,10 @@ const reducerFn = (state = initialState, action) => {
     const { message } = action.payload;
     const chatId = message.chatId;
     const chats = state.chats;
-    const chat = chats.find((chat) => chat.id === chatId);
+    let chat = chats.find((chat) => chat.id === chatId);
     if (!chat) {
-      return state;
+      chat = message.chat;
+      chats.push(chat);
     }
 
     chat.messages.push(message);
