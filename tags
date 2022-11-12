@@ -355,7 +355,6 @@ newStatus	src/components/Chat.jsx	/^              payload: { newStatus: returnSt
 newStatus	src/components/Chat.jsx	/^      newStatus: 'WRITING',$/;"	p	variable:anonymousObjectc51c18141905
 now	src/utils.js	/^  const now = new Date();$/;"	C
 nowDay	src/utils.js	/^  const nowDay = now.getDay();$/;"	C
-nowMonth	src/utils.js	/^  const nowMonth = now.getMonth();$/;"	C
 nowYear	src/utils.js	/^  const nowYear = now.getFullYear();$/;"	C
 onChange	src/components/Chat.jsx	/^                  onChange={this.onFileChange}$/;"	M	class:Chat
 onChange	src/components/Chat.jsx	/^                  onChange={this.onImageChange}$/;"	M	class:Chat

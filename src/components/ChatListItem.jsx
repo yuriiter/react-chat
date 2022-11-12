@@ -70,6 +70,7 @@ class ChatListItem extends Component {
               </div>
             </div>
           );
+          break;
         case 'IMAGE':
           messageChunk = (
             <div className={'message-text'}>

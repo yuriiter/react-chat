@@ -9,7 +9,7 @@ import UserStatus from './UserStatus';
 import Message from './Message';
 
 import IconFileInChat from '../icon_components/IconFileInChat';
-import IconMic from '../icon_components/IconMic';
+/* import IconMic from '../icon_components/IconMic'; */
 import IconPlus from '../icon_components/IconPlus';
 
 import iconAttachment from '../assets/img/icon_attachment.svg';
@@ -405,6 +405,8 @@ class Chat extends Component {
         return `Image ${this.state.file.name}`;
       case 'RECORDING':
         return `Recording ${this.state.file.name}`;
+      default:
+        return 'Type a message';
     }
   };
 
