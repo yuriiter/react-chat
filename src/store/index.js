@@ -68,7 +68,7 @@ const reducerFn = (state = initialState, action) => {
       const newChat = { ...chat, active: false, status: status };
       return newChat;
     });
-    return { ...state, chats: sortChats(JSON.parse(JSON.stringify(newChats))) };
+    return { ...state, chats: sortChats(newChats) };
   }
   if (action.type === 'ADD_CHAT') {
     const newChat = action.payload;
@@ -110,13 +110,21 @@ const reducerFn = (state = initialState, action) => {
     if (state.chat?.id === chatId) {
       return {
         ...state,
-        chats: sortChats(JSON.parse(JSON.stringify(chats))),
-        chat: JSON.parse(JSON.stringify(chat)),
+        chats: sortChats(
+          chats.map((c) => {
+            return { ...c };
+          }),
+        ),
+        chat: { ...chat },
       };
     }
     return {
       ...state,
-      chats: sortChats(JSON.parse(JSON.stringify(chats))),
+      chats: sortChats(
+        chats.map((c) => {
+          return { ...c };
+        }),
+      ),
     };
   }
 
@@ -137,12 +145,23 @@ const reducerFn = (state = initialState, action) => {
     if (userChat.id === state.chat.id) {
       return {
         ...state,
-        chats: JSON.parse(JSON.stringify(state.chats)),
-        chat: JSON.parse(JSON.stringify(userChat)),
+        chats: sortChats(
+          state.chats.map((c) => {
+            return { ...c };
+          }),
+        ),
+        chat: { ...userChat },
       };
     }
 
-    return { ...state, chats: JSON.parse(JSON.stringify(state.chats)) };
+    return {
+      ...state,
+      chats: sortChats(
+        state.chats.map((c) => {
+          return { ...c };
+        }),
+      ),
+    };
   }
 
   if (action.type === 'READ_MESSAGES') {
@@ -152,8 +171,12 @@ const reducerFn = (state = initialState, action) => {
     if (state.chat?.id === chat.id) {
       return {
         ...state,
-        chats: JSON.parse(JSON.stringify(state.chats)),
-        chat: JSON.parse(JSON.stringify(chat)),
+        chats: sortChats(
+          state.chats.map((c) => {
+            return { ...c };
+          }),
+        ),
+        chat: { ...chat },
       };
     }
     return { ...state, chats: JSON.parse(JSON.stringify(state.chats)) };
