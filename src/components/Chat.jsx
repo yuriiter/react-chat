@@ -124,6 +124,7 @@ class Chat extends Component {
       console.log('Connected to the server');
     });
     this.socket.on('onMessage', (newMessage) => {
+      console.log(newMessage);
       if (newMessage.chatId === this.props.chat.id) {
         this.setState(
           (prevState) => {
@@ -233,6 +234,26 @@ class Chat extends Component {
               `/chats/${this.props.chat.id}/messages?take=100000`,
           )
           .catch((error) => {
+            if (!error.response) {
+              this.props.dispatch({
+                type: 'SET_SNACKBAR',
+                payload: {
+                  snackBarMessage: 'No connection to the server',
+                  snackBarMessageType: 'error',
+                },
+              });
+              return;
+            }
+            if (!error.response) {
+              this.props.dispatch({
+                type: 'SET_SNACKBAR',
+                payload: {
+                  snackBarMessage: 'No connection to the server',
+                  snackBarMessageType: 'error',
+                },
+              });
+              return;
+            }
             const statusCode = error.response.status;
             if (statusCode === 401) {
               this.props.dispatch({

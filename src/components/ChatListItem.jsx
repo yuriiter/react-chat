@@ -22,6 +22,7 @@ class ChatListItem extends Component {
 
   renderMessage = () => {
     const lastMessageIdx = this.props.chat.messages.length - 1;
+    let lastMessage, messageType;
 
     let messageChunk;
     if (lastMessageIdx === -1) {
@@ -30,74 +31,73 @@ class ChatListItem extends Component {
           <p>(No messages yet)</p>
         </div>
       );
-      return;
-    }
-    const lastMessage = this.props.chat.messages[lastMessageIdx];
-    const messageType = lastMessage.messageType;
-
-    switch (messageType) {
-      case 'TEXT':
-        messageChunk = (
-          <div className={'message-text'}>
-            <p>
-              {(lastMessage.authorId === this.props.user.id ? 'You: ' : '') +
-                lastMessage.messageContent}
+    } else {
+      lastMessage = this.props.chat.messages[lastMessageIdx];
+      messageType = lastMessage.messageType;
+      switch (messageType) {
+        case 'TEXT':
+          messageChunk = (
+            <div className={'message-text'}>
+              <p>
+                {(lastMessage.authorId === this.props.user.id ? 'You: ' : '') +
+                  lastMessage.messageContent}
+              </p>
+            </div>
+          );
+          break;
+        case 'RECORDING':
+          messageChunk = (
+            <p className={'message-recording'}>
+              <IconMic active={this.props.chat.active} />
+              <span>Voice message (01:15)</span>
             </p>
-          </div>
-        );
-        break;
-      case 'RECORDING':
-        messageChunk = (
-          <p className={'message-recording'}>
-            <IconMic active={this.props.chat.active} />
-            <span>Voice message (01:15)</span>
-          </p>
-        );
-        break;
-      case 'FILE':
-        messageChunk = (
-          <div className={'message-text'}>
-            <p>
-              {(lastMessage.authorId === this.props.user.id ? 'You: ' : '') +
-                (lastMessage.messageContent || '')}
-            </p>
-            <div className={'message-files'}>
-              <div className="message-files">
-                <div className="message-files__item message-files__item--file">
-                  <IconFile active={this.props.chat.active} />
-                  <span>{lastMessage.fileName}</span>
+          );
+          break;
+        case 'FILE':
+          messageChunk = (
+            <div className={'message-text'}>
+              <p>
+                {(lastMessage.authorId === this.props.user.id ? 'You: ' : '') +
+                  (lastMessage.messageContent || '')}
+              </p>
+              <div className={'message-files'}>
+                <div className="message-files">
+                  <div className="message-files__item message-files__item--file">
+                    <IconFile active={this.props.chat.active} />
+                    <span>{lastMessage.fileName}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        );
-      case 'IMAGE':
-        messageChunk = (
-          <div className={'message-text'}>
-            <p>
-              {(lastMessage.authorId === this.props.user.id ? 'You: ' : '') +
-                (lastMessage.messageContent || '')}
-            </p>
-            <div className={'message-files'}>
-              <div className="message-files">
-                <div className="message-files__item message-files__item--file">
-                  <IconImage active={this.props.chat.active} />
-                  <span>{lastMessage.fileName}</span>
+          );
+        case 'IMAGE':
+          messageChunk = (
+            <div className={'message-text'}>
+              <p>
+                {(lastMessage.authorId === this.props.user.id ? 'You: ' : '') +
+                  (lastMessage.messageContent || '')}
+              </p>
+              <div className={'message-files'}>
+                <div className="message-files">
+                  <div className="message-files__item message-files__item--file">
+                    <IconImage active={this.props.chat.active} />
+                    <span>{lastMessage.fileName}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        );
-        break;
-      default:
-        break;
+          );
+          break;
+        default:
+          break;
+      }
     }
 
     const countOfNewMessagesValue = this.countOfNewMessages(this.props.chat);
 
     const remoteUser = getRemoteUser(this.props.user.id, this.props.chat.users);
     const status = this.props.chat.status;
-    const lastMessageTime = lastMessage.sentDateTime;
+    const lastMessageTime = lastMessage?.sentDateTime;
 
     this.setState({
       remoteUser: remoteUser,

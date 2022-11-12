@@ -7,8 +7,6 @@ import iconPointsHorizontal from '../assets/img/icon_points_horizontal.svg';
 import iconRead from '../assets/img/icon_read.svg';
 import iconSent from '../assets/img/icon_sent.svg';
 
-import recordingMessage from '../assets/audio.mp3';
-
 import { onlineString, displaySize } from '../utils';
 
 class Message extends Component {
@@ -37,16 +35,16 @@ class Message extends Component {
       case 'TEXT':
         message = this.props.message.messageContent;
         break;
-      case 'RECORDING':
-        path = `${process.env.REACT_APP_BACKEND_API_URL}/chat_assets/recordings/${fileActualName}`;
-
-        message = (
-          <audio controls>
-            <source src={recordingMessage} type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        );
-        break;
+      /* case 'RECORDING': */
+      /*   path = `${process.env.REACT_APP_BACKEND_API_URL}/chat_assets/recordings/${fileActualName}`; */
+      /**/
+      /*   message = ( */
+      /*     <audio controls> */
+      /*       <source src={recordingMessage} type="audio/mpeg" /> */
+      /*       Your browser does not support the audio element. */
+      /*     </audio> */
+      /*   ); */
+      /*   break; */
       case 'FILE':
         path = `${process.env.REACT_APP_BACKEND_API_URL}/chat_assets/files/${fileActualName}`;
 

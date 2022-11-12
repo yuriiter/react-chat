@@ -53,6 +53,16 @@ class ChatList extends Component {
         },
       )
       .catch((error) => {
+        if (!error.response) {
+          this.props.dispatch({
+            type: 'SET_SNACKBAR',
+            payload: {
+              snackBarMessage: 'No connection to the server',
+              snackBarMessageType: 'error',
+            },
+          });
+          return;
+        }
         const statusCode = error.response.status;
         if (statusCode) {
           if (statusCode === 400) {
@@ -87,6 +97,16 @@ class ChatList extends Component {
             this.state.searchedUserEmail,
         )
         .catch((error) => {
+          if (!error.response) {
+            this.props.dispatch({
+              type: 'SET_SNACKBAR',
+              payload: {
+                snackBarMessage: 'No connection to the server',
+                snackBarMessageType: 'error',
+              },
+            });
+            return;
+          }
           const statusCode = error.response.status;
           if (statusCode) {
             if (statusCode === 400) {

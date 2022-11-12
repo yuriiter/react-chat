@@ -63,6 +63,16 @@ class SignUp extends Component {
           },
         )
         .catch((error) => {
+          if (!error.response) {
+            this.props.dispatch({
+              type: 'SET_SNACKBAR',
+              payload: {
+                snackBarMessage: 'No connection to the server',
+                snackBarMessageType: 'error',
+              },
+            });
+            return;
+          }
           const statusCode = error.response.status;
           if (statusCode === 403) {
             this.props.dispatch({
@@ -99,7 +109,23 @@ class SignUp extends Component {
     axios
       .get(process.env.REACT_APP_BACKEND_API_URL + '/users/me')
       .catch((error) => {
-        console.log('Not authorized.');
+        if (!error.response) {
+          this.props.dispatch({
+            type: 'SET_SNACKBAR',
+            payload: {
+              snackBarMessage: 'No connection to the server',
+              snackBarMessageType: 'error',
+            },
+          });
+          return;
+        }
+        this.props.dispatch({
+          type: 'SET_SNACKBAR',
+          payload: {
+            snackBarMessage: 'No connection to the server',
+            snackBarMessageType: 'error',
+          },
+        });
       })
       .then((response) => {
         if (!response) {

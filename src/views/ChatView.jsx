@@ -30,18 +30,28 @@ class ChatView extends Component {
     axios
       .get(process.env.REACT_APP_BACKEND_API_URL + '/users/me')
       .catch((error) => {
-        const statusCode = error.response.status;
-        if (statusCode) {
-          if (statusCode === 401) {
-            this.props.dispatch({ type: 'SET_USER', payload: null });
-            this.props.dispatch({
-              type: 'SET_SNACKBAR',
-              payload: {
-                snackBarMessage: 'Unauthorized',
-                snackBarMessageType: 'error',
-              },
-            });
-            this.setState({ navigate: '/signin' });
+        if (!error.response) {
+          this.props.dispatch({
+            type: 'SET_SNACKBAR',
+            payload: {
+              snackBarMessage: 'No connection to the server',
+              snackBarMessageType: 'error',
+            },
+          });
+        } else {
+          const statusCode = error.response.status;
+          if (statusCode) {
+            if (statusCode === 401) {
+              this.props.dispatch({ type: 'SET_USER', payload: null });
+              this.props.dispatch({
+                type: 'SET_SNACKBAR',
+                payload: {
+                  snackBarMessage: 'Unauthorized',
+                  snackBarMessageType: 'error',
+                },
+              });
+              this.setState({ navigate: '/signin' });
+            }
           }
         }
       })
@@ -56,17 +66,19 @@ class ChatView extends Component {
         axios
           .get(process.env.REACT_APP_BACKEND_API_URL + '/chats')
           .catch((error) => {
-            const statusCode = error.response.status;
-            if (statusCode) {
-              if (statusCode === 401) {
-                this.props.dispatch({
-                  type: 'SET_SNACKBAR',
-                  payload: {
-                    snackBarMessage: 'Unauthorized',
-                    snackBarMessageType: 'error',
-                  },
-                });
-                this.setState({ navigate: '/signin' });
+            if (error.response) {
+              const statusCode = error.response.status;
+              if (statusCode) {
+                if (statusCode === 401) {
+                  this.props.dispatch({
+                    type: 'SET_SNACKBAR',
+                    payload: {
+                      snackBarMessage: 'Unauthorized',
+                      snackBarMessageType: 'error',
+                    },
+                  });
+                  this.setState({ navigate: '/signin' });
+                }
               }
             }
           })

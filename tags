@@ -48,12 +48,14 @@ anonymousObject096161500305	src/components/ChatList.jsx	/^    this.props.dispatc
 anonymousObject096161500405	src/components/ChatList.jsx	/^      this.setState({ chats: this.props.chats });$/;"	v	method:ChatList.componentDidUpdate
 anonymousObject096161500505	src/components/ChatList.jsx	/^        { users: [this.props.user.id, newUserId] },$/;"	v
 anonymousObject096161500605	src/components/ChatList.jsx	/^        {$/;"	v
-anonymousObject096161500705	src/components/ChatList.jsx	/^            this.props.dispatch({$/;"	v
-anonymousObject096161500805	src/components/ChatList.jsx	/^        this.setState({ searchedUserEmail: '' });$/;"	v
-anonymousObject096161500905	src/components/ChatList.jsx	/^        this.props.dispatch({ type: 'ADD_CHAT', payload: json });$/;"	v
-anonymousObject096161500a05	src/components/ChatList.jsx	/^        this.props.dispatch({ type: 'OPEN_CHAT', payload: json.id });$/;"	v
-anonymousObject096161500b05	src/components/ChatList.jsx	/^              this.props.dispatch({$/;"	v
-anonymousObject096161500c05	src/components/ChatList.jsx	/^              this.setState({$/;"	v
+anonymousObject096161500705	src/components/ChatList.jsx	/^          this.props.dispatch({$/;"	v
+anonymousObject096161500805	src/components/ChatList.jsx	/^            this.props.dispatch({$/;"	v
+anonymousObject096161500905	src/components/ChatList.jsx	/^        this.setState({ searchedUserEmail: '' });$/;"	v
+anonymousObject096161500a05	src/components/ChatList.jsx	/^        this.props.dispatch({ type: 'ADD_CHAT', payload: json });$/;"	v
+anonymousObject096161500b05	src/components/ChatList.jsx	/^        this.props.dispatch({ type: 'OPEN_CHAT', payload: json.id });$/;"	v
+anonymousObject096161500c05	src/components/ChatList.jsx	/^            this.props.dispatch({$/;"	v
+anonymousObject096161500d05	src/components/ChatList.jsx	/^              this.props.dispatch({$/;"	v
+anonymousObject096161500e05	src/components/ChatList.jsx	/^              this.setState({$/;"	v
 anonymousObject5b0970170105	src/components/UserStatus.jsx	/^      this.setState({$/;"	v	method:UserStatus.componentDidUpdate
 anonymousObject6784b5640105	src/views/SignIn.jsx	/^    this.setState({ emailInputValue: e.target.value });$/;"	v	class:SignIn
 anonymousObject6784b5640205	src/views/SignIn.jsx	/^    this.setState({ passwordInputValue: e.target.value });$/;"	v	class:SignIn
@@ -62,20 +64,23 @@ anonymousObject6784b5640405	src/views/SignIn.jsx	/^          {$/;"	v
 anonymousObject6784b5640505	src/views/SignIn.jsx	/^          {$/;"	v
 anonymousObject6784b5640605	src/views/SignIn.jsx	/^            this.props.dispatch({$/;"	v
 anonymousObject6784b5640705	src/views/SignIn.jsx	/^            this.props.dispatch({$/;"	v
-anonymousObject6784b5640805	src/views/SignIn.jsx	/^          this.props.dispatch({$/;"	v
-anonymousObject6784b5640905	src/views/SignIn.jsx	/^          this.setState({ navigate: '\/' });$/;"	v
-anonymousObject6784b5640a05	src/views/SignIn.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	v
-anonymousObject6784b5640b05	src/views/SignIn.jsx	/^        this.setState({ navigate: '\/' });$/;"	v
+anonymousObject6784b5640805	src/views/SignIn.jsx	/^            this.props.dispatch({$/;"	v
+anonymousObject6784b5640905	src/views/SignIn.jsx	/^          this.props.dispatch({$/;"	v
+anonymousObject6784b5640a05	src/views/SignIn.jsx	/^          this.setState({ navigate: '\/' });$/;"	v
+anonymousObject6784b5640b05	src/views/SignIn.jsx	/^          this.props.dispatch({$/;"	v
+anonymousObject6784b5640c05	src/views/SignIn.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	v
+anonymousObject6784b5640d05	src/views/SignIn.jsx	/^        this.setState({ navigate: '\/' });$/;"	v
 anonymousObject6925e8b70105	src/views/ChatView.jsx	/^    this.props.dispatch({ type: 'TOGGLE_MOBILENAVOPEN' });$/;"	v
 anonymousObject6925e8b70205	src/views/ChatView.jsx	/^    this.props.dispatch({$/;"	v
 anonymousObject6925e8b70305	src/views/ChatView.jsx	/^      this.props.dispatch({ type: 'UPDATE_GLOBAL_TIMER' });$/;"	v
-anonymousObject6925e8b70405	src/views/ChatView.jsx	/^            this.props.dispatch({ type: 'SET_USER', payload: null });$/;"	v
-anonymousObject6925e8b70505	src/views/ChatView.jsx	/^            this.props.dispatch({$/;"	v
-anonymousObject6925e8b70605	src/views/ChatView.jsx	/^            this.setState({ navigate: '\/signin' });$/;"	v
-anonymousObject6925e8b70705	src/views/ChatView.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	v
-anonymousObject6925e8b70805	src/views/ChatView.jsx	/^                this.props.dispatch({$/;"	v
-anonymousObject6925e8b70905	src/views/ChatView.jsx	/^                this.setState({ navigate: '\/signin' });$/;"	v
-anonymousObject6925e8b70a05	src/views/ChatView.jsx	/^            this.props.dispatch({ type: 'SET_CHATS', payload: json });$/;"	v
+anonymousObject6925e8b70405	src/views/ChatView.jsx	/^          this.props.dispatch({$/;"	v
+anonymousObject6925e8b70505	src/views/ChatView.jsx	/^              this.props.dispatch({ type: 'SET_USER', payload: null });$/;"	v
+anonymousObject6925e8b70605	src/views/ChatView.jsx	/^              this.props.dispatch({$/;"	v
+anonymousObject6925e8b70705	src/views/ChatView.jsx	/^              this.setState({ navigate: '\/signin' });$/;"	v
+anonymousObject6925e8b70805	src/views/ChatView.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	v
+anonymousObject6925e8b70905	src/views/ChatView.jsx	/^                  this.props.dispatch({$/;"	v
+anonymousObject6925e8b70a05	src/views/ChatView.jsx	/^                  this.setState({ navigate: '\/signin' });$/;"	v
+anonymousObject6925e8b70b05	src/views/ChatView.jsx	/^            this.props.dispatch({ type: 'SET_CHATS', payload: json });$/;"	v
 anonymousObject7e3521df0105	src/components/ChatListItem.jsx	/^    this.setState({$/;"	v	class:ChatListItem
 anonymousObject7e3521df0205	src/components/ChatListItem.jsx	/^    this.props.dispatch({ type: 'OPEN_CHAT', payload: this.props.chat.id });$/;"	v
 anonymousObject83a6cdf20105	src/views/SignUp.jsx	/^    this.setState({ fullName: e.target.value });$/;"	v	class:SignUp
@@ -87,10 +92,13 @@ anonymousObject83a6cdf20605	src/views/SignUp.jsx	/^          {$/;"	v
 anonymousObject83a6cdf20705	src/views/SignUp.jsx	/^          {$/;"	v
 anonymousObject83a6cdf20805	src/views/SignUp.jsx	/^            this.props.dispatch({$/;"	v
 anonymousObject83a6cdf20905	src/views/SignUp.jsx	/^            this.props.dispatch({$/;"	v
-anonymousObject83a6cdf20a05	src/views/SignUp.jsx	/^          this.props.dispatch({$/;"	v
-anonymousObject83a6cdf20b05	src/views/SignUp.jsx	/^          this.setState({ navigate: '\/signin' });$/;"	v
-anonymousObject83a6cdf20c05	src/views/SignUp.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	v
-anonymousObject83a6cdf20d05	src/views/SignUp.jsx	/^        this.setState({ navigate: '\/' });$/;"	v
+anonymousObject83a6cdf20a05	src/views/SignUp.jsx	/^            this.props.dispatch({$/;"	v
+anonymousObject83a6cdf20b05	src/views/SignUp.jsx	/^          this.props.dispatch({$/;"	v
+anonymousObject83a6cdf20c05	src/views/SignUp.jsx	/^          this.setState({ navigate: '\/signin' });$/;"	v
+anonymousObject83a6cdf20d05	src/views/SignUp.jsx	/^          this.props.dispatch({$/;"	v
+anonymousObject83a6cdf20e05	src/views/SignUp.jsx	/^        this.props.dispatch({$/;"	v
+anonymousObject83a6cdf20f05	src/views/SignUp.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	v
+anonymousObject83a6cdf21005	src/views/SignUp.jsx	/^        this.setState({ navigate: '\/' });$/;"	v
 anonymousObject8edfbb640105	src/components/Navigation.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: null });$/;"	v
 anonymousObject8edfbb640205	src/components/Navigation.jsx	/^        this.setState({ navigate: '\/signin' });$/;"	v
 anonymousObjectc51c18140105	src/components/Chat.jsx	/^    this.setState({ file: null, messageType: 'TEXT' });$/;"	v	class:Chat
@@ -111,27 +119,29 @@ anonymousObjectc51c18140f05	src/components/Chat.jsx	/^          this.chatIdsToSt
 anonymousObjectc51c18141005	src/components/Chat.jsx	/^        this.props.dispatch({ type: 'CHANGE_STATUS', payload: status });$/;"	v
 anonymousObjectc51c18141105	src/components/Chat.jsx	/^      this.props.dispatch({ type: 'READ_MESSAGES', payload: readMessagesData });$/;"	v
 anonymousObjectc51c18141205	src/components/Chat.jsx	/^              this.props.dispatch({$/;"	v
-anonymousObjectc51c18141305	src/components/Chat.jsx	/^              this.setState({ navigate: '\/signin' });$/;"	v
-anonymousObjectc51c18141405	src/components/Chat.jsx	/^              this.socket.emit('readChat', { chatId: this.props.chat.id });$/;"	v
-anonymousObjectc51c18141505	src/components/Chat.jsx	/^              this.socket.emit('readChat', { chatId: this.props.chat.id });$/;"	v
-anonymousObjectc51c18141605	src/components/Chat.jsx	/^              {$/;"	v
-anonymousObjectc51c18141705	src/components/Chat.jsx	/^    this.socket.emit('newStatus', {$/;"	v
-anonymousObjectc51c18141805	src/components/Chat.jsx	/^    this.setState({ chatInput: e.target.value });$/;"	v	class:Chat
-anonymousObjectc51c18141905	src/components/Chat.jsx	/^    this.setState({ attachmentsButtonOpen: !this.state.attachmentsButtonOpen });$/;"	v
-anonymousObjectc51c18141a05	src/components/Chat.jsx	/^  closeChat = () => this.props.dispatch({ type: 'CLOSE_CHAT' });$/;"	v
-anonymousObjectc51c18141b05	src/components/Chat.jsx	/^        this.setState({ chatInput: '' });$/;"	v	class:Chat
-anonymousObjectc51c18141c05	src/components/Chat.jsx	/^    this.socket.emit('newMessage', {$/;"	v
-anonymousObjectc51c18141d05	src/components/Chat.jsx	/^    this.setState({$/;"	v	class:Chat
+anonymousObjectc51c18141305	src/components/Chat.jsx	/^              this.props.dispatch({$/;"	v
+anonymousObjectc51c18141405	src/components/Chat.jsx	/^              this.props.dispatch({$/;"	v
+anonymousObjectc51c18141505	src/components/Chat.jsx	/^              this.setState({ navigate: '\/signin' });$/;"	v
+anonymousObjectc51c18141605	src/components/Chat.jsx	/^              this.socket.emit('readChat', { chatId: this.props.chat.id });$/;"	v
+anonymousObjectc51c18141705	src/components/Chat.jsx	/^              this.socket.emit('readChat', { chatId: this.props.chat.id });$/;"	v
+anonymousObjectc51c18141805	src/components/Chat.jsx	/^              {$/;"	v
+anonymousObjectc51c18141905	src/components/Chat.jsx	/^    this.socket.emit('newStatus', {$/;"	v
+anonymousObjectc51c18141a05	src/components/Chat.jsx	/^    this.setState({ chatInput: e.target.value });$/;"	v	class:Chat
+anonymousObjectc51c18141b05	src/components/Chat.jsx	/^    this.setState({ attachmentsButtonOpen: !this.state.attachmentsButtonOpen });$/;"	v
+anonymousObjectc51c18141c05	src/components/Chat.jsx	/^  closeChat = () => this.props.dispatch({ type: 'CLOSE_CHAT' });$/;"	v
+anonymousObjectc51c18141d05	src/components/Chat.jsx	/^        this.setState({ chatInput: '' });$/;"	v	class:Chat
+anonymousObjectc51c18141e05	src/components/Chat.jsx	/^    this.socket.emit('newMessage', {$/;"	v
+anonymousObjectc51c18141f05	src/components/Chat.jsx	/^    this.setState({$/;"	v	class:Chat
 anonymousObjectf362f98e0105	server/index.js	/^const io = new Server(server, {$/;"	v
 app	server/index.js	/^const app = express()$/;"	C
 arrayIndexOfCurrentUser	src/components/ChatListItem.jsx	/^    const arrayIndexOfCurrentUser = chat.users[0].id === userId ? 0 : 1;$/;"	C	class:ChatListItem
 attachmentsButtonOpen	src/components/Chat.jsx	/^            attachmentsButtonOpen: false,$/;"	p	variable:Chat.anonymousObjectc51c18140305
 attachmentsButtonOpen	src/components/Chat.jsx	/^          attachmentsButtonOpen: false,$/;"	p	variable:Chat.anonymousObjectc51c18140405
-attachmentsButtonOpen	src/components/Chat.jsx	/^    this.setState({ attachmentsButtonOpen: !this.state.attachmentsButtonOpen });$/;"	p	variable:anonymousObjectc51c18141905
+attachmentsButtonOpen	src/components/Chat.jsx	/^    this.setState({ attachmentsButtonOpen: !this.state.attachmentsButtonOpen });$/;"	p	variable:anonymousObjectc51c18141b05
 autoFocus	src/components/ChatList.jsx	/^              autoFocus$/;"	M	class:ChatList
 avatar	src/components/LoggedInUser.jsx	/^      <div className={'avatar'}>$/;"	M
 box__black-overlay	src/views/ChatView.jsx	/^              'box__black-overlay' +$/;"	M
-buffer	src/components/Chat.jsx	/^              buffer: this.state.file,$/;"	p	property:anonymousObjectc51c18141c05.file
+buffer	src/components/Chat.jsx	/^              buffer: this.state.file,$/;"	p	property:anonymousObjectc51c18141e05.file
 burger-mobile	src/views/ChatView.jsx	/^            'burger-mobile' +$/;"	M
 changeEmailInputValue	src/views/SignIn.jsx	/^  changeEmailInputValue = (e) => {$/;"	M	class:SignIn
 changeEmailInputValue	src/views/SignUp.jsx	/^  changeEmailInputValue = (e) => {$/;"	M	class:SignUp
@@ -155,16 +165,16 @@ chat-messages__input__attach	src/components/Chat.jsx	/^                'chat-mes
 chat-messages__no-chat-caption	src/components/Chat.jsx	/^                'chat-messages__no-chat-caption' +$/;"	M
 chatAlreadyExists	src/store/index.js	/^    const chatAlreadyExists = chats.filter((chat) => chat.id === newChat.id);$/;"	C
 chatId	src/components/Chat.jsx	/^              payload: { newStatus: returnStatus, chatId: chat.id },$/;"	p	property:anonymousObjectc51c18140e05.payload
-chatId	src/components/Chat.jsx	/^              this.socket.emit('readChat', { chatId: this.props.chat.id });$/;"	p	variable:anonymousObjectc51c18141405
-chatId	src/components/Chat.jsx	/^              this.socket.emit('readChat', { chatId: this.props.chat.id });$/;"	p	variable:anonymousObjectc51c18141505
+chatId	src/components/Chat.jsx	/^              this.socket.emit('readChat', { chatId: this.props.chat.id });$/;"	p	variable:anonymousObjectc51c18141605
+chatId	src/components/Chat.jsx	/^              this.socket.emit('readChat', { chatId: this.props.chat.id });$/;"	p	variable:anonymousObjectc51c18141705
 chatId	src/components/Chat.jsx	/^            chatId: chatId,$/;"	p	variable:anonymousObjectc51c18140f05
-chatId	src/components/Chat.jsx	/^      chatId: this.props.chat.id,$/;"	p	variable:anonymousObjectc51c18141c05
+chatId	src/components/Chat.jsx	/^      chatId: this.props.chat.id,$/;"	p	variable:anonymousObjectc51c18141e05
 chatId	src/store/index.js	/^    const chatId = action.payload;$/;"	C
 chatId	src/store/index.js	/^    const chatId = message.chatId;$/;"	C
 chatIdsToStatusTimeouts	src/components/Chat.jsx	/^  chatIdsToStatusTimeouts = [];$/;"	M	class:Chat
-chatInput	src/components/Chat.jsx	/^        this.setState({ chatInput: '' });$/;"	p	variable:Chat.anonymousObjectc51c18141b05
-chatInput	src/components/Chat.jsx	/^      chatInput: '',$/;"	p	variable:Chat.anonymousObjectc51c18141d05
-chatInput	src/components/Chat.jsx	/^    this.setState({ chatInput: e.target.value });$/;"	p	variable:Chat.anonymousObjectc51c18141805
+chatInput	src/components/Chat.jsx	/^        this.setState({ chatInput: '' });$/;"	p	variable:Chat.anonymousObjectc51c18141d05
+chatInput	src/components/Chat.jsx	/^      chatInput: '',$/;"	p	variable:Chat.anonymousObjectc51c18141f05
+chatInput	src/components/Chat.jsx	/^    this.setState({ chatInput: e.target.value });$/;"	p	variable:Chat.anonymousObjectc51c18141a05
 chats	src/components/ChatList.jsx	/^      this.setState({ chats: this.props.chats });$/;"	p	variable:ChatList.componentDidUpdate.anonymousObject096161500405
 chats	src/store/index.js	/^    const chats = action.payload || state.chats;$/;"	C
 chats	src/store/index.js	/^    const chats = state.chats;$/;"	C
@@ -226,8 +236,8 @@ express	server/index.js	/^const express = require('express')$/;"	C
 extension	src/components/Chat.jsx	/^        const extension = fileNameSplitArray[fileNameSplitArray.length - 1];$/;"	C	class:Chat
 file	src/components/Chat.jsx	/^            file: file,$/;"	p	variable:Chat.anonymousObjectc51c18140305
 file	src/components/Chat.jsx	/^          file: file,$/;"	p	variable:Chat.anonymousObjectc51c18140405
-file	src/components/Chat.jsx	/^      file: null,$/;"	p	variable:Chat.anonymousObjectc51c18141d05
-file	src/components/Chat.jsx	/^      file:$/;"	p	variable:anonymousObjectc51c18141c05
+file	src/components/Chat.jsx	/^      file: null,$/;"	p	variable:Chat.anonymousObjectc51c18141f05
+file	src/components/Chat.jsx	/^      file:$/;"	p	variable:anonymousObjectc51c18141e05
 file	src/components/Chat.jsx	/^    this.setState({ file: null, messageType: 'TEXT' });$/;"	p	variable:Chat.anonymousObjectc51c18140105
 fileInputRefs	src/components/Chat.jsx	/^  fileInputRefs = [];$/;"	M	class:Chat
 fileNameSplitArray	src/components/Chat.jsx	/^        const fileNameSplitArray = file.name.split('.');$/;"	C	class:Chat
@@ -274,16 +284,17 @@ isPasswordValid	src/utils.js	/^export const isPasswordValid = (password) => {$/;
 json	src/components/ChatList.jsx	/^          const json = response.data;$/;"	C
 json	src/components/ChatList.jsx	/^        const json = response.data;$/;"	C
 label	src/components/ChatList.jsx	/^              label="Email Address"$/;"	M	class:ChatList
+lastMessage	src/components/ChatListItem.jsx	/^    let lastMessage, messageType;$/;"	v	class:ChatListItem
 lastMessage1	src/utils.js	/^    const lastMessage1 =$/;"	C
 lastMessage2	src/utils.js	/^    const lastMessage2 =$/;"	C
-lastMessageTime	src/components/ChatListItem.jsx	/^    const lastMessageTime = lastMessage.sentDateTime;$/;"	C	class:ChatListItem
+lastMessageTime	src/components/ChatListItem.jsx	/^    const lastMessageTime = lastMessage?.sentDateTime;$/;"	C	class:ChatListItem
 lastMessageTime1	src/utils.js	/^    const lastMessageTime1 = lastMessage1$/;"	C
 lastMessageTime2	src/utils.js	/^    const lastMessageTime2 = lastMessage2$/;"	C
 lastOnline	src/store/index.js	/^      const lastOnline = remoteUser.lastOnline;$/;"	C
 lastOnline	src/store/index.js	/^      remoteUser.lastOnline = new Date();$/;"	v	constant:remoteUser
 lastOnline	src/store/index.js	/^    const lastOnline = remoteUser.lastOnline;$/;"	C
 lastSeenString	src/components/UserStatus.jsx	/^        lastSeenString: this.props.dt ? onlineString(this.props.dt) : null,$/;"	p	variable:UserStatus.componentDidUpdate.anonymousObject5b0970170105
-loadingMessage	src/components/Chat.jsx	/^      loadingMessage: true,$/;"	p	variable:Chat.anonymousObjectc51c18141d05
+loadingMessage	src/components/Chat.jsx	/^      loadingMessage: true,$/;"	p	variable:Chat.anonymousObjectc51c18141f05
 logOut	src/components/Navigation.jsx	/^  logOut = () => {$/;"	M	class:Navigation
 mapStateToProps	src/components/Chat.jsx	/^const mapStateToProps = (state) => {$/;"	f
 mapStateToProps	src/components/ChatList.jsx	/^const mapStateToProps = (state) => {$/;"	f
@@ -303,37 +314,37 @@ message	src/components/Chat.jsx	/^              payload: { message: newMessage }
 message	src/components/Chat.jsx	/^              return <Message key={message.id} message={message} \/>;$/;"	M
 message	src/components/Chat.jsx	/^          payload: { message: newMessage },$/;"	p	property:anonymousObjectc51c18140a05.payload
 message	src/components/Chat.jsx	/^          payload: { message: newMessage },$/;"	p	property:anonymousObjectc51c18140c05.payload
-message	src/components/ChatList.jsx	/^                message: "User doesn't exist or unavaliable",$/;"	p	variable:anonymousObject096161500c05
+message	src/components/ChatList.jsx	/^                message: "User doesn't exist or unavaliable",$/;"	p	variable:anonymousObject096161500e05
 message	src/components/Message.jsx	/^          'message' +$/;"	M
 messageChunk	src/components/ChatListItem.jsx	/^      messageChunk: messageChunk,$/;"	p	variable:ChatListItem.anonymousObject7e3521df0105
 messageChunk	src/components/ChatListItem.jsx	/^    let messageChunk;$/;"	v	class:ChatListItem
 messageContainerRef	src/components/Chat.jsx	/^  messageContainerRef = React.createRef(null);$/;"	M	class:Chat
-messageContent	src/components/Chat.jsx	/^      messageContent:$/;"	p	variable:anonymousObjectc51c18141c05
+messageContent	src/components/Chat.jsx	/^      messageContent:$/;"	p	variable:anonymousObjectc51c18141e05
 messageDt	src/components/ChatListItem.jsx	/^      messageDt: lastMessageTime,$/;"	p	variable:ChatListItem.anonymousObject7e3521df0105
 messageType	src/components/Chat.jsx	/^            messageType: messageType,$/;"	p	variable:Chat.anonymousObjectc51c18140305
 messageType	src/components/Chat.jsx	/^          messageType: messageType,$/;"	p	variable:Chat.anonymousObjectc51c18140405
-messageType	src/components/Chat.jsx	/^      messageType: 'TEXT',$/;"	p	variable:Chat.anonymousObjectc51c18141d05
-messageType	src/components/Chat.jsx	/^      messageType: this.state.messageType,$/;"	p	variable:anonymousObjectc51c18141c05
+messageType	src/components/Chat.jsx	/^      messageType: 'TEXT',$/;"	p	variable:Chat.anonymousObjectc51c18141f05
+messageType	src/components/Chat.jsx	/^      messageType: this.state.messageType,$/;"	p	variable:anonymousObjectc51c18141e05
 messageType	src/components/Chat.jsx	/^    this.setState({ file: null, messageType: 'TEXT' });$/;"	p	variable:Chat.anonymousObjectc51c18140105
-messageType	src/components/ChatList.jsx	/^                messageType: 'error',$/;"	p	variable:anonymousObject096161500c05
-messageType	src/components/ChatListItem.jsx	/^    const messageType = lastMessage.messageType;$/;"	C	class:ChatListItem
+messageType	src/components/ChatList.jsx	/^                messageType: 'error',$/;"	p	variable:anonymousObject096161500e05
+messageType	src/components/ChatListItem.jsx	/^    let lastMessage, messageType;$/;"	v	class:ChatListItem
 message__points	src/components/Message.jsx	/^              className={'message__points'}$/;"	M	variable:Message.render
 message__status	src/components/Message.jsx	/^        <img src={iconRead} className={'message__status'} alt={''} \/>$/;"	M	variable:Message.render
 message__status	src/components/Message.jsx	/^        <img src={iconSent} className={'message__status'} alt={''} \/>$/;"	M	variable:Message.render
-messages	src/components/Chat.jsx	/^                messages: mapUnreadMessages($/;"	p	variable:anonymousObjectc51c18141605
+messages	src/components/Chat.jsx	/^                messages: mapUnreadMessages($/;"	p	variable:anonymousObjectc51c18141805
 messages	src/store/index.js	/^  messages: [],$/;"	p	variable:initialState
 methods	server/index.js	/^        methods: ['GET', 'POST'],$/;"	p	property:anonymousObjectf362f98e0105.cors
 mobileNavOpen	src/store/index.js	/^  mobileNavOpen: false,$/;"	p	variable:initialState
 months	src/utils.js	/^  const months = [$/;"	v
-name	src/components/Chat.jsx	/^              name: this.state.file.name,$/;"	p	property:anonymousObjectc51c18141c05.file
-navigate	src/components/Chat.jsx	/^              this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObjectc51c18141305
+name	src/components/Chat.jsx	/^              name: this.state.file.name,$/;"	p	property:anonymousObjectc51c18141e05.file
+navigate	src/components/Chat.jsx	/^              this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObjectc51c18141505
 navigate	src/components/Navigation.jsx	/^        this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObject8edfbb640205
-navigate	src/views/ChatView.jsx	/^                this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObject6925e8b70905
-navigate	src/views/ChatView.jsx	/^            this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObject6925e8b70605
-navigate	src/views/SignIn.jsx	/^          this.setState({ navigate: '\/' });$/;"	p	variable:anonymousObject6784b5640905
-navigate	src/views/SignIn.jsx	/^        this.setState({ navigate: '\/' });$/;"	p	variable:anonymousObject6784b5640b05
-navigate	src/views/SignUp.jsx	/^          this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObject83a6cdf20b05
-navigate	src/views/SignUp.jsx	/^        this.setState({ navigate: '\/' });$/;"	p	variable:anonymousObject83a6cdf20d05
+navigate	src/views/ChatView.jsx	/^                  this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObject6925e8b70a05
+navigate	src/views/ChatView.jsx	/^              this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObject6925e8b70705
+navigate	src/views/SignIn.jsx	/^          this.setState({ navigate: '\/' });$/;"	p	variable:anonymousObject6784b5640a05
+navigate	src/views/SignIn.jsx	/^        this.setState({ navigate: '\/' });$/;"	p	variable:anonymousObject6784b5640d05
+navigate	src/views/SignUp.jsx	/^          this.setState({ navigate: '\/signin' });$/;"	p	variable:anonymousObject83a6cdf20c05
+navigate	src/views/SignUp.jsx	/^        this.setState({ navigate: '\/' });$/;"	p	variable:anonymousObject83a6cdf21005
 navigation__wrapper	src/components/Navigation.jsx	/^          'navigation__wrapper' +$/;"	M
 newChat	src/store/index.js	/^      const newChat = { ...chat, active: false, status: status };$/;"	C
 newChat	src/store/index.js	/^    const newChat = action.payload;$/;"	C
@@ -341,7 +352,7 @@ newChats	src/store/index.js	/^    const newChats = chats.map((chat) => {$/;"	C
 newChats	src/store/index.js	/^    const newChats = state.chats.map((chat) => {$/;"	C
 newMessages	src/utils.js	/^  const newMessages = messages.map((m) => {$/;"	C
 newStatus	src/components/Chat.jsx	/^              payload: { newStatus: returnStatus, chatId: chat.id },$/;"	p	property:anonymousObjectc51c18140e05.payload
-newStatus	src/components/Chat.jsx	/^      newStatus: 'WRITING',$/;"	p	variable:anonymousObjectc51c18141705
+newStatus	src/components/Chat.jsx	/^      newStatus: 'WRITING',$/;"	p	variable:anonymousObjectc51c18141905
 now	src/utils.js	/^  const now = new Date();$/;"	C
 nowDay	src/utils.js	/^  const nowDay = now.getDay();$/;"	C
 nowMonth	src/utils.js	/^  const nowMonth = now.getMonth();$/;"	C
@@ -366,6 +377,8 @@ password	src/views/SignUp.jsx	/^            password: this.state.passwordInputVa
 passwordInputValue	src/views/SignIn.jsx	/^    this.setState({ passwordInputValue: e.target.value });$/;"	p	variable:SignIn.anonymousObject6784b5640205
 passwordInputValue	src/views/SignUp.jsx	/^    this.setState({ passwordInputValue: e.target.value });$/;"	p	variable:SignUp.anonymousObject83a6cdf20305
 payload	src/components/Chat.jsx	/^                payload: {$/;"	p	variable:anonymousObjectc51c18141205
+payload	src/components/Chat.jsx	/^                payload: {$/;"	p	variable:anonymousObjectc51c18141305
+payload	src/components/Chat.jsx	/^                payload: {$/;"	p	variable:anonymousObjectc51c18141405
 payload	src/components/Chat.jsx	/^              payload: { message: newMessage },$/;"	p	variable:anonymousObjectc51c18140905
 payload	src/components/Chat.jsx	/^              payload: { message: newMessage },$/;"	p	variable:anonymousObjectc51c18140b05
 payload	src/components/Chat.jsx	/^              payload: { newStatus: returnStatus, chatId: chat.id },$/;"	p	variable:anonymousObjectc51c18140e05
@@ -376,36 +389,44 @@ payload	src/components/Chat.jsx	/^          this.props.dispatch({ type: 'CHANGE_
 payload	src/components/Chat.jsx	/^        payload: {$/;"	p	variable:anonymousObjectc51c18140505
 payload	src/components/Chat.jsx	/^        this.props.dispatch({ type: 'CHANGE_STATUS', payload: status });$/;"	p	variable:anonymousObjectc51c18141005
 payload	src/components/Chat.jsx	/^      this.props.dispatch({ type: 'READ_MESSAGES', payload: readMessagesData });$/;"	p	variable:anonymousObjectc51c18141105
-payload	src/components/ChatList.jsx	/^                payload: {$/;"	p	variable:anonymousObject096161500b05
-payload	src/components/ChatList.jsx	/^              payload: {$/;"	p	variable:anonymousObject096161500705
-payload	src/components/ChatList.jsx	/^        this.props.dispatch({ type: 'ADD_CHAT', payload: json });$/;"	p	variable:anonymousObject096161500905
-payload	src/components/ChatList.jsx	/^        this.props.dispatch({ type: 'OPEN_CHAT', payload: json.id });$/;"	p	variable:anonymousObject096161500a05
+payload	src/components/ChatList.jsx	/^                payload: {$/;"	p	variable:anonymousObject096161500d05
+payload	src/components/ChatList.jsx	/^              payload: {$/;"	p	variable:anonymousObject096161500805
+payload	src/components/ChatList.jsx	/^              payload: {$/;"	p	variable:anonymousObject096161500c05
+payload	src/components/ChatList.jsx	/^            payload: {$/;"	p	variable:anonymousObject096161500705
+payload	src/components/ChatList.jsx	/^        this.props.dispatch({ type: 'ADD_CHAT', payload: json });$/;"	p	variable:anonymousObject096161500a05
+payload	src/components/ChatList.jsx	/^        this.props.dispatch({ type: 'OPEN_CHAT', payload: json.id });$/;"	p	variable:anonymousObject096161500b05
 payload	src/components/ChatList.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	variable:anonymousObject096161500305
 payload	src/components/ChatListItem.jsx	/^    this.props.dispatch({ type: 'OPEN_CHAT', payload: this.props.chat.id });$/;"	p	variable:anonymousObject7e3521df0205
 payload	src/components/Navigation.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: null });$/;"	p	variable:anonymousObject8edfbb640105
-payload	src/views/ChatView.jsx	/^                  payload: {$/;"	p	variable:anonymousObject6925e8b70805
-payload	src/views/ChatView.jsx	/^              payload: {$/;"	p	variable:anonymousObject6925e8b70505
-payload	src/views/ChatView.jsx	/^            this.props.dispatch({ type: 'SET_CHATS', payload: json });$/;"	p	variable:anonymousObject6925e8b70a05
-payload	src/views/ChatView.jsx	/^            this.props.dispatch({ type: 'SET_USER', payload: null });$/;"	p	variable:anonymousObject6925e8b70405
-payload	src/views/ChatView.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject6925e8b70705
+payload	src/views/ChatView.jsx	/^                    payload: {$/;"	p	variable:anonymousObject6925e8b70905
+payload	src/views/ChatView.jsx	/^                payload: {$/;"	p	variable:anonymousObject6925e8b70605
+payload	src/views/ChatView.jsx	/^              this.props.dispatch({ type: 'SET_USER', payload: null });$/;"	p	variable:anonymousObject6925e8b70505
+payload	src/views/ChatView.jsx	/^            payload: {$/;"	p	variable:anonymousObject6925e8b70405
+payload	src/views/ChatView.jsx	/^            this.props.dispatch({ type: 'SET_CHATS', payload: json });$/;"	p	variable:anonymousObject6925e8b70b05
+payload	src/views/ChatView.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject6925e8b70805
 payload	src/views/ChatView.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	variable:anonymousObject6925e8b70205
 payload	src/views/SignIn.jsx	/^              payload: {$/;"	p	variable:anonymousObject6784b5640605
 payload	src/views/SignIn.jsx	/^              payload: {$/;"	p	variable:anonymousObject6784b5640705
-payload	src/views/SignIn.jsx	/^            payload: {$/;"	p	variable:anonymousObject6784b5640805
-payload	src/views/SignIn.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject6784b5640a05
+payload	src/views/SignIn.jsx	/^              payload: {$/;"	p	variable:anonymousObject6784b5640805
+payload	src/views/SignIn.jsx	/^            payload: {$/;"	p	variable:anonymousObject6784b5640905
+payload	src/views/SignIn.jsx	/^            payload: {$/;"	p	variable:anonymousObject6784b5640b05
+payload	src/views/SignIn.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject6784b5640c05
 payload	src/views/SignIn.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	variable:anonymousObject6784b5640305
 payload	src/views/SignUp.jsx	/^              payload: {$/;"	p	variable:anonymousObject83a6cdf20805
 payload	src/views/SignUp.jsx	/^              payload: {$/;"	p	variable:anonymousObject83a6cdf20905
-payload	src/views/SignUp.jsx	/^            payload: {$/;"	p	variable:anonymousObject83a6cdf20a05
-payload	src/views/SignUp.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject83a6cdf20c05
+payload	src/views/SignUp.jsx	/^              payload: {$/;"	p	variable:anonymousObject83a6cdf20a05
+payload	src/views/SignUp.jsx	/^            payload: {$/;"	p	variable:anonymousObject83a6cdf20b05
+payload	src/views/SignUp.jsx	/^            payload: {$/;"	p	variable:anonymousObject83a6cdf20d05
+payload	src/views/SignUp.jsx	/^          payload: {$/;"	p	variable:anonymousObject83a6cdf20e05
+payload	src/views/SignUp.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject83a6cdf20f05
 payload	src/views/SignUp.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	variable:anonymousObject83a6cdf20505
 pickedChat	src/store/index.js	/^    let pickedChat = null;$/;"	v
 placeholder	src/components/Chat.jsx	/^                placeholder={' '}$/;"	M	class:Chat
 props	src/views/ChatView.jsx	/^            {this.props.snackBarMessage}$/;"	M	class:ChatView
 props	src/views/SignIn.jsx	/^            {this.props.snackBarMessage}$/;"	M	class:SignIn
 props	src/views/SignUp.jsx	/^            {this.props.snackBarMessage}$/;"	M	class:SignUp
-receiverId	src/components/Chat.jsx	/^      receiverId: this.remoteUser.id,$/;"	p	variable:anonymousObjectc51c18141705
-receiverId	src/components/Chat.jsx	/^      receiverId: this.remoteUser.id,$/;"	p	variable:anonymousObjectc51c18141c05
+receiverId	src/components/Chat.jsx	/^      receiverId: this.remoteUser.id,$/;"	p	variable:anonymousObjectc51c18141905
+receiverId	src/components/Chat.jsx	/^      receiverId: this.remoteUser.id,$/;"	p	variable:anonymousObjectc51c18141e05
 reducerFn	src/store/index.js	/^const reducerFn = (state = initialState, action) => {$/;"	f
 ref	src/components/Chat.jsx	/^                  ref={this.fileInputRefs[1]}$/;"	M	class:Chat
 ref	src/components/Chat.jsx	/^                  ref={this.fileInputRefs[2]}$/;"	M	class:Chat
@@ -441,49 +462,69 @@ scrollFromTop	src/components/Chat.jsx	/^      scrollFromTop: this.messageContain
 scrollFromTop	src/components/Chat.jsx	/^    this.setState({ scrollFromTop: e.target.scrollTop });$/;"	p	variable:Chat.anonymousObjectc51c18140705
 searchRef	src/components/ChatList.jsx	/^  searchRef = React.createRef(null);$/;"	M	class:ChatList
 searchedChats	src/store/index.js	/^    const searchedChats = state.chats.filter($/;"	C
-searchedUserEmail	src/components/ChatList.jsx	/^        this.setState({ searchedUserEmail: '' });$/;"	p	variable:anonymousObject096161500805
+searchedUserEmail	src/components/ChatList.jsx	/^        this.setState({ searchedUserEmail: '' });$/;"	p	variable:anonymousObject096161500905
 searchedUserEmail	src/components/ChatList.jsx	/^    this.setState({ searchedUserEmail: e.target.value });$/;"	p	variable:anonymousObject096161500205
 sendMessage	src/components/Chat.jsx	/^  sendMessage = () => {$/;"	M	class:Chat
 server	server/index.js	/^const server = http.createServer(app)$/;"	C
 signIn	src/views/SignIn.jsx	/^  signIn = () => {$/;"	M	class:SignIn
 signUp	src/views/SignUp.jsx	/^  signUp = () => {$/;"	M	class:SignUp
-snackBarMessage	src/components/Chat.jsx	/^                  snackBarMessage: 'Unauthorized',$/;"	p	property:anonymousObjectc51c18141205.payload
+snackBarMessage	src/components/Chat.jsx	/^                  snackBarMessage: 'No connection to the server',$/;"	p	property:anonymousObjectc51c18141205.payload
+snackBarMessage	src/components/Chat.jsx	/^                  snackBarMessage: 'No connection to the server',$/;"	p	property:anonymousObjectc51c18141305.payload
+snackBarMessage	src/components/Chat.jsx	/^                  snackBarMessage: 'Unauthorized',$/;"	p	property:anonymousObjectc51c18141405.payload
 snackBarMessage	src/components/Chat.jsx	/^              snackBarMessage: `Image must have one of the extensions: ${allowedExtensions.join($/;"	p	property:anonymousObjectc51c18140205.payload
 snackBarMessage	src/components/Chat.jsx	/^          snackBarMessage: 'File size must be less than 10 MB',$/;"	p	property:anonymousObjectc51c18140505.payload
-snackBarMessage	src/components/ChatList.jsx	/^                  snackBarMessage: "User doesn't exist or unavaliable",$/;"	p	property:anonymousObject096161500b05.payload
-snackBarMessage	src/components/ChatList.jsx	/^                snackBarMessage: 'Something went wrong',$/;"	p	property:anonymousObject096161500705.payload
+snackBarMessage	src/components/ChatList.jsx	/^                  snackBarMessage: "User doesn't exist or unavaliable",$/;"	p	property:anonymousObject096161500d05.payload
+snackBarMessage	src/components/ChatList.jsx	/^                snackBarMessage: 'No connection to the server',$/;"	p	property:anonymousObject096161500c05.payload
+snackBarMessage	src/components/ChatList.jsx	/^                snackBarMessage: 'Something went wrong',$/;"	p	property:anonymousObject096161500805.payload
+snackBarMessage	src/components/ChatList.jsx	/^              snackBarMessage: 'No connection to the server',$/;"	p	property:anonymousObject096161500705.payload
 snackBarMessage	src/components/ChatList.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject096161500305.payload
-snackBarMessage	src/views/ChatView.jsx	/^                    snackBarMessage: 'Unauthorized',$/;"	p	property:anonymousObject6925e8b70805.payload
-snackBarMessage	src/views/ChatView.jsx	/^                snackBarMessage: 'Unauthorized',$/;"	p	property:anonymousObject6925e8b70505.payload
+snackBarMessage	src/views/ChatView.jsx	/^                      snackBarMessage: 'Unauthorized',$/;"	p	property:anonymousObject6925e8b70905.payload
+snackBarMessage	src/views/ChatView.jsx	/^                  snackBarMessage: 'Unauthorized',$/;"	p	property:anonymousObject6925e8b70605.payload
+snackBarMessage	src/views/ChatView.jsx	/^              snackBarMessage: 'No connection to the server',$/;"	p	property:anonymousObject6925e8b70405.payload
 snackBarMessage	src/views/ChatView.jsx	/^            {this.props.snackBarMessage}$/;"	M	class:ChatView
 snackBarMessage	src/views/ChatView.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject6925e8b70205.payload
-snackBarMessage	src/views/SignIn.jsx	/^                snackBarMessage: 'Bad credentials',$/;"	p	property:anonymousObject6784b5640605.payload
-snackBarMessage	src/views/SignIn.jsx	/^                snackBarMessage: 'Bad parameters',$/;"	p	property:anonymousObject6784b5640705.payload
-snackBarMessage	src/views/SignIn.jsx	/^              snackBarMessage: 'You have succesfully signed in',$/;"	p	property:anonymousObject6784b5640805.payload
+snackBarMessage	src/views/SignIn.jsx	/^                snackBarMessage: 'Bad credentials',$/;"	p	property:anonymousObject6784b5640705.payload
+snackBarMessage	src/views/SignIn.jsx	/^                snackBarMessage: 'Bad parameters',$/;"	p	property:anonymousObject6784b5640805.payload
+snackBarMessage	src/views/SignIn.jsx	/^                snackBarMessage: 'No connection to the server',$/;"	p	property:anonymousObject6784b5640605.payload
+snackBarMessage	src/views/SignIn.jsx	/^              snackBarMessage: 'No connection to the server',$/;"	p	property:anonymousObject6784b5640b05.payload
+snackBarMessage	src/views/SignIn.jsx	/^              snackBarMessage: 'You have succesfully signed in',$/;"	p	property:anonymousObject6784b5640905.payload
 snackBarMessage	src/views/SignIn.jsx	/^            {this.props.snackBarMessage}$/;"	M	class:SignIn
 snackBarMessage	src/views/SignIn.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject6784b5640305.payload
-snackBarMessage	src/views/SignUp.jsx	/^                snackBarMessage: 'A user with the same email exists',$/;"	p	property:anonymousObject83a6cdf20805.payload
-snackBarMessage	src/views/SignUp.jsx	/^                snackBarMessage: 'Bad parameters',$/;"	p	property:anonymousObject83a6cdf20905.payload
-snackBarMessage	src/views/SignUp.jsx	/^              snackBarMessage: 'You have succesfully signed up',$/;"	p	property:anonymousObject83a6cdf20a05.payload
+snackBarMessage	src/views/SignUp.jsx	/^                snackBarMessage: 'A user with the same email exists',$/;"	p	property:anonymousObject83a6cdf20905.payload
+snackBarMessage	src/views/SignUp.jsx	/^                snackBarMessage: 'Bad parameters',$/;"	p	property:anonymousObject83a6cdf20a05.payload
+snackBarMessage	src/views/SignUp.jsx	/^                snackBarMessage: 'No connection to the server',$/;"	p	property:anonymousObject83a6cdf20805.payload
+snackBarMessage	src/views/SignUp.jsx	/^              snackBarMessage: 'No connection to the server',$/;"	p	property:anonymousObject83a6cdf20d05.payload
+snackBarMessage	src/views/SignUp.jsx	/^              snackBarMessage: 'You have succesfully signed up',$/;"	p	property:anonymousObject83a6cdf20b05.payload
+snackBarMessage	src/views/SignUp.jsx	/^            snackBarMessage: 'No connection to the server',$/;"	p	property:anonymousObject83a6cdf20e05.payload
 snackBarMessage	src/views/SignUp.jsx	/^            {this.props.snackBarMessage}$/;"	M	class:SignUp
 snackBarMessage	src/views/SignUp.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject83a6cdf20505.payload
 snackBarMessageType	src/components/Chat.jsx	/^                  snackBarMessageType: 'error',$/;"	p	property:anonymousObjectc51c18141205.payload
+snackBarMessageType	src/components/Chat.jsx	/^                  snackBarMessageType: 'error',$/;"	p	property:anonymousObjectc51c18141305.payload
+snackBarMessageType	src/components/Chat.jsx	/^                  snackBarMessageType: 'error',$/;"	p	property:anonymousObjectc51c18141405.payload
 snackBarMessageType	src/components/Chat.jsx	/^              snackBarMessageType: 'error',$/;"	p	property:anonymousObjectc51c18140205.payload
 snackBarMessageType	src/components/Chat.jsx	/^          snackBarMessageType: 'error',$/;"	p	property:anonymousObjectc51c18140505.payload
-snackBarMessageType	src/components/ChatList.jsx	/^                  snackBarMessageType: 'error',$/;"	p	property:anonymousObject096161500b05.payload
-snackBarMessageType	src/components/ChatList.jsx	/^                snackBarMessageType: 'error',$/;"	p	property:anonymousObject096161500705.payload
+snackBarMessageType	src/components/ChatList.jsx	/^                  snackBarMessageType: 'error',$/;"	p	property:anonymousObject096161500d05.payload
+snackBarMessageType	src/components/ChatList.jsx	/^                snackBarMessageType: 'error',$/;"	p	property:anonymousObject096161500805.payload
+snackBarMessageType	src/components/ChatList.jsx	/^                snackBarMessageType: 'error',$/;"	p	property:anonymousObject096161500c05.payload
+snackBarMessageType	src/components/ChatList.jsx	/^              snackBarMessageType: 'error',$/;"	p	property:anonymousObject096161500705.payload
 snackBarMessageType	src/components/ChatList.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject096161500305.payload
 snackBarMessageType	src/store/index.js	/^  snackBarMessageType: null,$/;"	p	variable:initialState
-snackBarMessageType	src/views/ChatView.jsx	/^                    snackBarMessageType: 'error',$/;"	p	property:anonymousObject6925e8b70805.payload
-snackBarMessageType	src/views/ChatView.jsx	/^                snackBarMessageType: 'error',$/;"	p	property:anonymousObject6925e8b70505.payload
+snackBarMessageType	src/views/ChatView.jsx	/^                      snackBarMessageType: 'error',$/;"	p	property:anonymousObject6925e8b70905.payload
+snackBarMessageType	src/views/ChatView.jsx	/^                  snackBarMessageType: 'error',$/;"	p	property:anonymousObject6925e8b70605.payload
+snackBarMessageType	src/views/ChatView.jsx	/^              snackBarMessageType: 'error',$/;"	p	property:anonymousObject6925e8b70405.payload
 snackBarMessageType	src/views/ChatView.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject6925e8b70205.payload
 snackBarMessageType	src/views/SignIn.jsx	/^                snackBarMessageType: 'error',$/;"	p	property:anonymousObject6784b5640605.payload
 snackBarMessageType	src/views/SignIn.jsx	/^                snackBarMessageType: 'error',$/;"	p	property:anonymousObject6784b5640705.payload
-snackBarMessageType	src/views/SignIn.jsx	/^              snackBarMessageType: 'success',$/;"	p	property:anonymousObject6784b5640805.payload
+snackBarMessageType	src/views/SignIn.jsx	/^                snackBarMessageType: 'error',$/;"	p	property:anonymousObject6784b5640805.payload
+snackBarMessageType	src/views/SignIn.jsx	/^              snackBarMessageType: 'error',$/;"	p	property:anonymousObject6784b5640b05.payload
+snackBarMessageType	src/views/SignIn.jsx	/^              snackBarMessageType: 'success',$/;"	p	property:anonymousObject6784b5640905.payload
 snackBarMessageType	src/views/SignIn.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject6784b5640305.payload
 snackBarMessageType	src/views/SignUp.jsx	/^                snackBarMessageType: 'error',$/;"	p	property:anonymousObject83a6cdf20805.payload
 snackBarMessageType	src/views/SignUp.jsx	/^                snackBarMessageType: 'error',$/;"	p	property:anonymousObject83a6cdf20905.payload
-snackBarMessageType	src/views/SignUp.jsx	/^              snackBarMessageType: 'success',$/;"	p	property:anonymousObject83a6cdf20a05.payload
+snackBarMessageType	src/views/SignUp.jsx	/^                snackBarMessageType: 'error',$/;"	p	property:anonymousObject83a6cdf20a05.payload
+snackBarMessageType	src/views/SignUp.jsx	/^              snackBarMessageType: 'error',$/;"	p	property:anonymousObject83a6cdf20d05.payload
+snackBarMessageType	src/views/SignUp.jsx	/^              snackBarMessageType: 'success',$/;"	p	property:anonymousObject83a6cdf20b05.payload
+snackBarMessageType	src/views/SignUp.jsx	/^            snackBarMessageType: 'error',$/;"	p	property:anonymousObject83a6cdf20e05.payload
 snackBarMessageType	src/views/SignUp.jsx	/^      payload: { snackBarMessage: undefined, snackBarMessageType: undefined },$/;"	p	property:anonymousObject83a6cdf20505.payload
 socket	src/components/Chat.jsx	/^  socket = io(process.env.REACT_APP_BACKEND_API_URL, {$/;"	M	class:Chat
 sortChats	src/utils.js	/^export const sortChats = (chats) => {$/;"	f
@@ -512,6 +553,8 @@ toggleDialog	src/components/ChatList.jsx	/^  toggleDialog = () => this.setState(
 toggleMobileNavOpen	src/views/ChatView.jsx	/^  toggleMobileNavOpen = () =>$/;"	M	class:ChatView
 type	src/components/Chat.jsx	/^                  type="file"$/;"	M	class:Chat
 type	src/components/Chat.jsx	/^                type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObjectc51c18141205
+type	src/components/Chat.jsx	/^                type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObjectc51c18141305
+type	src/components/Chat.jsx	/^                type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObjectc51c18141405
 type	src/components/Chat.jsx	/^                type="text"$/;"	M	class:Chat
 type	src/components/Chat.jsx	/^              type: 'ADD_MESSAGE',$/;"	p	variable:anonymousObjectc51c18140905
 type	src/components/Chat.jsx	/^              type: 'ADD_MESSAGE',$/;"	p	variable:anonymousObjectc51c18140b05
@@ -523,32 +566,40 @@ type	src/components/Chat.jsx	/^          type: 'ADD_MESSAGE',$/;"	p	variable:ano
 type	src/components/Chat.jsx	/^        this.props.dispatch({ type: 'CHANGE_STATUS', payload: status });$/;"	p	variable:anonymousObjectc51c18141005
 type	src/components/Chat.jsx	/^        type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObjectc51c18140505
 type	src/components/Chat.jsx	/^      this.props.dispatch({ type: 'READ_MESSAGES', payload: readMessagesData });$/;"	p	variable:anonymousObjectc51c18141105
-type	src/components/Chat.jsx	/^  closeChat = () => this.props.dispatch({ type: 'CLOSE_CHAT' });$/;"	p	variable:anonymousObjectc51c18141a05
-type	src/components/ChatList.jsx	/^                type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject096161500b05
-type	src/components/ChatList.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject096161500705
+type	src/components/Chat.jsx	/^  closeChat = () => this.props.dispatch({ type: 'CLOSE_CHAT' });$/;"	p	variable:anonymousObjectc51c18141c05
+type	src/components/ChatList.jsx	/^                type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject096161500d05
+type	src/components/ChatList.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject096161500805
+type	src/components/ChatList.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject096161500c05
 type	src/components/ChatList.jsx	/^              type="email"$/;"	M	class:ChatList
-type	src/components/ChatList.jsx	/^        this.props.dispatch({ type: 'ADD_CHAT', payload: json });$/;"	p	variable:anonymousObject096161500905
-type	src/components/ChatList.jsx	/^        this.props.dispatch({ type: 'OPEN_CHAT', payload: json.id });$/;"	p	variable:anonymousObject096161500a05
+type	src/components/ChatList.jsx	/^            type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject096161500705
+type	src/components/ChatList.jsx	/^        this.props.dispatch({ type: 'ADD_CHAT', payload: json });$/;"	p	variable:anonymousObject096161500a05
+type	src/components/ChatList.jsx	/^        this.props.dispatch({ type: 'OPEN_CHAT', payload: json.id });$/;"	p	variable:anonymousObject096161500b05
 type	src/components/ChatList.jsx	/^      type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject096161500305
 type	src/components/ChatListItem.jsx	/^    this.props.dispatch({ type: 'OPEN_CHAT', payload: this.props.chat.id });$/;"	p	variable:anonymousObject7e3521df0205
 type	src/components/Navigation.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: null });$/;"	p	variable:anonymousObject8edfbb640105
-type	src/views/ChatView.jsx	/^                  type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6925e8b70805
-type	src/views/ChatView.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6925e8b70505
-type	src/views/ChatView.jsx	/^            this.props.dispatch({ type: 'SET_CHATS', payload: json });$/;"	p	variable:anonymousObject6925e8b70a05
-type	src/views/ChatView.jsx	/^            this.props.dispatch({ type: 'SET_USER', payload: null });$/;"	p	variable:anonymousObject6925e8b70405
-type	src/views/ChatView.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject6925e8b70705
+type	src/views/ChatView.jsx	/^                    type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6925e8b70905
+type	src/views/ChatView.jsx	/^                type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6925e8b70605
+type	src/views/ChatView.jsx	/^              this.props.dispatch({ type: 'SET_USER', payload: null });$/;"	p	variable:anonymousObject6925e8b70505
+type	src/views/ChatView.jsx	/^            this.props.dispatch({ type: 'SET_CHATS', payload: json });$/;"	p	variable:anonymousObject6925e8b70b05
+type	src/views/ChatView.jsx	/^            type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6925e8b70405
+type	src/views/ChatView.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject6925e8b70805
 type	src/views/ChatView.jsx	/^      this.props.dispatch({ type: 'UPDATE_GLOBAL_TIMER' });$/;"	p	variable:anonymousObject6925e8b70305
 type	src/views/ChatView.jsx	/^      type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6925e8b70205
 type	src/views/ChatView.jsx	/^    this.props.dispatch({ type: 'TOGGLE_MOBILENAVOPEN' });$/;"	p	variable:anonymousObject6925e8b70105
 type	src/views/SignIn.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640605
 type	src/views/SignIn.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640705
-type	src/views/SignIn.jsx	/^            type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640805
-type	src/views/SignIn.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject6784b5640a05
+type	src/views/SignIn.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640805
+type	src/views/SignIn.jsx	/^            type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640905
+type	src/views/SignIn.jsx	/^            type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640b05
+type	src/views/SignIn.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject6784b5640c05
 type	src/views/SignIn.jsx	/^      type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject6784b5640305
 type	src/views/SignUp.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20805
 type	src/views/SignUp.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20905
-type	src/views/SignUp.jsx	/^            type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20a05
-type	src/views/SignUp.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject83a6cdf20c05
+type	src/views/SignUp.jsx	/^              type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20a05
+type	src/views/SignUp.jsx	/^            type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20b05
+type	src/views/SignUp.jsx	/^            type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20d05
+type	src/views/SignUp.jsx	/^          type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20e05
+type	src/views/SignUp.jsx	/^        this.props.dispatch({ type: 'SET_USER', payload: json });$/;"	p	variable:anonymousObject83a6cdf20f05
 type	src/views/SignUp.jsx	/^      type: 'SET_SNACKBAR',$/;"	p	variable:anonymousObject83a6cdf20505
 upload	src/components/Chat.jsx	/^  upload = (file, messageType) => {$/;"	M	class:Chat
 user	src/store/index.js	/^  user: {},$/;"	p	variable:initialState
