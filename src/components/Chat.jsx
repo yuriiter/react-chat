@@ -121,7 +121,7 @@ class Chat extends Component {
     });
 
     this.socket.on('connect', () => {
-      console.log('Connected to the server');
+      console.log('Socket.io connected');
     });
     this.socket.on('onMessage', (newMessage) => {
       if (newMessage.chatId === this.props.chat.id) {
