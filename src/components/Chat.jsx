@@ -124,7 +124,6 @@ class Chat extends Component {
       console.log('Connected to the server');
     });
     this.socket.on('onMessage', (newMessage) => {
-      console.log(newMessage);
       if (newMessage.chatId === this.props.chat.id) {
         this.setState(
           (prevState) => {
@@ -305,9 +304,9 @@ class Chat extends Component {
 
     if (prevState.messages !== this.state.messages) {
       if (prevState.messages) {
-        /* this.socket.emit('readChat', { chatId: this.props.chat.id}); */
         const currentMessagesCount = this.state.messages.length;
         const newMessage = this.state.messages[currentMessagesCount - 1];
+
         if (newMessage?.authorId === this.props.user.id) {
           this.messageContainerRef.current.scrollTo(
             0,
@@ -318,8 +317,10 @@ class Chat extends Component {
             this.messageContainerRef.current.scrollHeight -
               this.messageContainerRef.current.offsetHeight -
               this.state.scrollFromTop <
-            300
+              300 &&
+            prevState.messages.length !== this.state.messages.length
           ) {
+            this.socket.emit('readChat', { chatId: this.props.chat.id });
             this.messageContainerRef.current.scrollTo(
               0,
               this.messageContainerRef.current.scrollHeight,
